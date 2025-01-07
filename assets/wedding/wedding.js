@@ -42,7 +42,7 @@ const validLogins = [
     {names: ['Olivier Thomas'], habilitation: MAIRIE + LAIC + SOIREE},
     {names: ['Nicolas Yamamoto'], habilitation: MAIRIE + LAIC + SOIREE},
     {names: ['Clarisse Devillers', 'Luc Devillers'], habilitation: MAIRIE + LAIC + SOIREE},
-    {names: ['Randolph Higa', 'Mylenka Djariman'], habilitation: MAIRIE + LAIC},
+    {names: ['Randolph Higa', 'Mylenka Djariman'], habilitation: MAIRIE + LAIC + SOIREE},
     {names: ['Sebastien Perault', 'Khrystyna Perault'], habilitation: MAIRIE + LAIC + SOIREE},
     {names: ['Yvrick Hermant'], habilitation: MAIRIE + LAIC + SOIREE},
     {names: ['Roby Didelot', 'Serge Didelot'], habilitation: MAIRIE + LAIC},
