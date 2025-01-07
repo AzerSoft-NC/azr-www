@@ -73,6 +73,7 @@ const validLogins = [
     {names: ['Adrien Giacinti'], habilitation: MAIRIE + LAIC + SOIREE},
     {names: ['Phillipe Roure', 'Magda Roure'], habilitation: MAIRIE + LAIC},
     {names: ['Rida Pagatele'], habilitation: MAIRIE + LAIC},
+    {names: ['Catherine Galinie', 'Joshua Mesanovic', 'Adam Mesanovic'], habilitation: MAIRIE + LAIC},
 ];
 
 // Helper function to normalize input (remove accents, lowercase, trim, and remove spaces)
