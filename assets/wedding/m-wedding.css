@@ -46,6 +46,14 @@
     .planning-section {
         background-position-y: unset !important;
     }
+    .planning-section .event-col {
+        padding: 0 0 0 0.5rem;
+    }
+    .planning-section .event-col p,
+    .planning-section .event-col span {
+        text-align: left;
+        text-indent: 0;
+    }
 
 
     .timeline-section .timeline:before {

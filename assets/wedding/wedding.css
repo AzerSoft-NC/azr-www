@@ -17,11 +17,11 @@
 }
 
 .terracotta {
-    color: var(--teracotta)
+    color: var(--teracotta) !important;
 }
 
 .sage-green {
-    color: var(--sage-green)
+    color: var(--sage-green) !important;
 }
 
 .white {
@@ -330,16 +330,32 @@ h6, .h6 {
     border: none;
 }
 
-.planning-section .event-wrap p,
-.planning-section .event-wrap span {
+.planning-section .event-col p,
+.planning-section .event-col span {
     display: block;
     color: rgba(255, 255, 255, 0.8);
-    margin: 0.3rem 0;
+    margin: 0.5rem 0;
     height: 3rem;
+    text-align: left;
+    text-indent: 4em;
 }
+
+.planning-section .event-col:first-of-type span {
+    text-align: center;
+    text-indent: 0;
+}
+
 .planning-section .event-wrap i {
     color: white;
-    font-size: 20px;
+    font-size: 19px;
+}
+.planning-section .event-wrap a {
+    color: white !important;
+    cursor: pointer;
+}
+.planning-section .event-wrap a i {
+    color: white !important;
+    font-size: 14px;
 }
 
 .download-link {

@@ -52,8 +52,10 @@ const validLogins = [
 
     {names: ['Jade Cornet'], habilitation: MAIRIE + LAIC + SOIREE},
     {names: ['Robin Cornet'], habilitation: MAIRIE + LAIC + SOIREE},
+    {names: ['Francoise Desfontaine'], habilitation: MAIRIE + LAIC + SOIREE},
     {names: ['Romane Cornet'], habilitation: MAIRIE + LAIC + SOIREE},
     {names: ['Renaud Cornet', 'Sylvie Marboeuf', 'Claude Cornet'], habilitation: MAIRIE + LAIC + SOIREE},
+    {names: ['Jean-Francois Paties'], habilitation: MAIRIE + LAIC + SOIREE},
     {names: ['Eric Esposito', 'Brigitte Esposito'], habilitation: MAIRIE + LAIC + SOIREE},
     {names: ['Kevin Esposito', 'Julie Touyrac'], habilitation: MAIRIE + LAIC + SOIREE},
     {names: ['Philippe Guillou', 'Giliane Guillou', 'Loic Guillou'], habilitation: MAIRIE + LAIC + SOIREE},
@@ -157,8 +159,8 @@ function downloadPlanning() {
     // Create a new <a> element
     const link = document.createElement("a");
     link.style.display = "none"; // Hide the link
-    link.download = "12_04_2025_jade_et_marc_planning_marriage.pdf";
-    link.href = `assets/wedding/plannings/guide_${isInvitedTo(currentUser.habilitation, SOIREE) ? 1 : 2}.pdf`;
+    link.download = "12_04_2025_jade_et_marc_planning_mariage.pdf";
+    link.href = `assets/wedding/plannings/brochure_mariage_${isInvitedTo(currentUser.habilitation, SOIREE) ? '_soiree' : ''}.pdf`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link); // Remove the link after clicking
