@@ -46,16 +46,16 @@ const validLogins = [
     {names: ['Sebastien Perault', 'Khrystyna Perault'], habilitation: MAIRIE + LAIC + SOIREE},
     {names: ['Yvrick Hermant'], habilitation: MAIRIE + LAIC + SOIREE},
     {names: ['Roby Didelot', 'Serge Didelot'], habilitation: MAIRIE + LAIC},
-    {names: ['Daniel Domergue', 'Marie-Francoise Domergue',], habilitation: MAIRIE + LAIC},
+    {names: ['Daniel Domergue', 'Marie-Françoise Domergue',], habilitation: MAIRIE + LAIC},
     {names: ['Céline Domergue', 'Flavio'], habilitation: MAIRIE + LAIC},
     {names: ['Vincent Domergue', 'Christelle Domergue'], habilitation: MAIRIE + LAIC + SOIREE},
 
     {names: ['Jade Cornet'], habilitation: MAIRIE + LAIC + SOIREE},
     {names: ['Robin Cornet'], habilitation: MAIRIE + LAIC + SOIREE},
-    {names: ['Francoise Desfontaine'], habilitation: MAIRIE + LAIC + SOIREE},
+    {names: ['Françoise Desfontaine'], habilitation: MAIRIE + LAIC + SOIREE},
     {names: ['Romane Cornet'], habilitation: MAIRIE + LAIC + SOIREE},
     {names: ['Renaud Cornet', 'Sylvie Marboeuf', 'Claude Cornet'], habilitation: MAIRIE + LAIC + SOIREE},
-    {names: ['Jean-Francois Paties'], habilitation: MAIRIE + LAIC + SOIREE},
+    {names: ['Jean-François Paties'], habilitation: MAIRIE + LAIC + SOIREE},
     {names: ['Eric Esposito', 'Brigitte Esposito'], habilitation: MAIRIE + LAIC + SOIREE},
     {names: ['Kevin Esposito', 'Julie Touyrac'], habilitation: MAIRIE + LAIC + SOIREE},
     {names: ['Philippe Guillou', 'Giliane Guillou', 'Loic Guillou'], habilitation: MAIRIE + LAIC + SOIREE},
@@ -84,6 +84,7 @@ function normalizeInput(input) {
         .normalize("NFD") // Decomposes characters with accents
         .replace(/[\u0300-\u036f]/g, "") // Removes accents
         .toLowerCase() // Converts to lowercase
+        .replace('-', "")
         .replace(/\s+/g, "") // Removes all spaces
         .trim(); // Trims any surrounding spaces
 }
