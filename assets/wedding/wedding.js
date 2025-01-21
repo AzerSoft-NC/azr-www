@@ -46,7 +46,7 @@ const validLogins = [
     {names: ['Sebastien Perault', 'Khrystyna Perault'], habilitation: MAIRIE + LAIC + SOIREE},
     {names: ['Yvrick Hermant'], habilitation: MAIRIE + LAIC + SOIREE},
     {names: ['Roby Didelot', 'Serge Didelot'], habilitation: MAIRIE + LAIC},
-    {names: ['Daniel Domergue', 'Marie-Francoise',], habilitation: MAIRIE + LAIC},
+    {names: ['Daniel Domergue', 'Marie-Francoise Domergue',], habilitation: MAIRIE + LAIC},
     {names: ['Céline Domergue', 'Flavio'], habilitation: MAIRIE + LAIC},
     {names: ['Vincent Domergue', 'Christelle Domergue'], habilitation: MAIRIE + LAIC + SOIREE},
 
@@ -160,7 +160,7 @@ function downloadPlanning() {
     const link = document.createElement("a");
     link.style.display = "none"; // Hide the link
     link.download = "12_04_2025_jade_et_marc_planning_mariage.pdf";
-    link.href = `assets/wedding/plannings/brochure_mariage_${isInvitedTo(currentUser.habilitation, SOIREE) ? '_soiree' : ''}.pdf`;
+    link.href = `assets/wedding/plannings/brochure_mariage${isInvitedTo(currentUser.habilitation, SOIREE) ? '_soiree' : ''}.pdf`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link); // Remove the link after clicking
