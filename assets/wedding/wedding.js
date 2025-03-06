@@ -69,7 +69,7 @@ const validLogins = [
     {names: ['Clovis Rivière'], habilitation: MAIRIE + LAIC + SOIREE},
     {names: ['Kilian Teyssier'], habilitation: MAIRIE + LAIC + SOIREE},
     {names: ['Patricia Merignac',], habilitation: MAIRIE + LAIC + SOIREE},
-    {names: [ 'Fabrice Fort'], habilitation: MAIRIE + LAIC },
+    {names: [ 'Fabrice Faure'], habilitation: MAIRIE + LAIC },
     {names: ['Jocelyne Merignac', 'Paul Merignac', 'Virginie Merignac'], habilitation: MAIRIE + LAIC},
     {names: ['Nathalie Brinon', 'Steeve Brinon', 'Achille Brinon'], habilitation: MAIRIE + LAIC},
     {names: ['Delphine Tanti', 'Louis Tanti-Cornet', 'Ines Tanti-Cornet'], habilitation: MAIRIE + LAIC},
