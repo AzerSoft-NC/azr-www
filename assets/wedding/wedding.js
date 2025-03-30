@@ -109,11 +109,8 @@ function formLogin() {
 }
 
 function signIn(login) {
-    const invitedTo = getQueryParam('invitedTo')
-    if(!invitedTo) {
-        alertError(`Type d'invitation non definit.`);
-        return
-    }
+    const invitedTo = getQueryParam('invitedTo') ?? LAIC
+
     // let user = findUser(login);
     //
     // if (!user) {
