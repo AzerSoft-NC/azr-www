@@ -109,26 +109,27 @@ function formLogin() {
 }
 
 function signIn(login) {
-    let user = findUser(login);
-
-    if (!user) {
-        signOut();
-        if (!!login)
-            alertError('Authentification');
-        return
-    }
+    // let user = findUser(login);
+    //
+    // if (!user) {
+    //     signOut();
+    //     if (!!login)
+    //         alertError('Authentification');
+    //     return
+    // }
 
     $('#login-page').css('display', 'none')
     $('#page').css('display', 'block').addClass('animated-fast fadeInUpMenu')
     $('#navbar').css('display', 'block').addClass('animated-fast fadeInUpMenu')
     // User is authenticated, show the page and store login in cookie
-    setCookie(login);
-    currentUser = user;
+    // setCookie(login);
+    // currentUser = user;
     // Destroy elements that are only for the evening
-    if (!isInvitedTo(user.habilitation, SOIREE)) {
+    const invitedTo = getQueryParam('invitedTo')
+    if (!isInvitedTo(invitedTo, SOIREE)) {
         $('.evening-element').remove();
     }
-    $('#accompagnement').val(user.names.join('\n'))
+    // $('#accompagnement').val(user.names.join('\n'))
     populateGallery();
 }
 
