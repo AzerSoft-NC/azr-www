@@ -109,6 +109,11 @@ function formLogin() {
 }
 
 function signIn(login) {
+    const invitedTo = getQueryParam('invitedTo')
+    if(!invitedTo) {
+        alertError(`Type d'invitation non definit.`);
+        return
+    }
     // let user = findUser(login);
     //
     // if (!user) {
@@ -125,7 +130,6 @@ function signIn(login) {
     // setCookie(login);
     // currentUser = user;
     // Destroy elements that are only for the evening
-    const invitedTo = getQueryParam('invitedTo')
     if (!isInvitedTo(invitedTo, SOIREE)) {
         $('.evening-element').remove();
     }
