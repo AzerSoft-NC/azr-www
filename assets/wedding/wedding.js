@@ -109,8 +109,17 @@ function formLogin() {
 }
 
 function signIn(login) {
-    const invitedTo = getQueryParam('invitedTo') ?? LAIC
-
+    const invitedTo = getQueryParam('invitedTo')
+    if(!invitedTo){
+    Swal.fire({
+        icon: 'error',
+        title:`Invite lvl`,
+        text: `Le type d'invitation n'est pas definit. `+
+            `\n Merci de me contacter : marc.wadjahdi@gmail.com`,
+        confirmButtonText: 'OK',
+    });
+        return
+    }
     // let user = findUser(login);
     //
     // if (!user) {
