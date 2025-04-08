@@ -30,6 +30,8 @@ function isInvitedTo(invitation, event) {
 // Step 1: Declare valid logins
 const validLogins = [
     {names: ['Agence Unicorn', 'Unicorn', 'Licorne', 'Gros la Corne'], habilitation: MAIRIE + LAIC + SOIREE},
+    {names: [`${LAIC}`], habilitation: MAIRIE + LAIC},
+    {names: [`${SOIREE}`], habilitation: MAIRIE + LAIC + SOIREE},
 
     {names: ['Marc Wadjahdi', 'Kako', 'Mumble', 'Marcus Pupuce'], habilitation: MAIRIE + LAIC + SOIREE},
     {names: ['Corinne Wadjahdi', 'Coco des iles'], habilitation: MAIRIE + LAIC + SOIREE},
@@ -69,7 +71,7 @@ const validLogins = [
     {names: ['Clovis Rivière'], habilitation: MAIRIE + LAIC + SOIREE},
     {names: ['Kilian Teyssier'], habilitation: MAIRIE + LAIC + SOIREE},
     {names: ['Patricia Merignac',], habilitation: MAIRIE + LAIC + SOIREE},
-    {names: [ 'Fabrice Faure'], habilitation: MAIRIE + LAIC },
+    {names: ['Fabrice Faure'], habilitation: MAIRIE + LAIC},
     {names: ['Jocelyne Merignac', 'Paul Merignac', 'Virginie Merignac'], habilitation: MAIRIE + LAIC},
     {names: ['Nathalie Brinon', 'Steeve Brinon', 'Achille Brinon'], habilitation: MAIRIE + LAIC},
     {names: ['Delphine Tanti', 'Louis Tanti-Cornet', 'Ines Tanti-Cornet'], habilitation: MAIRIE + LAIC},
@@ -100,7 +102,7 @@ function findUser(login) {
 }
 
 function autoLogin() {
-    const login = getQueryParam('login') ?? getCookie(COOKIE)
+    const login = getQueryParam('login') ?? getQueryParam('invitedTo') ?? getCookie(COOKIE)
     signIn(login)
 }
 
@@ -109,34 +111,24 @@ function formLogin() {
 }
 
 function signIn(login) {
-    const invitedTo = getQueryParam('invitedTo')
-    if(!invitedTo){
-    Swal.fire({
-        icon: 'error',
-        title:`Invite lvl`,
-        text: `Le type d'invitation n'est pas definit. `+
-            `\n Merci de me contacter : marc.wadjahdi@gmail.com`,
-        confirmButtonText: 'OK',
-    });
+    let user = findUser(login);
+    if (!user) {
+        signOut();
+        if (!!login)
+            alertError('Authentification');
         return
     }
-    // let user = findUser(login);
-    //
-    // if (!user) {
-    //     signOut();
-    //     if (!!login)
-    //         alertError('Authentification');
-    //     return
-    // }
+
+    // User is authenticated, show the page and store login in cookie
+    setCookie(login);
+    currentUser = user;
 
     $('#login-page').css('display', 'none')
     $('#page').css('display', 'block').addClass('animated-fast fadeInUpMenu')
     $('#navbar').css('display', 'block').addClass('animated-fast fadeInUpMenu')
-    // User is authenticated, show the page and store login in cookie
-    // setCookie(login);
-    // currentUser = user;
+
     // Destroy elements that are only for the evening
-    if (!isInvitedTo(invitedTo, SOIREE)) {
+    if (!isInvitedTo(user.habilitation, SOIREE)) {
         $('.evening-element').remove();
     }
     // $('#accompagnement').val(user.names.join('\n'))
