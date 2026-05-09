@@ -1,0 +1,239 @@
+---
+import LandingLayout from '@/layouts/LandingLayout.astro';
+import { Hero } from '@/components/hero';
+import Button from '@/components/ui/form/Button/Button.astro';
+import Badge from '@/components/ui/data-display/Badge/Badge.astro';
+import Card from '@/components/ui/data-display/Card/Card.astro';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+import BlogCard from '@/components/blog/BlogCard.astro';
+import TypingEffect from '@/components/ui/TypingEffect.astro';
+import { getCollection } from 'astro:content';
+import optLogo from '@/assets/clients/opt.png';
+import psudLogo from '@/assets/clients/psud.png';
+import obiOneLogo from '@/assets/clients/logo_obi_one.png';
+
+const posts = (await getCollection('blog', ({ data }) => data.locale === 'fr' && !data.draft))
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())
+  .slice(0, 3);
+
+const typingWords = [
+  'Creation de Sites Web',
+  'Creation de E-Commerce',
+  'Developpement d\'Applications',
+];
+---
+
+<LandingLayout
+  title="Azer Soft - Services informatiques en Nouvelle-Caledonie"
+  description="Azer Soft accompagne vos projets de developpement logiciel, SIG, conseil et audit depuis 2016."
+  image="/og-default.png"
+  includeOrgSchema={true}
+  includeProfessionalServiceSchema={true}
+>
+  <Hero layout="centered" size="xl" backgroundImage="/og-default.png" showScrollIndicator>
+    <h1 slot="title">
+      Votre partenaire
+      <span class="block text-brand-400">
+        <TypingEffect words={typingWords} />
+      </span>
+    </h1>
+    <p slot="description">Qualite, accompagnement, satisfaction.</p>
+  </Hero>
+
+  <section
+    id="stats"
+    class="bg-background-secondary border-border border-t py-[var(--space-section-sm)]"
+  >
+    <div class="mx-auto grid max-w-6xl gap-4 px-6 md:grid-cols-4">
+      <Card padding="lg" data-reveal
+        ><p class="text-foreground-muted text-sm">Experience</p><p class="text-2xl font-bold">
+          Depuis 2016
+        </p></Card
+      >
+      <Card padding="lg" data-reveal
+        ><p class="text-foreground-muted text-sm">Projets</p><p class="text-2xl font-bold">
+          30+ livres
+        </p></Card
+      >
+      <Card padding="lg" data-reveal
+        ><p class="text-foreground-muted text-sm">Ridet</p><p class="text-2xl font-bold">
+          1 475 672
+        </p></Card
+      >
+      <Card padding="lg" data-reveal
+        ><p class="text-foreground-muted text-sm">Localisation</p><p class="text-2xl font-bold">
+          Noumea
+        </p></Card
+      >
+    </div>
+  </section>
+
+  <section
+    id="competences"
+    class="bg-background border-border border-t py-[var(--space-section-md)]"
+  >
+    <div class="mx-auto flex max-w-6xl flex-col gap-8 px-6">
+      <div class="text-center" data-reveal>
+        <Badge variant="brand" pill>Competences</Badge><h2
+          class="font-display mt-4 text-3xl font-bold"
+        >
+          Stack technique
+        </h2>
+      </div>
+      <div class="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-6">
+        {
+          [
+            ['html5', 'html5'],
+            ['css3', 'css3'],
+            ['javascript', 'javascript'],
+            ['typescript', 'typescript'],
+            ['nodedotjs', 'node.js'],
+            ['angular', 'angular'],
+            ['docker', 'docker'],
+            ['nginx', 'nginx'],
+            ['postgresql', 'postgresql'],
+            ['wordpress', 'wordpress'],
+            ['go', 'go'],
+            ['openjdk', 'java'],
+          ].map(([slug, label]) => (
+            <Card padding="md" class="text-center">
+              <Icon name={`simple-icons:${slug}`} size="lg" class="text-brand-500 mx-auto" />
+              <p class="text-foreground-muted mt-2 text-xs tracking-wide uppercase">{label}</p>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="prestations"
+    class="bg-background-secondary border-border border-t py-[var(--space-section-md)]"
+  >
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="mb-8 text-center" data-reveal>
+        <Badge variant="brand" pill>Prestations</Badge><h2
+          class="font-display mt-4 text-3xl font-bold"
+        >
+          Ce que nous faisons
+        </h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <Card hover
+          ><h3 class="mb-2 font-semibold">Developpement logiciel</h3><p
+            class="text-foreground-muted text-sm"
+          >
+            Applications web, applications metier, sites vitrines.
+          </p></Card
+        >
+        <Card hover
+          ><h3 class="mb-2 font-semibold">SIG</h3><p class="text-foreground-muted text-sm">
+            Systemes d'information geographique et visualisation cartographique.
+          </p></Card
+        >
+        <Card hover
+          ><h3 class="mb-2 font-semibold">Conseil</h3><p class="text-foreground-muted text-sm">
+            Recueil besoin, backlog, choix techniques, accompagnement equipe.
+          </p></Card
+        >
+        <Card hover
+          ><h3 class="mb-2 font-semibold">Audit et reprise</h3><p
+            class="text-foreground-muted text-sm"
+          >
+            Audit de code, qualite logicielle, migration et reprise de donnees.
+          </p></Card
+        >
+      </div>
+    </div>
+  </section>
+
+  <section id="clients" class="bg-background border-border border-t py-[var(--space-section-md)]">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="mb-8 text-center" data-reveal>
+        <Badge variant="brand" pill>Clients</Badge><h2 class="font-display mt-4 text-3xl font-bold">
+          Ils nous font confiance
+        </h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        <Card padding="lg"
+          ><img src={optLogo.src} alt="OPT" class="mx-auto h-16 object-contain" /></Card
+        >
+        <Card padding="lg"
+          ><img src={psudLogo.src} alt="Province Sud" class="mx-auto h-16 object-contain" /></Card
+        >
+        <Card padding="lg"
+          ><img src={obiOneLogo.src} alt="Obi-One" class="mx-auto h-16 object-contain" /></Card
+        >
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="equipe"
+    class="bg-background-secondary border-border border-t py-[var(--space-section-md)]"
+  >
+    <div class="mx-auto max-w-4xl px-6">
+      <Card padding="lg" class="text-center">
+        <Badge variant="brand" pill>Equipe</Badge>
+        <h2 class="font-display mt-4 text-3xl font-bold">Marc Wadjahdi - Gerant</h2>
+        <p class="text-foreground-muted mt-3">
+          Developpeur et consultant. Accompagnement de projets logiciels en Nouvelle-Caledonie.
+        </p>
+        <Button href="/cv-marc-wadjahdi.pdf" class="mt-6"
+          >Telecharger CV <Icon name="download" size="sm" /></Button
+        >
+      </Card>
+    </div>
+  </section>
+
+  <section id="blog" class="bg-background border-border border-t py-[var(--space-section-md)]">
+    <div class="mx-auto flex max-w-6xl flex-col gap-8 px-6">
+      <div class="flex items-end justify-between">
+        <div>
+          <Badge variant="brand" pill>Blog</Badge><h2 class="font-display mt-4 text-3xl font-bold">
+            Articles recents
+          </h2>
+        </div><a href="/blog" class="text-brand-500 text-sm">Voir tout</a>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        {
+          posts.map((post) => (
+            <BlogCard
+              title={post.data.title}
+              description={post.data.description}
+              href={`/blog/${post.id.replace('fr/', '')}`}
+              publishedAt={post.data.publishedAt}
+              tags={post.data.tags}
+              author={post.data.author}
+              image={post.data.image}
+              svgSlug={post.data.svgSlug}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="contact"
+    class="bg-background-secondary border-border border-t py-[var(--space-section-md)]"
+  >
+    <div class="mx-auto max-w-4xl px-6 text-center">
+      <Badge variant="brand" pill>Contact</Badge>
+      <h2 class="font-display mt-4 text-4xl font-bold">Parlons de votre projet</h2>
+      <p class="text-foreground-muted mt-4 text-lg">
+        Email: <a class="text-brand-500" href="mailto:marc.wadjahdi.pro@gmail.com"
+          >marc.wadjahdi.pro@gmail.com</a
+        ><br />Telephone: +687 87 34 99
+      </p>
+      <div class="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+        <Button size="lg" href="mailto:marc.wadjahdi.pro@gmail.com"
+          >Envoyer un email <Icon name="mail" size="sm" /></Button
+        >
+        <Button size="lg" variant="outline" href="/blog"
+          >Lire le blog <Icon name="arrow-right" size="sm" /></Button
+        >
+      </div>
+    </div>
+  </section>
+</LandingLayout>

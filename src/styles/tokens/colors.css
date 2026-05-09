@@ -1,0 +1,9 @@
+/* =============================================================================
+   Astro Rocket Design Tokens - Colors
+   =============================================================================
+   Primitives plus the Azer Soft theme (forced via BaseLayout: data-theme,
+   light mode by default).
+   ============================================================================= */
+
+@import './primitives.css';
+@import '../themes/azersoft.css';
