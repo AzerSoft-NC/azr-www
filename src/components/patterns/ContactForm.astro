@@ -13,7 +13,7 @@ interface Props {
 
 const {
   action = '/api/contact',
-  successMessage = 'Message sent successfully!',
+  successMessage = 'Message envoye avec succes.',
   class: className,
 } = Astro.props;
 ---
@@ -28,11 +28,12 @@ const {
   <!-- Name + Email side by side on sm+ -->
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
     <Input
-      label="Name"
+      label="Nom"
       name="name"
       type="text"
       required
       autocomplete="name"
+      placeholder="Votre nom"
     />
     <Input
       label="Email"
@@ -40,13 +41,15 @@ const {
       type="email"
       required
       autocomplete="email"
+      placeholder="vous@exemple.com"
     />
   </div>
 
   <Input
-    label="Subject"
+    label="Sujet"
     name="subject"
     type="text"
+    placeholder="Creation de site, application, audit..."
   />
 
   <Textarea
@@ -54,6 +57,7 @@ const {
     name="message"
     required
     rows={5}
+    placeholder="Expliquez votre projet en quelques lignes."
   />
 
   <!-- Honeypot field for spam protection -->
@@ -65,8 +69,8 @@ const {
 
   <div class="flex justify-center">
     <Button type="submit" id="submit-button" class="gap-2">
-      Send message
-      <Icon name="arrow-right" size="sm" />
+      Envoyer le message
+      <Icon name="send" size="sm" />
     </Button>
   </div>
 </form>
@@ -79,13 +83,13 @@ const {
 
     if (!form || !button || !message) return;
 
-    const successMessage = form.dataset.successMessage || 'Message sent successfully!';
+    const successMessage = form.dataset.successMessage || 'Message envoye avec succes.';
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       button.disabled = true;
-      button.textContent = 'Sending…';
+      button.textContent = 'Envoi...';
       message.classList.add('hidden');
 
       try {
@@ -104,16 +108,16 @@ const {
         } else {
           const errors = data.errors
             ? Object.values(data.errors).flat().join(', ')
-            : 'Something went wrong';
+            : 'Une erreur est survenue';
           message.textContent = errors as string;
           message.className = 'text-sm text-destructive';
         }
       } catch {
-        message.textContent = 'Failed to send message. Please try again.';
+        message.textContent = 'Impossible d envoyer le message. Veuillez reessayer.';
         message.className = 'text-sm text-destructive';
       } finally {
         button.disabled = false;
-        button.textContent = 'Send message';
+        button.textContent = 'Envoyer le message';
         message.classList.remove('hidden');
       }
     });

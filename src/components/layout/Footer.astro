@@ -140,11 +140,8 @@ function getSocialIcon(platform: string): string {
             {hasLogoSlot ? (
               <slot name="logo" />
             ) : (
-              <a href="/" class="flex items-center gap-2">
-                <Logo size="md" class="bg-brand-700" />
-                <span class="font-display text-base font-bold text-brand-700 dark:text-foreground">
-                  {siteConfig.name}
-                </span>
+              <a href="/" aria-label={siteConfig.name}>
+                <Logo size="lg" class="bg-brand-700" />
               </a>
             )}
             {(hasTaglineSlot || tagline) && (
@@ -207,11 +204,8 @@ function getSocialIcon(platform: string): string {
               {hasLogoSlot ? (
                 <slot name="logo" />
               ) : (
-                <a href="/" class="flex items-center gap-2">
-                  <Logo size="md" class="bg-brand-700" />
-                  <span class="font-display text-base font-bold text-brand-700 dark:text-foreground">
-                    {siteConfig.name}
-                  </span>
+                <a href="/" aria-label={siteConfig.name}>
+                  <Logo size="lg" class="bg-brand-700" />
                 </a>
               )}
               {(hasTaglineSlot || tagline) && (
@@ -268,7 +262,7 @@ function getSocialIcon(platform: string): string {
 
         {/* Bottom section */}
         {(showCopyright || legalLinks.length > 0) && (
-          <div class="mt-[var(--space-section-header)] pt-[var(--space-stack-lg)] border-t border-border flex flex-col md:flex-row justify-between items-center gap-[var(--space-stack-md)]">
+          <div class="mt-[var(--space-section-header)] pt-[var(--space-stack-lg)] border-t border-border flex flex-col items-center gap-[var(--space-stack-md)] text-center">
             {hasBottomSlot ? (
               <slot name="bottom" />
             ) : (
@@ -310,11 +304,8 @@ function getSocialIcon(platform: string): string {
           hasLogoSlot ? (
             <slot name="logo" />
           ) : (
-            <a href="/" class="flex items-center gap-2">
-              <Logo size="md" class="bg-brand-700" />
-              <span class="font-display text-xl font-bold text-brand-700 dark:text-foreground">
-                {siteConfig.name}
-              </span>
+            <a href="/" aria-label={siteConfig.name}>
+              <Logo size="lg" class="bg-brand-700" />
             </a>
           )
         )}

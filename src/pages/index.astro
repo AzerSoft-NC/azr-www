@@ -6,6 +6,7 @@ import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Card from '@/components/ui/data-display/Card/Card.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import BlogCard from '@/components/blog/BlogCard.astro';
+import ContactForm from '@/components/patterns/ContactForm.astro';
 import TypingEffect from '@/components/ui/TypingEffect.astro';
 import { getCollection } from 'astro:content';
 import optLogo from '@/assets/clients/opt.png';
@@ -225,22 +226,18 @@ const typingWords = [
     id="contact"
     class="bg-background-secondary border-border border-t py-[var(--space-section-md)]"
   >
-    <div class="mx-auto max-w-4xl px-6 text-center">
-      <Badge variant="brand" pill>Contact</Badge>
-      <h2 class="font-display mt-4 text-4xl font-bold">Parlons de votre projet</h2>
-      <p class="text-foreground-muted mt-4 text-lg">
-        Email: <a class="text-brand-500" href="mailto:marc.wadjahdi.pro@gmail.com"
-          >marc.wadjahdi.pro@gmail.com</a
-        ><br />Telephone: +687 87 34 99
-      </p>
-      <div class="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-        <Button size="lg" href="mailto:marc.wadjahdi.pro@gmail.com"
-          >Envoyer un email <Icon name="mail" size="sm" /></Button
-        >
-        <Button size="lg" variant="outline" href="/blog"
-          >Lire le blog <Icon name="arrow-right" size="sm" /></Button
-        >
+    <div class="mx-auto max-w-4xl px-6">
+      <div class="text-center">
+        <Badge variant="brand" pill>Contact</Badge>
+        <h2 class="font-display mt-4 text-4xl font-bold">Parlons de votre projet</h2>
+        <p class="text-foreground-muted mx-auto mt-4 max-w-2xl text-lg">
+          Decrivez votre besoin, nous revenons vers vous rapidement.
+        </p>
       </div>
+
+      <Card padding="lg" class="mt-8">
+        <ContactForm successMessage="Merci, votre message a bien ete envoye." />
+      </Card>
     </div>
   </section>
 </LandingLayout>
