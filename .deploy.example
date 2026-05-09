@@ -1,6 +1,6 @@
 # Configuration locale de déploiement (rsync vers le droplet)
 # Copiez en .deploy et renseignez vos valeurs (voir deploy/README.md).
-
+/
 # Cible SSH : user@host (clés dans ~/.ssh ou ssh-agent)
 DEPLOY_SSH_TARGET=user@your-droplet-ip
 

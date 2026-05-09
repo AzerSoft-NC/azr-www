@@ -1,4 +1,4 @@
-import { SITE_URL, GOOGLE_SITE_VERIFICATION, BING_SITE_VERIFICATION } from 'astro:env/server';
+import { SITE_URL, GOOGLE_SITE_VERIFICATION } from 'astro:env/server';
 
 export interface SiteConfig {
   name: string;
@@ -80,7 +80,6 @@ const siteConfig: SiteConfig = {
   },
   verification: {
     google: GOOGLE_SITE_VERIFICATION,
-    bing: BING_SITE_VERIFICATION,
   },
   authorImage: '/logo/logo_transparent.svg',
   blogImageOverlay: true,
