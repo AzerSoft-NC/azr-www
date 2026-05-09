@@ -17,9 +17,9 @@ const posts = (await getCollection('blog', ({ data }) => data.locale === 'fr' &&
   .slice(0, 3);
 
 const typingWords = [
-  'Creation de Sites Web',
-  'Creation de E-Commerce',
-  'Developpement d\'Applications',
+  'Sites Web',
+  'E-Commerce',
+  'Applications',
 ];
 ---
 
@@ -30,13 +30,20 @@ const typingWords = [
   includeOrgSchema={true}
   includeProfessionalServiceSchema={true}
 >
-  <Hero layout="centered" size="xl" backgroundImage="/og-default.png" showScrollIndicator>
-    <h1 slot="title">
+  <Hero
+    layout="centered"
+    size="xl"
+    backgroundImage="/og-default.png"
+    showScrollIndicator
+    introLogoImage="/logo/logo_inverted_trasnparent.svg"
+    introLogoColor="color-mix(in oklch, var(--color-background) 82%, transparent)"
+  >
+    <h2 slot="title">
       Votre partenaire
       <span class="block text-brand-400">
         <TypingEffect words={typingWords} />
       </span>
-    </h1>
+    </h2>
     <p slot="description">Qualite, accompagnement, satisfaction.</p>
   </Hero>
 

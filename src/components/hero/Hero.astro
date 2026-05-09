@@ -24,6 +24,10 @@ interface Props extends HTMLAttributes<'section'> {
   bottomFade?: boolean;
   /** Show an animated scroll indicator at the bottom (desktop only, hides on scroll) */
   showScrollIndicator?: boolean;
+  /** Optional intro logo that covers the hero, then slides up once */
+  introLogoImage?: string;
+  /** CSS color used to paint the intro logo image */
+  introLogoColor?: string;
 }
 
 const {
@@ -37,6 +41,8 @@ const {
   showGlow = false,
   bottomFade = false,
   showScrollIndicator = false,
+  introLogoImage,
+  introLogoColor = 'color-mix(in oklch, var(--color-background) 82%, transparent)',
   class: className,
   ...attrs
 } = Astro.props;
@@ -83,7 +89,10 @@ const gridClasses = cn(
           aria-hidden="true"
         />
         <div
-          class="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-background/90 via-background/50 to-background"
+          class={cn(
+            'pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-background/90 via-background/50 to-background',
+            introLogoImage && 'hero-background-gradient-intro'
+          )}
           aria-hidden="true"
         />
       </>
@@ -140,7 +149,11 @@ const gridClasses = cn(
 
   <div class={gridClasses}>
     {/* Content Column */}
-    <div class={cn(contentClasses, 'order-1 lg:order-none animate-hero-stagger')}>
+    <div class={cn(
+      contentClasses,
+      'order-1 lg:order-none animate-hero-stagger',
+      introLogoImage && 'hero-content-intro'
+    )}>
       {/* Badge Slot */}
       {hasBadgeSlot && (
         <div class="mb-[var(--space-heading-gap)]">
@@ -191,12 +204,74 @@ const gridClasses = cn(
       </div>
     )}
   </div>
+
+  {
+    introLogoImage && (
+    <div
+      class="hero-logo-cover"
+      style={`--hero-intro-logo-image: url('${introLogoImage}'); --hero-intro-logo-color: ${introLogoColor};`}
+      aria-hidden="true"
+    />
+    )
+  }
 </section>
 
 <style>
   /* Desktop only: hide on landscape mobile (phones max out ~430px tall) */
   .scroll-indicator-wrapper {
     display: none;
+  }
+
+  .hero-content-intro {
+    animation: hero-content-reveal 0.6s ease-out 2.5s both;
+  }
+
+  .hero-background-gradient-intro {
+    animation: hero-background-gradient-reveal 0.8s ease-out 1.8s both;
+  }
+
+  .hero-logo-cover {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    pointer-events: none;
+    background: var(--hero-intro-logo-color);
+    mask: var(--hero-intro-logo-image) center / cover no-repeat;
+    -webkit-mask: var(--hero-intro-logo-image) center / cover no-repeat;
+    animation: hero-logo-slide-up 2.5s ease-in-out forwards;
+  }
+
+  @keyframes hero-logo-slide-up {
+    0%,
+    35% {
+      transform: translateY(0);
+    }
+
+    100% {
+      transform: translateY(-100%);
+    }
+  }
+
+  @keyframes hero-content-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes hero-background-gradient-reveal {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
   }
 
   @media (min-width: 1024px) and (min-height: 500px) {
@@ -241,6 +316,9 @@ const gridClasses = cn(
     .scroll-indicator              { animation: none; opacity: 1; }
     .scroll-indicator-chevron,
     .scroll-indicator-chevron-2    { animation: none; }
+    .hero-content-intro            { animation: none; }
+    .hero-background-gradient-intro { animation: none; }
+    .hero-logo-cover               { animation: none; display: none; }
   }
 </style>
 
