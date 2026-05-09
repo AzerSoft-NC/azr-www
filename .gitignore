@@ -14,6 +14,9 @@ dist/
 .env.local
 .env.*.local
 
+# Deployment config (local only — use .deploy.example as template)
+.deploy
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

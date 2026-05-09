@@ -1,6 +1,6 @@
 {
   "name": "astro-rocket",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "Astro Rocket — A production-ready Astro 6 theme built on Tailwind CSS v4",
   "type": "module",
   "author": "Hans Martens",
@@ -35,6 +35,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "validate": "yarn lint && yarn check && yarn build",
+    "deploy:check": "yarn format:check && yarn lint && yarn check && yarn test",
     "test": "vitest",
     "test:e2e": "playwright test"
   },
