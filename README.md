@@ -46,13 +46,8 @@ Use `deploy/README.md` for droplet setup.
 Quick deploy after setup:
 
 ```bash
-./deploy/deploy.sh user@droplet
+./deploy/deploy.sh
 ```
-
-Optional:
-
-- `deploy/nginx.conf`: repo nginx baseline config
-- `deploy/current-nginx.conf`: snapshot of current server config
 
 ## Content Editing Map
 

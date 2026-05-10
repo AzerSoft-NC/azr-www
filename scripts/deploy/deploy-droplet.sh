@@ -2,7 +2,9 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-ROOT_DIR="$(cd -- "$SCRIPT_DIR/.." && pwd)"
+ROOT_DIR="$(cd -- "$SCRIPT_DIR/../.." && pwd)"
+# shellcheck source=scripts/deploy/_helpers.sh
+source "$SCRIPT_DIR/_helpers.sh"
 
 if [[ -f "$ROOT_DIR/.deploy" ]]; then
   set -a
@@ -11,12 +13,18 @@ if [[ -f "$ROOT_DIR/.deploy" ]]; then
   set +a
 fi
 
-POSITIONAL_TARGET="${1:-}"
-TARGET_HOST="${POSITIONAL_TARGET:-${DEPLOY_SSH_TARGET:-}}"
-TARGET_PATH="${DEPLOY_REMOTE_PATH:-/var/www/azersoft}"
+DROPLET_IP="${DROPLET_IP:-}"
+DROPLET_USER="${DROPLET_USER:-}"
+DROPLET_PWD="${DROPLET_PWD:-}"
+DEPLOY_BASE="${DEPLOY_BASE_PATH:-}"
 
-if [[ -z "$TARGET_HOST" ]]; then
-  echo "Erreur : cible SSH manquante (.deploy ou argument user@host)."
+if [[ -z "$DROPLET_IP" || -z "$DROPLET_USER" || -z "$DROPLET_PWD" ]]; then
+  echo "Erreur : .deploy doit définir DROPLET_IP, DROPLET_USER et DROPLET_PWD."
+  exit 1
+fi
+
+if ! command -v sshpass >/dev/null 2>&1; then
+  echo "Erreur : sshpass est requis (ex. sudo apt install sshpass)."
   exit 1
 fi
 
@@ -25,6 +33,23 @@ if [[ ! -d "$ROOT_DIR/dist" ]]; then
   exit 1
 fi
 
-echo "rsync -> ${TARGET_HOST}:${TARGET_PATH}/"
-rsync -avz --delete "$ROOT_DIR/dist/" "${TARGET_HOST}:${TARGET_PATH}/"
-echo "Déploiement terminé -> ${TARGET_HOST}:${TARGET_PATH}"
+VERSION="$(deploy_read_version "$ROOT_DIR")"
+deploy_validate_semver "$VERSION"
+
+REMOTE_VERSION_DIR="${DEPLOY_BASE}/${VERSION}"
+SSH_TARGET="${DROPLET_USER}@${DROPLET_IP}"
+SSH_COMMON=(ssh -o StrictHostKeyChecking=accept-new)
+
+echo "Déploiement ${VERSION} -> ${SSH_TARGET}:${REMOTE_VERSION_DIR}"
+echo "Lien symbolique final : ${DEPLOY_BASE}/current -> ${REMOTE_VERSION_DIR}"
+
+sshpass -p "$DROPLET_PWD" "${SSH_COMMON[@]}" "$SSH_TARGET" "mkdir -p \"${REMOTE_VERSION_DIR}\""
+
+sshpass -p "$DROPLET_PWD" rsync -avz --delete \
+  -e "ssh -o StrictHostKeyChecking=accept-new" \
+  "$ROOT_DIR/dist/" "${SSH_TARGET}:${REMOTE_VERSION_DIR}/"
+
+sshpass -p "$DROPLET_PWD" "${SSH_COMMON[@]}" "$SSH_TARGET" \
+  "ln -sfn \"${REMOTE_VERSION_DIR}\" \"${DEPLOY_BASE}/current\""
+
+echo "Terminé — nginx peut servir root ${DEPLOY_BASE}/current"
