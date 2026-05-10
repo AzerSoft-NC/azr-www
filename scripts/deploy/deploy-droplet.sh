@@ -50,6 +50,9 @@ sshpass -p "$DROPLET_PWD" rsync -avz --delete \
   "$ROOT_DIR/dist/" "${SSH_TARGET}:${REMOTE_VERSION_DIR}/"
 
 sshpass -p "$DROPLET_PWD" "${SSH_COMMON[@]}" "$SSH_TARGET" \
+  "rm -rf \"${REMOTE_VERSION_DIR}/components\""
+
+sshpass -p "$DROPLET_PWD" "${SSH_COMMON[@]}" "$SSH_TARGET" \
   "ln -sfn \"${REMOTE_VERSION_DIR}\" \"${DEPLOY_BASE}/current\""
 
 echo "Terminé — nginx peut servir root ${DEPLOY_BASE}/current"
