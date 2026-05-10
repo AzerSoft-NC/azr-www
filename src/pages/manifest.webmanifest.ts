@@ -14,9 +14,9 @@ export const GET: APIRoute = () => {
     theme_color: branding.colors.themeColor,
     icons: [
       {
-        src: branding.favicon.svg,
-        sizes: 'any',
-        type: 'image/svg+xml',
+        src: branding.favicon.src,
+        sizes: branding.favicon.sizes,
+        type: branding.favicon.type,
       },
     ],
   };

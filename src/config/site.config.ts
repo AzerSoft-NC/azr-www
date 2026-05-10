@@ -33,8 +33,8 @@ export interface SiteConfig {
   blogImageOverlay?: boolean;
   /**
    * Branding configuration
-   * Logo files: Replace SVGs in src/assets/branding/
-   * Favicon: Replace in public/favicon.svg
+   * Logo files: SVG in public/logo/
+   * Favicon: fichier dans public/ (PNG, ICO ou SVG) — ex. /favicon.png 48×48
    */
   branding: {
     /** Logo alt text for accessibility */
@@ -43,9 +43,14 @@ export interface SiteConfig {
       /** Path to logo image for structured data (e.g. '/logo/logo_transparent.svg'). File in public/. */
       imageUrl?: string;
     };
-    /** Favicon path (lives in public/) */
+    /** Favicon under public/ — PNG/ICO/WebP ou SVG */
     favicon: {
-      svg: string;
+      /** URL absolue du site, ex. '/favicon.png' */
+      src: string;
+      /** MIME pour `<link rel="icon">` et le manifest */
+      type: string;
+      /** Pour le manifest Web ; utiliser `any` pour du SVG */
+      sizes: string;
     };
     /** Theme colors for manifest and browser UI */
     colors: {
@@ -89,7 +94,9 @@ const siteConfig: SiteConfig = {
       imageUrl: '/logo/logo_transparent.svg',
     },
     favicon: {
-      svg: '/favicon.svg',
+      src: '/favicon.png',
+      type: 'image/png',
+      sizes: '48x48',
     },
     colors: {
       /** Browser chrome — neutral light to match default light theme */
