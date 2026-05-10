@@ -1,11 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import {
-  formatDate,
-  generateId,
-  getReadingTime,
-  isExternalUrl,
-  resolveSocialLinks,
-} from './utils';
+import { formatDate, generateId, getReadingTime, isExternalUrl, resolveSocialLinks } from './utils';
 
 describe('formatDate', () => {
   it('includes year and month name for a fixed UTC date', () => {
@@ -66,7 +60,7 @@ describe('resolveSocialLinks', () => {
         'https://github.com/org/repo',
         'https://example.com/nothing',
         'https://x.com/user',
-      ]),
+      ])
     ).toEqual([
       {
         key: 'github',

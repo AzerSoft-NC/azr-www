@@ -12,6 +12,6 @@ describe('cn', () => {
   });
 
   it('works with object syntax from clsx', () => {
-    expect(cn('font-normal', { 'font-bold': true, 'italic': false })).toBe('font-bold');
+    expect(cn('font-normal', { 'font-bold': true, italic: false })).toBe('font-bold');
   });
 });
