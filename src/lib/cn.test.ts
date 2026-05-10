@@ -3,7 +3,8 @@ import { cn } from './cn';
 
 describe('cn', () => {
   it('merges conditional classes and drops falsy', () => {
-    expect(cn('px-2', false && 'hidden', 'py-1')).toBe('px-2 py-1');
+    const inactive = Date.now() < 0;
+    expect(cn('px-2', inactive && 'hidden', 'py-1')).toBe('px-2 py-1');
   });
 
   it('resolves Tailwind conflicts in favor of the last winning utility', () => {
