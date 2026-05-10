@@ -36,7 +36,7 @@ const tabContent: Record<string, TabContent> = {
   content: {
     title: 'Content & Search',
     content:
-      'Type-safe content collections with Zod schemas, MDX support, RSS feeds, and Pagefind integration for lightning-fast static search.',
+      'Type-safe content collections with Zod schemas, MDX support, and Pagefind integration for lightning-fast static search.',
   },
 };
 
