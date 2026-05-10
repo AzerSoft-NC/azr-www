@@ -58,14 +58,14 @@ chmod +x scripts/deploy/*.sh
 
 ### Pipeline order
 
-| Step | Action |
-|------|--------|
-| 1 | Git clean |
-| 2 | Prettier check |
-| 3 | Lint, astro check, tests |
-| 4 | Bump semver, commit, tag, push |
-| 5 | `yarn build` |
-| 6 | `deploy-droplet.sh` : rsync `dist/` → `/var/www/azersoft/<version>/`, puis `ln -sfn` **`current`** |
+| Step | Action                                                                                             |
+| ---- | -------------------------------------------------------------------------------------------------- |
+| 1    | Git clean                                                                                          |
+| 2    | Prettier check                                                                                     |
+| 3    | Lint, astro check, tests                                                                           |
+| 4    | Bump semver, commit, tag, push                                                                     |
+| 5    | `yarn build`                                                                                       |
+| 6    | `deploy-droplet.sh` : rsync `dist/` → `/var/www/azersoft/<version>/`, puis `ln -sfn` **`current`** |
 
 ### Flags
 

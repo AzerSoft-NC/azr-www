@@ -55,9 +55,7 @@ const classes = cn(
   tabindex={isDisabledLink ? '-1' : undefined}
   {...attrs}
 >
-  {
-    loading ? <Icon name="loader" size="sm" class="animate-spin" /> : null
-  }
+  {loading ? <Icon name="loader" size="sm" class="animate-spin" /> : null}
   <slot />
 </Element>
 

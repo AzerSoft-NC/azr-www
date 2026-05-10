@@ -15,17 +15,13 @@ interface Props {
   letter?: string;
 }
 
-const {
-  size = 'md',
-  class: className,
-  letter: letterProp,
-} = Astro.props;
+const { size = 'md', class: className, letter: letterProp } = Astro.props;
 
 const sizeClasses: Record<string, { box: string; text: string; radius: string }> = {
-  sm:    { box: 'w-5 h-5',   text: 'text-[14px]', radius: 'rounded-[4px]' },
-  md:    { box: 'w-6 h-6',   text: 'text-[16px]', radius: 'rounded-[5px]' },
-  lg:    { box: 'w-8 h-8',   text: 'text-[22px]', radius: 'rounded-[6px]' },
-  xl:    { box: 'w-12 h-12', text: 'text-[34px]', radius: 'rounded-[8px]' },
+  sm: { box: 'w-5 h-5', text: 'text-[14px]', radius: 'rounded-[4px]' },
+  md: { box: 'w-6 h-6', text: 'text-[16px]', radius: 'rounded-[5px]' },
+  lg: { box: 'w-8 h-8', text: 'text-[22px]', radius: 'rounded-[6px]' },
+  xl: { box: 'w-12 h-12', text: 'text-[34px]', radius: 'rounded-[8px]' },
   '2xl': { box: 'w-24 h-24', text: 'text-[68px]', radius: 'rounded-[14px]' },
 };
 
@@ -37,9 +33,9 @@ const letter = letterProp ?? siteConfig.name.charAt(0).toUpperCase();
   letterProp ? (
     <span
       class={cn(
-        'inline-flex items-center justify-center shrink-0',
+        'inline-flex shrink-0 items-center justify-center',
         'bg-brand-500 text-white',
-        'font-display font-bold leading-none select-none',
+        'font-display leading-none font-bold select-none',
         box,
         text,
         radius,
@@ -54,7 +50,19 @@ const letter = letterProp ?? siteConfig.name.charAt(0).toUpperCase();
     <img
       src="/logo/logo_transparent.svg"
       alt={siteConfig.branding.logo.alt}
-      class={cn('inline-block h-auto shrink-0', size === 'sm' ? 'w-7' : size === 'md' ? 'w-8' : size === 'lg' ? 'w-30' : size === 'xl' ? 'w-14' : 'w-20', className)}
+      class={cn(
+        'inline-block h-auto shrink-0',
+        size === 'sm'
+          ? 'w-7'
+          : size === 'md'
+            ? 'w-8'
+            : size === 'lg'
+              ? 'w-30'
+              : size === 'xl'
+                ? 'w-14'
+                : 'w-20',
+        className
+      )}
       loading="eager"
     />
   )

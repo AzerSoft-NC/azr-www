@@ -38,10 +38,10 @@ export const POST: APIRoute = async ({ request }) => {
         fieldErrors[field].push(error.message);
       }
 
-      return new Response(
-        JSON.stringify({ success: false, errors: fieldErrors }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } }
-      );
+      return new Response(JSON.stringify({ success: false, errors: fieldErrors }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
     }
 
     // Honeypot check (bot detection)
@@ -88,7 +88,10 @@ export const POST: APIRoute = async ({ request }) => {
     if (error) {
       console.error('Resend error:', error);
       return new Response(
-        JSON.stringify({ success: false, errors: { form: [error.message || 'Failed to send email'] } }),
+        JSON.stringify({
+          success: false,
+          errors: { form: [error.message || 'Failed to send email'] },
+        }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
       );
     }

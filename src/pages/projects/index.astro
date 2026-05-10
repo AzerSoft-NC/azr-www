@@ -30,96 +30,122 @@ const projects = items.sort((a, b) => a.data.order - b.data.order);
 
     <h1 slot="title">Projects</h1>
 
-    <p slot="description">
-      Work I'm most proud of.
-    </p>
+    <p slot="description">Work I'm most proud of.</p>
   </Hero>
 
   <!-- All projects -->
-  {projects.length > 0 && (
-    <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
-      <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
-
-        <div class="grid gap-6 md:grid-cols-2">
-          {projects.map((project) => (
-            <Card variant="elevated" hover padding="none" href={`/projects/${project.id.replace(/\.mdx?$/, '')}`} class:list={['group overflow-hidden flex flex-col', project.data.featured && 'md:col-span-2 md:grid md:grid-cols-2 md:flex-row']} data-reveal>
-              {project.data.image && (
-                <div class="overflow-hidden">
-                  {typeof project.data.image === 'string' ? (
-                    <img
-                      src={project.data.image}
-                      alt={project.data.imageAlt || project.data.title}
-                      width={960}
-                      height={540}
-                      class:list={[
-                        'w-full object-cover transition-transform duration-300 group-hover:scale-105',
-                        project.data.featured ? 'aspect-video md:aspect-auto md:h-full' : 'aspect-video'
-                      ]}
-                      loading="lazy"
-                      decoding="async"
+  {
+    projects.length > 0 && (
+      <section class="bg-background-secondary border-border border-t py-[var(--space-section-md)]">
+        <div class="mx-auto flex max-w-6xl flex-col gap-8 px-6">
+          <div class="grid gap-6 md:grid-cols-2">
+            {projects.map((project) => (
+              <Card
+                variant="elevated"
+                hover
+                padding="none"
+                href={`/projects/${project.id.replace(/\.mdx?$/, '')}`}
+                class:list={[
+                  'group flex flex-col overflow-hidden',
+                  project.data.featured && 'md:col-span-2 md:grid md:grid-cols-2 md:flex-row',
+                ]}
+                data-reveal
+              >
+                {project.data.image && (
+                  <div class="overflow-hidden">
+                    {typeof project.data.image === 'string' ? (
+                      <img
+                        src={project.data.image}
+                        alt={project.data.imageAlt || project.data.title}
+                        width={960}
+                        height={540}
+                        class:list={[
+                          'w-full object-cover transition-transform duration-300 group-hover:scale-105',
+                          project.data.featured
+                            ? 'aspect-video md:aspect-auto md:h-full'
+                            : 'aspect-video',
+                        ]}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    ) : (
+                      <Image
+                        src={project.data.image}
+                        alt={project.data.imageAlt || project.data.title}
+                        widths={[640, 960]}
+                        sizes={
+                          project.data.featured
+                            ? '(max-width: 768px) 640px, 480px'
+                            : '(max-width: 768px) 640px, 960px'
+                        }
+                        class:list={[
+                          'w-full object-cover transition-transform duration-300 group-hover:scale-105',
+                          project.data.featured
+                            ? 'aspect-video md:aspect-auto md:h-full'
+                            : 'aspect-video',
+                        ]}
+                        loading="lazy"
+                      />
+                    )}
+                  </div>
+                )}
+                <div class="flex flex-1 flex-col p-6">
+                  {/* Header */}
+                  <div class="mb-3 flex items-start justify-between gap-4">
+                    {!project.data.image && (
+                      <div class="from-brand-500/20 to-brand-500/5 text-brand-500 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br">
+                        <Icon name="layers" size="sm" />
+                      </div>
+                    )}
+                    <Icon
+                      name="arrow-up-right"
+                      size="sm"
+                      class="text-foreground-muted group-hover:text-brand-500 ml-auto shrink-0 transition-colors"
                     />
-                  ) : (
-                    <Image
-                      src={project.data.image}
-                      alt={project.data.imageAlt || project.data.title}
-                      widths={[640, 960]}
-                      sizes={project.data.featured ? '(max-width: 768px) 640px, 480px' : '(max-width: 768px) 640px, 960px'}
-                      class:list={[
-                        'w-full object-cover transition-transform duration-300 group-hover:scale-105',
-                        project.data.featured ? 'aspect-video md:aspect-auto md:h-full' : 'aspect-video'
-                      ]}
-                      loading="lazy"
-                    />
-                  )}
-                </div>
-              )}
-              <div class="flex flex-1 flex-col p-6">
-                <!-- Header -->
-                <div class="mb-3 flex items-start justify-between gap-4">
-                  {!project.data.image && (
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-                      <Icon name="layers" size="sm" />
-                    </div>
-                  )}
-                  <Icon name="arrow-up-right" size="sm" class="text-foreground-muted group-hover:text-brand-500 transition-colors shrink-0 ml-auto" />
-                </div>
+                  </div>
 
-                <!-- Title + year -->
-                <div class="mb-2 flex items-baseline gap-2">
-                  <h3 class="font-display text-lg font-bold text-foreground">{project.data.title}</h3>
-                  {project.data.year && (
-                    <span class="text-xs text-foreground-muted">{project.data.year}</span>
-                  )}
-                </div>
+                  {/* Title + year */}
+                  <div class="mb-2 flex items-baseline gap-2">
+                    <h3 class="font-display text-foreground text-lg font-bold">
+                      {project.data.title}
+                    </h3>
+                    {project.data.year && (
+                      <span class="text-foreground-muted text-xs">{project.data.year}</span>
+                    )}
+                  </div>
 
-                <p class="text-sm text-foreground-muted leading-relaxed mb-4 flex-1">{project.data.description}</p>
+                  <p class="text-foreground-muted mb-4 flex-1 text-sm leading-relaxed">
+                    {project.data.description}
+                  </p>
 
-                <!-- Tags -->
-                <div class="flex flex-wrap gap-1.5">
-                  {project.data.tags.map((tag) => (
-                    <Badge variant="brand">{tag}</Badge>
-                  ))}
+                  {/* Tags */}
+                  <div class="flex flex-wrap gap-1.5">
+                    {project.data.tags.map((tag) => (
+                      <Badge variant="brand">{tag}</Badge>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </Card>
-          ))}
+              </Card>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
-  )}
+      </section>
+    )
+  }
 
- <!-- CTA -->
-  <section class="relative z-10 py-[var(--space-section-md)] bg-background">
+  <!-- CTA -->
+  <section class="bg-background relative z-10 py-[var(--space-section-md)]">
     <!-- Mobile: flat section, no card -->
     <div class="glitch:hidden mx-auto max-w-2xl px-6 text-center" data-reveal>
       <Badge variant="brand" pill class="mb-6">Let's talk</Badge>
-      <h2 class="font-display text-4xl font-bold text-foreground mb-4 text-balance">
+      <h2 class="font-display text-foreground mb-4 text-4xl font-bold text-balance">
         Want something like this?
       </h2>
-      <p class="text-lg text-foreground-muted mb-8 text-balance">
-        I build with the same care and craft you see here. If you've got a project, let's see what we can make together.
+      <p class="text-foreground-muted mb-8 text-lg text-balance">
+        I build with the same care and craft you see here. If you've got a project, let's see what
+        we can make together.
       </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <div class="flex flex-col justify-center gap-4 sm:flex-row">
         <Button size="lg" href="/contact" class="cta-btn-brand">
           Start a project
           <Icon name="arrow-right" size="sm" />
@@ -133,13 +159,14 @@ const projects = items.sort((a, b) => a.data.order - b.data.order);
 
     <!-- Desktop: contained LetterGlitch band with glass card -->
     <LetterGlitchBand>
-      <h2 class="font-display text-4xl font-bold text-foreground mb-4 text-balance">
+      <h2 class="font-display text-foreground mb-4 text-4xl font-bold text-balance">
         Want something like this?
       </h2>
-      <p class="text-lg text-foreground-muted mb-8 text-balance">
-        I build with the same care and craft you see here. If you've got a project, let's see what we can make together.
+      <p class="text-foreground-muted mb-8 text-lg text-balance">
+        I build with the same care and craft you see here. If you've got a project, let's see what
+        we can make together.
       </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <div class="flex flex-col justify-center gap-4 sm:flex-row">
         <Button size="lg" href="/contact" class="hero-btn-brand">
           Start a project
           <Icon name="arrow-right" size="sm" />

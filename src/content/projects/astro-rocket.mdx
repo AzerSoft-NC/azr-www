@@ -1,15 +1,15 @@
 ---
-title: "Astro Rocket"
-description: "A production-ready Astro 6 starter for designers and developers — 12 live themes, 57+ components, a full SEO stack, polished animations, and a complete design system you can launch as-is."
-url: "https://astrorocket.dev"
-repo: "https://github.com/hansmartens68/Astro-Rocket"
-tags: ["Astro", "TypeScript", "Tailwind CSS", "Open Source"]
+title: 'Astro Rocket'
+description: 'A production-ready Astro 6 starter for designers and developers — 12 live themes, 57+ components, a full SEO stack, polished animations, and a complete design system you can launch as-is.'
+url: 'https://astrorocket.dev'
+repo: 'https://github.com/hansmartens68/Astro-Rocket'
+tags: ['Astro', 'TypeScript', 'Tailwind CSS', 'Open Source']
 featured: true
 order: 1
 year: 2026
-role: "Designer & Developer"
-services: ["Design System", "Component Library", "Open Source"]
-image: "/og-default.png"
+role: 'Designer & Developer'
+services: ['Design System', 'Component Library', 'Open Source']
+image: '/og-default.png'
 ---
 
 import LighthouseScoresGrid from '@/components/landing/LighthouseScoresGrid.astro';
@@ -46,7 +46,7 @@ The secret is CSS custom properties scoped to `data-theme` attributes on `<html>
 
 The colour-mode picker is a true 3-state system rather than a binary toggle. The user can pin **Light** or **Dark** explicitly, or pick **System** to delegate to the operating system — and when 'System' is active, the page tracks `prefers-color-scheme` live, flipping the moment the OS does without a reload. The choice persists in `localStorage`, so it survives reloads and new tabs.
 
-The picker lives in the header as a pill-shaped dropdown right next to the colour-theme pill. It shows the icon for the *currently chosen mode* (monitor, sun, or moon), so the user can always see what they picked at a glance. Below the `md` breakpoint both pills hide from the header bar and reappear inside the mobile menu — selecting a mode in one updates the other instantly.
+The picker lives in the header as a pill-shaped dropdown right next to the colour-theme pill. It shows the icon for the _currently chosen mode_ (monitor, sun, or moon), so the user can always see what they picked at a glance. Below the `md` breakpoint both pills hide from the header bar and reappear inside the mobile menu — selecting a mode in one updates the other instantly.
 
 A small inline bootstrap script in `<head>` runs synchronously before body paint to apply the saved mode and resolve the `.dark` class, so there is never a flash of the wrong theme — even across navigations. The full implementation, the storage contract, and the no-flash bootstrap are written up in [System, Light, Dark — How Astro Rocket's Colour-Mode System Works](/blog/colour-mode-system).
 
@@ -138,7 +138,6 @@ The closing call-to-action on the homepage, projects index, and about page uses 
 ## Forms — Wired End-to-End
 
 **Contact form.** A fully working form with **Zod** schema validation, **honeypot** bot detection, and a **Resend**-powered email handler. Submissions arrive in your inbox within seconds; setup is a single environment variable and one verified domain. The full walk-through is in [Set up the contact form with Resend](/blog/contact-form-resend-setup).
-
 
 Both endpoints are real Astro API routes, type-checked, unit-tested with **Vitest**, and ready to deploy.
 

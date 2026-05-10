@@ -601,10 +601,7 @@
     "header": {
       "name": "Header",
       "category": "layout",
-      "files": [
-        "src/components/layout/Header.astro",
-        "src/components/layout/header.variants.ts"
-      ],
+      "files": ["src/components/layout/Header.astro", "src/components/layout/header.variants.ts"],
       "dependencies": {
         "utilities": ["cn"],
         "components": ["button", "icon", "logo"]
@@ -614,10 +611,7 @@
     "footer": {
       "name": "Footer",
       "category": "layout",
-      "files": [
-        "src/components/layout/Footer.astro",
-        "src/components/layout/footer.variants.ts"
-      ],
+      "files": ["src/components/layout/Footer.astro", "src/components/layout/footer.variants.ts"],
       "dependencies": {
         "utilities": ["cn"],
         "components": ["icon", "logo"]

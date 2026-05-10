@@ -21,13 +21,29 @@ const {
 } = Astro.props;
 
 const id = `typing-${Math.random().toString(36).slice(2, 8)}`;
+
+const payloadJson = JSON.stringify({
+  id,
+  words,
+  typeSpeed,
+  deleteSpeed,
+  pauseAfterType,
+  pauseAfterDelete,
+});
 ---
 
-<span id={id} class="typing-effect" aria-label={words.join(', ')}>
-  <span class="typing-text"></span><span class="typing-cursor" aria-hidden="true">|</span>
-</span>
+<div class="typing-instance">
+  <span id={id} class="typing-effect" aria-label={words.join(', ')}>
+    <span class="typing-text"></span><span class="typing-cursor" aria-hidden="true">|</span>
+  </span>
+  <script is:inline type="application/json" set:html={payloadJson} />
+</div>
 
 <style>
+  .typing-instance {
+    display: contents;
+  }
+
   .typing-effect {
     display: inline-block;
     white-space: nowrap;
@@ -43,68 +59,18 @@ const id = `typing-${Math.random().toString(36).slice(2, 8)}`;
   }
 
   @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0; }
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
   }
 </style>
 
-<script is:inline define:vars={{ id, words, typeSpeed, deleteSpeed, pauseAfterType, pauseAfterDelete }}>
-  function startTyping() {
-    const root = document.getElementById(id);
-    if (!root) return;
-    const textEl = root.querySelector('.typing-text');
+<script>
+  import { mountNextTypingInstance } from './typing-effect.client.ts';
 
-    // Lock the element width to the widest word so the layout never shifts
-    const measurer = document.createElement('span');
-    measurer.setAttribute('aria-hidden', 'true');
-    measurer.style.cssText = 'visibility:hidden;position:absolute;white-space:nowrap;pointer-events:none;';
-    const cs = getComputedStyle(root);
-    measurer.style.font = cs.font;
-    measurer.style.letterSpacing = cs.letterSpacing;
-    document.body.appendChild(measurer);
-
-    let maxWidth = 0;
-    for (const word of words) {
-      measurer.textContent = word + '|'; // include cursor character in measurement
-      maxWidth = Math.max(maxWidth, measurer.offsetWidth);
-    }
-    document.body.removeChild(measurer);
-    root.style.minWidth = maxWidth + 'px';
-
-    let wordIndex = 0;
-    let charIndex = 0;       // start empty — cursor only, then type the first word
-    let isDeleting = false;
-
-    function tick() {
-      const current = words[wordIndex];
-
-      if (isDeleting) {
-        charIndex--;
-        textEl.textContent = current.slice(0, charIndex);
-
-        if (charIndex === 0) {
-          isDeleting = false;
-          wordIndex = (wordIndex + 1) % words.length;
-          setTimeout(tick, pauseAfterDelete);
-          return;
-        }
-        setTimeout(tick, deleteSpeed);
-      } else {
-        charIndex++;
-        textEl.textContent = current.slice(0, charIndex);
-
-        if (charIndex === current.length) {
-          isDeleting = true;
-          setTimeout(tick, pauseAfterType);
-          return;
-        }
-        setTimeout(tick, typeSpeed);
-      }
-    }
-
-    // Show the blinking cursor briefly, then begin typing the first word
-    setTimeout(tick, pauseAfterDelete);
-  }
-
-  startTyping();
+  mountNextTypingInstance();
 </script>

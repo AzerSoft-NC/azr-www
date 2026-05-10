@@ -65,7 +65,7 @@ export interface SiteConfig {
 const siteConfig: SiteConfig = {
   name: 'Azer Soft',
   description:
-    "Société de services informatiques en Nouvelle-Calédonie : développement logiciel, conseil, audit, SIG et accompagnement projet.",
+    'Société de services informatiques en Nouvelle-Calédonie : développement logiciel, conseil, audit, SIG et accompagnement projet.',
   url: SITE_URL || 'https://azersoft.nc',
   ogImage: '/og-default.png',
   author: 'Azer Soft SARL',

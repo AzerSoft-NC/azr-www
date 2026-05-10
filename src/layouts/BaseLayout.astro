@@ -7,7 +7,12 @@ import JsonLd from '@/components/seo/JsonLd.astro';
 import Analytics from '@/components/layout/Analytics.astro';
 import ConsentBanner from '@/components/ui/overlay/ConsentBanner';
 import CursorTrail from '@/components/effects/CursorTrail.astro';
-import { createWebsiteSchema, createOrganizationSchema, createPersonSchema, createProfessionalServiceSchema } from '@/lib/schema';
+import {
+  createWebsiteSchema,
+  createOrganizationSchema,
+  createPersonSchema,
+  createProfessionalServiceSchema,
+} from '@/lib/schema';
 import type { Thing, WithContext } from 'schema-dts';
 import siteConfig from '@/config/site.config';
 
@@ -72,7 +77,12 @@ schemas.push(...extraSchemas);
     <link rel="preload" as="font" type="font/woff2" href={outfitFont} crossorigin="anonymous" />
 
     <!-- Favicon -->
-    <link rel="icon" type={siteConfig.branding.favicon.type} href={siteConfig.branding.favicon.src} sizes={siteConfig.branding.favicon.sizes} />
+    <link
+      rel="icon"
+      type={siteConfig.branding.favicon.type}
+      href={siteConfig.branding.favicon.src}
+      sizes={siteConfig.branding.favicon.sizes}
+    />
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="theme-color" content={siteConfig.branding.colors.themeColor} />
 
@@ -98,15 +108,16 @@ schemas.push(...extraSchemas);
          data-reveal fades) and produced a visible post-fade "aftershake" on
          mobile. Each navigation now does a normal page load, so animations
          run cleanly from frame 0 every time. -->
-
-
   </head>
 
-  <body class="min-h-screen bg-background text-foreground antialiased" data-eager-reveal={eagerReveal ? '' : undefined}>
+  <body
+    class="bg-background text-foreground min-h-screen antialiased"
+    data-eager-reveal={eagerReveal ? '' : undefined}
+  >
     <!-- Skip to content link -->
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
+      class="focus:bg-primary focus:text-primary-foreground sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:px-4 focus:py-2"
     >
       Skip to content
     </a>
@@ -127,19 +138,52 @@ schemas.push(...extraSchemas);
     <button
       id="back-to-top"
       aria-label="Back to top"
-      class="fixed bottom-6 right-6 z-50 h-12 w-12"
+      class="fixed right-6 bottom-6 z-50 h-12 w-12"
       style="opacity:0;translate:0 2rem;pointer-events:none"
     >
       <!-- Scroll-progress ring (rotated so arc starts at 12 o'clock) -->
       <svg class="absolute inset-0 h-full w-full -rotate-90" viewBox="0 0 48 48" aria-hidden="true">
         <!-- Faint grey track -->
-        <circle cx="24" cy="24" r="21" fill="none" stroke="currentColor" class="text-border" stroke-width="2" opacity="0.5" />
+        <circle
+          cx="24"
+          cy="24"
+          r="21"
+          fill="none"
+          stroke="currentColor"
+          class="text-border"
+          stroke-width="2"
+          opacity="0.5"></circle>
         <!-- Brand progress arc -->
-        <circle id="back-to-top-ring" cx="24" cy="24" r="21" fill="none" stroke="currentColor" class="text-brand-500" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="131.95" stroke-dashoffset="131.95" />
+        <circle
+          id="back-to-top-ring"
+          cx="24"
+          cy="24"
+          r="21"
+          fill="none"
+          stroke="currentColor"
+          class="text-brand-500"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-dasharray="131.95"
+          stroke-dashoffset="131.95"></circle>
       </svg>
       <!-- Inner face -->
-      <span class="absolute inset-[5px] flex items-center justify-center rounded-full bg-background border border-border-strong text-foreground-muted shadow-md" aria-hidden="true">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+      <span
+        class="bg-background border-border-strong text-foreground-muted absolute inset-[5px] flex items-center justify-center rounded-full border shadow-md"
+        aria-hidden="true"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"><path d="m18 15-6-6-6 6"></path></svg
+        >
       </span>
     </button>
 
@@ -167,7 +211,8 @@ schemas.push(...extraSchemas);
             if (reducedMotion) {
               btn.style.transition = 'none';
             } else {
-              btn.style.transition = 'opacity 250ms cubic-bezier(0,0,0.2,1), translate 250ms cubic-bezier(0,0,0.2,1)';
+              btn.style.transition =
+                'opacity 250ms cubic-bezier(0,0,0.2,1), translate 250ms cubic-bezier(0,0,0.2,1)';
             }
             btn.style.opacity = '1';
             btn.style.translate = '0 0';
@@ -179,7 +224,8 @@ schemas.push(...extraSchemas);
             if (reducedMotion) {
               btn.style.transition = 'none';
             } else {
-              btn.style.transition = 'opacity 300ms cubic-bezier(0.4,0,1,1), translate 300ms cubic-bezier(0.4,0,1,1)';
+              btn.style.transition =
+                'opacity 300ms cubic-bezier(0.4,0,1,1), translate 300ms cubic-bezier(0.4,0,1,1)';
             }
             btn.style.opacity = '0';
             btn.style.translate = '0 2rem';
@@ -213,9 +259,13 @@ schemas.push(...extraSchemas);
             window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
           });
 
-          document.addEventListener('astro:before-swap', function () {
-            window.removeEventListener('scroll', onScroll);
-          }, { once: true });
+          document.addEventListener(
+            'astro:before-swap',
+            function () {
+              window.removeEventListener('scroll', onScroll);
+            },
+            { once: true }
+          );
 
           // Defer initial layout read to the next frame so it doesn't force
           // a sync reflow during page load (the JS style writes above
@@ -233,7 +283,9 @@ schemas.push(...extraSchemas);
       (function () {
         function initReveal() {
           const els = Array.prototype.slice.call(
-            document.querySelectorAll('[data-reveal]:not(.is-visible), [data-reveal-children]:not(.is-visible)')
+            document.querySelectorAll(
+              '[data-reveal]:not(.is-visible), [data-reveal-children]:not(.is-visible)'
+            )
           );
 
           // Also observe each direct child of [data-reveal-content] so long
@@ -262,9 +314,12 @@ schemas.push(...extraSchemas);
           });
 
           aboveFold.forEach(function (el, i) {
-            setTimeout(function () {
-              el.classList.add('is-visible');
-            }, 250 + i * 80);
+            setTimeout(
+              function () {
+                el.classList.add('is-visible');
+              },
+              250 + i * 80
+            );
           });
 
           if (!belowFold.length) return;
@@ -272,15 +327,20 @@ schemas.push(...extraSchemas);
           // meaningfully on screen, so the user actually sees the animation
           // play instead of finding it already finished.
           const eager = document.body.hasAttribute('data-eager-reveal');
-          const observer = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-              if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target);
-              }
-            });
-          }, { threshold: 0.15, rootMargin: eager ? '0px 0px -5% 0px' : '0px 0px -10% 0px' });
-          belowFold.forEach(function (el) { observer.observe(el); });
+          const observer = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('is-visible');
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.15, rootMargin: eager ? '0px 0px -5% 0px' : '0px 0px -10% 0px' }
+          );
+          belowFold.forEach(function (el) {
+            observer.observe(el);
+          });
         }
 
         // Defer to the next frame so getBoundingClientRect reads happen

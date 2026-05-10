@@ -17,11 +17,7 @@ const posts = (await getCollection('blog', ({ data }) => data.locale === 'fr' &&
   .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())
   .slice(0, 3);
 
-const typingWords = [
-  'Sites Web',
-  'E-Commerce',
-  'Applications',
-];
+const typingWords = ['Sites Web', 'E-Commerce', 'Applications'];
 ---
 
 <LandingLayout
@@ -41,7 +37,7 @@ const typingWords = [
   >
     <h2 slot="title">
       Votre partenaire
-      <span class="block text-brand-400">
+      <span class="text-brand-400 block">
         <TypingEffect words={typingWords} />
       </span>
     </h2>

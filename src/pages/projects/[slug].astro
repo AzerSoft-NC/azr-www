@@ -11,9 +11,7 @@ export async function getStaticPaths() {
     params: { slug: project.id.replace(/\.mdx?$/, '') },
     props: {
       project,
-      related: allProjects
-        .filter((p) => p.id !== project.id)
-        .slice(0, 3),
+      related: allProjects.filter((p) => p.id !== project.id).slice(0, 3),
     },
   }));
 }

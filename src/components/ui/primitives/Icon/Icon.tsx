@@ -32,19 +32,19 @@ const sizes: Record<string, string> = {
  */
 const iconMap: Record<string, string> = {
   // Social & brand → Simple Icons
-  github:           'simple-icons:github',
-  'x-twitter':      'simple-icons:x',
-  twitter:          'simple-icons:x',
-  instagram:        'simple-icons:instagram',
-  linkedin:         'simple-icons:linkedin',
-  bluesky:          'simple-icons:bluesky',
+  github: 'simple-icons:github',
+  'x-twitter': 'simple-icons:x',
+  twitter: 'simple-icons:x',
+  instagram: 'simple-icons:instagram',
+  linkedin: 'simple-icons:linkedin',
+  bluesky: 'simple-icons:bluesky',
   // Tech stack → Simple Icons
-  'brand-astro':      'simple-icons:astro',
-  'brand-tailwind':   'simple-icons:tailwindcss',
+  'brand-astro': 'simple-icons:astro',
+  'brand-tailwind': 'simple-icons:tailwindcss',
   'brand-typescript': 'simple-icons:typescript',
-  'brand-react':      'simple-icons:react',
-  'brand-mdx':        'simple-icons:mdx',
-  'brand-claude':     'simple-icons:anthropic',
+  'brand-react': 'simple-icons:react',
+  'brand-mdx': 'simple-icons:mdx',
+  'brand-claude': 'simple-icons:anthropic',
 };
 
 export function Icon({
@@ -55,9 +55,7 @@ export function Icon({
   className,
   ...rest
 }: IconProps) {
-  const resolvedName = name.includes(':')
-    ? name
-    : iconMap[name] ?? `lucide:${name}`;
+  const resolvedName = name.includes(':') ? name : (iconMap[name] ?? `lucide:${name}`);
   const isSimpleIcon = resolvedName.startsWith('simple-icons:');
 
   return (

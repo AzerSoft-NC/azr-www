@@ -131,95 +131,57 @@ function getSocialIcon(platform: string): string {
 
 <footer class={footerClasses} {...attrs}>
   <div class="mx-auto max-w-6xl px-6">
-    {layout === 'simple' && (
-      <>
-      <div class="flex flex-col md:flex-row justify-between items-center gap-[var(--space-stack-lg)]">
-        {/* Logo & Tagline */}
-        {!hideLogo && (
-          <div class="flex flex-col items-center md:items-start gap-2">
-            {hasLogoSlot ? (
-              <slot name="logo" />
-            ) : (
-              <a href="/" aria-label={siteConfig.name}>
-                <Logo size="lg" class="bg-brand-700" />
-              </a>
+    {
+      layout === 'simple' && (
+        <>
+          <div class="flex flex-col items-center justify-between gap-[var(--space-stack-lg)] md:flex-row">
+            {/* Logo & Tagline */}
+            {!hideLogo && (
+              <div class="flex flex-col items-center gap-2 md:items-start">
+                {hasLogoSlot ? (
+                  <slot name="logo" />
+                ) : (
+                  <a href="/" aria-label={siteConfig.name}>
+                    <Logo size="lg" class="bg-brand-700" />
+                  </a>
+                )}
+                {(hasTaglineSlot || tagline) && (
+                  <p class="text-foreground-muted text-sm">
+                    {hasTaglineSlot ? <slot name="tagline" /> : tagline}
+                  </p>
+                )}
+              </div>
             )}
-            {(hasTaglineSlot || tagline) && (
-              <p class="text-sm text-foreground-muted">
-                {hasTaglineSlot ? <slot name="tagline" /> : tagline}
-              </p>
-            )}
-          </div>
-        )}
 
-        {/* Navigation Links */}
-        <nav class="flex flex-wrap justify-center gap-[var(--space-inline-lg)] md:gap-[var(--space-stack-lg)] text-sm font-medium text-foreground-muted">
-          {allNavItems.map((item) => (
-            <a
-              href={item.href}
-              class="transition-colors hover:text-foreground"
-              target={item.external || item.href.startsWith('http') ? '_blank' : undefined}
-              rel={item.external || item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-
-        {/* Social Links */}
-        {showSocial && socialLinks.length > 0 && (
-          hasSocialSlot ? (
-            <slot name="social" />
-          ) : (
-            <div class="flex items-center gap-[var(--space-stack-md)]">
-              {socialLinks.map((social) => (
+            {/* Navigation Links */}
+            <nav class="text-foreground-muted flex flex-wrap justify-center gap-[var(--space-inline-lg)] text-sm font-medium md:gap-[var(--space-stack-lg)]">
+              {allNavItems.map((item) => (
                 <a
-                  href={social.href}
-                  class="transition-colors text-foreground-muted hover:text-foreground"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label || `Follow us on ${social.platform}`}
+                  href={item.href}
+                  class="hover:text-foreground transition-colors"
+                  target={item.external || item.href.startsWith('http') ? '_blank' : undefined}
+                  rel={
+                    item.external || item.href.startsWith('http')
+                      ? 'noopener noreferrer'
+                      : undefined
+                  }
                 >
-                  <Icon name={getSocialIcon(social.platform)} size="md" />
+                  {item.label}
                 </a>
               ))}
-            </div>
-          )
-        )}
-      </div>
-      {showCopyright && (
-        <div class="mt-[var(--space-stack-lg)] pt-[var(--space-stack-lg)] border-t border-border text-center">
-          <p class="text-sm text-foreground-muted" set:html={processedCopyright} />
-        </div>
-      )}
-      </>
-    )}
+            </nav>
 
-    {layout === 'columns' && (
-      <>
-        <div class={footerColumnGridVariants({ columns })}>
-          {/* Logo Column */}
-          {!hideLogo && (
-            <div class="space-y-[var(--space-stack-md)]">
-              {hasLogoSlot ? (
-                <slot name="logo" />
+            {/* Social Links */}
+            {showSocial &&
+              socialLinks.length > 0 &&
+              (hasSocialSlot ? (
+                <slot name="social" />
               ) : (
-                <a href="/" aria-label={siteConfig.name}>
-                  <Logo size="lg" class="bg-brand-700" />
-                </a>
-              )}
-              {(hasTaglineSlot || tagline) && (
-                <p class="text-sm max-w-xs text-foreground-muted">
-                  {hasTaglineSlot ? <slot name="tagline" /> : tagline}
-                </p>
-              )}
-              {/* Social Links in columns layout */}
-              {showSocial && socialLinks.length > 0 && (
-                <div class="flex items-center gap-[var(--space-stack-md)] pt-2">
+                <div class="flex items-center gap-[var(--space-stack-md)]">
                   {socialLinks.map((social) => (
                     <a
                       href={social.href}
-                      class="transition-colors text-foreground-muted hover:text-foreground"
+                      class="text-foreground-muted hover:text-foreground transition-colors"
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={social.label || `Follow us on ${social.platform}`}
@@ -228,148 +190,203 @@ function getSocialIcon(platform: string): string {
                     </a>
                   ))}
                 </div>
-              )}
+              ))}
+          </div>
+          {showCopyright && (
+            <div class="border-border mt-[var(--space-stack-lg)] border-t pt-[var(--space-stack-lg)] text-center">
+              <p class="text-foreground-muted text-sm" set:html={processedCopyright} />
             </div>
           )}
+        </>
+      )
+    }
 
-          {/* Link Groups */}
-          {hasColumnsSlot ? (
-            <slot name="columns" />
-          ) : (
-            linkGroups.map((group) => (
+    {
+      layout === 'columns' && (
+        <>
+          <div class={footerColumnGridVariants({ columns })}>
+            {/* Logo Column */}
+            {!hideLogo && (
               <div class="space-y-[var(--space-stack-md)]">
-                <h3 class="font-semibold text-sm text-foreground">
-                  {group.title}
-                </h3>
-                <ul class="space-y-2">
-                  {group.links.map((link) => (
-                    <li>
-                      <a
-                        href={link.href}
-                        class="text-sm transition-colors text-foreground-muted hover:text-foreground"
-                        target={link.external || link.href.startsWith('http') ? '_blank' : undefined}
-                        rel={link.external || link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                      >
-                        {link.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))
-          )}
-        </div>
-
-        {/* Bottom section */}
-        {(showCopyright || legalLinks.length > 0) && (
-          <div class="mt-[var(--space-section-header)] pt-[var(--space-stack-lg)] border-t border-border flex flex-col items-center gap-[var(--space-stack-md)] text-center">
-            {hasBottomSlot ? (
-              <slot name="bottom" />
-            ) : (
-              <>
-                {showCopyright && (
-                  <p class="text-sm text-foreground-muted" set:html={processedCopyright} />
+                {hasLogoSlot ? (
+                  <slot name="logo" />
+                ) : (
+                  <a href="/" aria-label={siteConfig.name}>
+                    <Logo size="lg" class="bg-brand-700" />
+                  </a>
                 )}
-                {legalLinks.length > 0 && (
-                  <div class="flex items-center gap-[var(--space-inline-lg)]">
-                    {legalLinks.map((link) => (
+                {(hasTaglineSlot || tagline) && (
+                  <p class="text-foreground-muted max-w-xs text-sm">
+                    {hasTaglineSlot ? <slot name="tagline" /> : tagline}
+                  </p>
+                )}
+                {/* Social Links in columns layout */}
+                {showSocial && socialLinks.length > 0 && (
+                  <div class="flex items-center gap-[var(--space-stack-md)] pt-2">
+                    {socialLinks.map((social) => (
                       <a
-                        href={link.href}
-                        class="text-sm transition-colors text-foreground-muted hover:text-foreground"
+                        href={social.href}
+                        class="text-foreground-muted hover:text-foreground transition-colors"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={social.label || `Follow us on ${social.platform}`}
                       >
-                        {link.label}
+                        <Icon name={getSocialIcon(social.platform)} size="md" />
                       </a>
                     ))}
                   </div>
                 )}
-              </>
-            )}
-          </div>
-        )}
-      </>
-    )}
-
-    {layout === 'minimal' && (
-      <div class="text-center">
-        {showCopyright && (
-          <p class="text-sm text-foreground-muted" set:html={processedCopyright} />
-        )}
-      </div>
-    )}
-
-    {layout === 'stacked' && (
-      <div class="flex flex-col items-center gap-[var(--space-stack-lg)] text-center">
-        {/* Logo */}
-        {!hideLogo && (
-          hasLogoSlot ? (
-            <slot name="logo" />
-          ) : (
-            <a href="/" aria-label={siteConfig.name}>
-              <Logo size="lg" class="bg-brand-700" />
-            </a>
-          )
-        )}
-
-        {/* Tagline */}
-        {(hasTaglineSlot || tagline) && (
-          <p class="text-sm max-w-md text-foreground-muted">
-            {hasTaglineSlot ? <slot name="tagline" /> : tagline}
-          </p>
-        )}
-
-        {/* Navigation Links */}
-        <nav class="flex flex-wrap justify-center gap-[var(--space-inline-lg)] text-sm font-medium text-foreground-muted">
-          {allNavItems.map((item) => (
-            <a
-              href={item.href}
-              class="transition-colors hover:text-foreground"
-              target={item.external || item.href.startsWith('http') ? '_blank' : undefined}
-              rel={item.external || item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-
-        {/* Social Links */}
-        {showSocial && socialLinks.length > 0 && (
-          <div class="flex items-center gap-[var(--space-stack-md)]">
-            {socialLinks.map((social) => (
-              <a
-                href={social.href}
-                class="transition-colors text-foreground-muted hover:text-foreground"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={social.label || `Follow us on ${social.platform}`}
-              >
-                <Icon name={getSocialIcon(social.platform)} size="md" />
-              </a>
-            ))}
-          </div>
-        )}
-
-        {/* Copyright & Legal */}
-        {(showCopyright || legalLinks.length > 0) && (
-          <div class="pt-[var(--space-stack-lg)] border-t border-border w-full flex flex-col items-center gap-[var(--space-stack-md)]">
-            {showCopyright && (
-              <p class="text-sm text-foreground-muted" set:html={processedCopyright} />
-            )}
-            {legalLinks.length > 0 && (
-              <div class="flex items-center gap-[var(--space-inline-lg)]">
-                {legalLinks.map((link) => (
-                  <a
-                    href={link.href}
-                    class="text-sm transition-colors text-foreground-muted hover:text-foreground"
-                  >
-                    {link.label}
-                  </a>
-                ))}
               </div>
             )}
+
+            {/* Link Groups */}
+            {hasColumnsSlot ? (
+              <slot name="columns" />
+            ) : (
+              linkGroups.map((group) => (
+                <div class="space-y-[var(--space-stack-md)]">
+                  <h3 class="text-foreground text-sm font-semibold">{group.title}</h3>
+                  <ul class="space-y-2">
+                    {group.links.map((link) => (
+                      <li>
+                        <a
+                          href={link.href}
+                          class="text-foreground-muted hover:text-foreground text-sm transition-colors"
+                          target={
+                            link.external || link.href.startsWith('http') ? '_blank' : undefined
+                          }
+                          rel={
+                            link.external || link.href.startsWith('http')
+                              ? 'noopener noreferrer'
+                              : undefined
+                          }
+                        >
+                          {link.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))
+            )}
           </div>
-        )}
-      </div>
-    )}
+
+          {/* Bottom section */}
+          {(showCopyright || legalLinks.length > 0) && (
+            <div class="border-border mt-[var(--space-section-header)] flex flex-col items-center gap-[var(--space-stack-md)] border-t pt-[var(--space-stack-lg)] text-center">
+              {hasBottomSlot ? (
+                <slot name="bottom" />
+              ) : (
+                <>
+                  {showCopyright && (
+                    <p class="text-foreground-muted text-sm" set:html={processedCopyright} />
+                  )}
+                  {legalLinks.length > 0 && (
+                    <div class="flex items-center gap-[var(--space-inline-lg)]">
+                      {legalLinks.map((link) => (
+                        <a
+                          href={link.href}
+                          class="text-foreground-muted hover:text-foreground text-sm transition-colors"
+                        >
+                          {link.label}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+          )}
+        </>
+      )
+    }
+
+    {
+      layout === 'minimal' && (
+        <div class="text-center">
+          {showCopyright && (
+            <p class="text-foreground-muted text-sm" set:html={processedCopyright} />
+          )}
+        </div>
+      )
+    }
+
+    {
+      layout === 'stacked' && (
+        <div class="flex flex-col items-center gap-[var(--space-stack-lg)] text-center">
+          {/* Logo */}
+          {!hideLogo &&
+            (hasLogoSlot ? (
+              <slot name="logo" />
+            ) : (
+              <a href="/" aria-label={siteConfig.name}>
+                <Logo size="lg" class="bg-brand-700" />
+              </a>
+            ))}
+
+          {/* Tagline */}
+          {(hasTaglineSlot || tagline) && (
+            <p class="text-foreground-muted max-w-md text-sm">
+              {hasTaglineSlot ? <slot name="tagline" /> : tagline}
+            </p>
+          )}
+
+          {/* Navigation Links */}
+          <nav class="text-foreground-muted flex flex-wrap justify-center gap-[var(--space-inline-lg)] text-sm font-medium">
+            {allNavItems.map((item) => (
+              <a
+                href={item.href}
+                class="hover:text-foreground transition-colors"
+                target={item.external || item.href.startsWith('http') ? '_blank' : undefined}
+                rel={
+                  item.external || item.href.startsWith('http') ? 'noopener noreferrer' : undefined
+                }
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+
+          {/* Social Links */}
+          {showSocial && socialLinks.length > 0 && (
+            <div class="flex items-center gap-[var(--space-stack-md)]">
+              {socialLinks.map((social) => (
+                <a
+                  href={social.href}
+                  class="text-foreground-muted hover:text-foreground transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label || `Follow us on ${social.platform}`}
+                >
+                  <Icon name={getSocialIcon(social.platform)} size="md" />
+                </a>
+              ))}
+            </div>
+          )}
+
+          {/* Copyright & Legal */}
+          {(showCopyright || legalLinks.length > 0) && (
+            <div class="border-border flex w-full flex-col items-center gap-[var(--space-stack-md)] border-t pt-[var(--space-stack-lg)]">
+              {showCopyright && (
+                <p class="text-foreground-muted text-sm" set:html={processedCopyright} />
+              )}
+              {legalLinks.length > 0 && (
+                <div class="flex items-center gap-[var(--space-inline-lg)]">
+                  {legalLinks.map((link) => (
+                    <a
+                      href={link.href}
+                      class="text-foreground-muted hover:text-foreground text-sm transition-colors"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      )
+    }
   </div>
 
   {/* Default slot for additional content */}

@@ -8,22 +8,22 @@
    (semantic accent uses deeper brand steps so UI feels calm, not neon).
    ============================================================================= */
 
-html[data-theme="azersoft"] {
+html[data-theme='azersoft'] {
   /* -------------------------------------------------------------------------
      Brand Scale — centered on #773ed9 as brand-500 (hue 294)
      ------------------------------------------------------------------------- */
-  --brand-50:  oklch(97.5% 0.02   294);
-  --brand-100: oklch(94.5% 0.045  294);
-  --brand-200: oklch(86%   0.11   294);
-  --brand-300: oklch(76%   0.17   294);
-  --brand-400: oklch(64%   0.20   294);
+  --brand-50: oklch(97.5% 0.02 294);
+  --brand-100: oklch(94.5% 0.045 294);
+  --brand-200: oklch(86% 0.11 294);
+  --brand-300: oklch(76% 0.17 294);
+  --brand-400: oklch(64% 0.2 294);
   --brand-500: oklch(52.38% 0.221 294); /* #773ed9 */
-  --brand-600: oklch(44%   0.19   294);
-  --brand-700: oklch(36%   0.15   294);
-  --brand-800: oklch(28.5% 0.11   294);
-  --brand-900: oklch(20%   0.075  294);
-  --base: #773ed9 ;
-  --base-hover: #6e5f8b ;
+  --brand-600: oklch(44% 0.19 294);
+  --brand-700: oklch(36% 0.15 294);
+  --brand-800: oklch(28.5% 0.11 294);
+  --brand-900: oklch(20% 0.075 294);
+  --base: #773ed9;
+  --base-hover: #6e5f8b;
   /* -------------------------------------------------------------------------
      Semantic Tokens - Light Mode
      ------------------------------------------------------------------------- */
@@ -32,10 +32,10 @@ html[data-theme="azersoft"] {
   --background-tertiary: var(--gray-100);
   --background-elevated: var(--gray-0);
 
-  --foreground: var(--gray-900);           /* 18.3:1 on white — WCAG AAA */
+  --foreground: var(--gray-900); /* 18.3:1 on white — WCAG AAA */
   --foreground-secondary: var(--gray-700); /* 12.7:1 on white — WCAG AAA */
-  --foreground-muted: var(--gray-600);     /* 10.0:1 on white — WCAG AA  */
-  --foreground-subtle: var(--gray-500);    /*  5.5:1 on white — WCAG AA  */
+  --foreground-muted: var(--gray-600); /* 10.0:1 on white — WCAG AA  */
+  --foreground-subtle: var(--gray-500); /*  5.5:1 on white — WCAG AA  */
 
   --border: var(--gray-200);
   --border-strong: var(--gray-300);
@@ -54,7 +54,7 @@ html[data-theme="azersoft"] {
   --accent-light: var(--brand-50);
 
   --muted: var(--gray-100);
-  --muted-foreground: var(--gray-500);     /*  5.5:1 on white — WCAG AA  */
+  --muted-foreground: var(--gray-500); /*  5.5:1 on white — WCAG AA  */
 
   --card: var(--gray-0);
   --card-border: var(--gray-200);
@@ -74,7 +74,7 @@ html[data-theme="azersoft"] {
   /* Status colors - light mode backgrounds */
   --success-light: oklch(94% 0.05 145);
   --warning-light: oklch(95% 0.05 85);
-  --error-light:   oklch(94% 0.05 25);
+  --error-light: oklch(94% 0.05 25);
 
   /* -------------------------------------------------------------------------
      Inverted/Contrast Section — deep purple-dark
@@ -91,14 +91,14 @@ html[data-theme="azersoft"] {
   /* -------------------------------------------------------------------------
      Typography
      ------------------------------------------------------------------------- */
-  --theme-font-sans: 'Poppins', 'Manrope Variable', 'Manrope', ui-sans-serif,
-    system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --theme-font-sans:
+    'Poppins', 'Manrope Variable', 'Manrope', ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --theme-font-display: 'Outfit Variable', 'Outfit', var(--theme-font-sans);
-  --theme-font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace,
-    SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
-    monospace;
+  --theme-font-mono:
+    'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, 'Liberation Mono', 'Courier New', monospace;
   --theme-heading-weight: 700;
   --theme-heading-tracking: -0.02em;
   --theme-body-leading: 1.6;
@@ -107,57 +107,54 @@ html[data-theme="azersoft"] {
      Shadows — neutral (avoids violet cast across the whole UI)
      ------------------------------------------------------------------------- */
   --theme-shadow-sm: 0 1px 2px oklch(20% 0 0 / 0.06);
-  --theme-shadow-md: 0 4px 8px oklch(20% 0 0 / 0.08),
-    0 0 1px oklch(20% 0 0 / 0.04);
-  --theme-shadow-lg: 0 8px 16px oklch(20% 0 0 / 0.10),
-    0 0 1px oklch(20% 0 0 / 0.04);
-  --theme-shadow-xl: 0 24px 48px oklch(20% 0 0 / 0.14),
-    0 0 1px oklch(20% 0 0 / 0.05);
+  --theme-shadow-md: 0 4px 8px oklch(20% 0 0 / 0.08), 0 0 1px oklch(20% 0 0 / 0.04);
+  --theme-shadow-lg: 0 8px 16px oklch(20% 0 0 / 0.1), 0 0 1px oklch(20% 0 0 / 0.04);
+  --theme-shadow-xl: 0 24px 48px oklch(20% 0 0 / 0.14), 0 0 1px oklch(20% 0 0 / 0.05);
 
   /* -------------------------------------------------------------------------
      Border Radii
      ------------------------------------------------------------------------- */
-  --theme-radius-sm: 0.25rem;    /* 4px  */
-  --theme-radius-md: 0.375rem;   /* 6px  */
-  --theme-radius-lg: 0.5rem;     /* 8px  */
-  --theme-radius-xl: 0.625rem;   /* 10px */
+  --theme-radius-sm: 0.25rem; /* 4px  */
+  --theme-radius-md: 0.375rem; /* 6px  */
+  --theme-radius-lg: 0.5rem; /* 8px  */
+  --theme-radius-xl: 0.625rem; /* 10px */
   --theme-radius-full: 9999px;
 }
 
 /* -------------------------------------------------------------------------
    Dark Mode — deep near-black with violet glow
    ------------------------------------------------------------------------- */
-html.dark[data-theme="azersoft"],
-html[data-theme="azersoft"] .hdr-dark-island,
-html[data-theme="azersoft"] .hero-dark-scope {
+html.dark[data-theme='azersoft'],
+html[data-theme='azersoft'] .hdr-dark-island,
+html[data-theme='azersoft'] .hero-dark-scope {
   --background: oklch(9.5% 0.018 294);
   --background-secondary: oklch(15% 0.014 294);
   --background-tertiary: oklch(20% 0.011 294);
   --background-elevated: oklch(15% 0.014 294);
 
-  --foreground: oklch(95% 0.010 294);
+  --foreground: oklch(95% 0.01 294);
   --foreground-secondary: oklch(83% 0.013 294);
-  --foreground-muted: oklch(68% 0.010 294);
-  --foreground-subtle: oklch(58% 0.008 294);   /*  ~4.8:1 on bg — WCAG AA  */
+  --foreground-muted: oklch(68% 0.01 294);
+  --foreground-subtle: oklch(58% 0.008 294); /*  ~4.8:1 on bg — WCAG AA  */
 
   --border: oklch(20% 0.014 294);
   --border-strong: oklch(27% 0.011 294);
   --border-subtle: oklch(13.5% 0.014 294);
 
-  --primary: oklch(95% 0.010 294);
+  --primary: oklch(95% 0.01 294);
   --primary-hover: oklch(83% 0.013 294);
   --primary-foreground: oklch(9.5% 0.018 294);
 
   --secondary: oklch(20% 0.011 294);
   --secondary-hover: oklch(24% 0.011 294);
-  --secondary-foreground: oklch(90% 0.010 294);
+  --secondary-foreground: oklch(90% 0.01 294);
 
   --accent: var(--brand-400);
   --accent-hover: var(--brand-500);
   --accent-light: oklch(18% 0.08 294);
 
   --muted: oklch(20% 0.011 294);
-  --muted-foreground: oklch(68% 0.010 294);
+  --muted-foreground: oklch(68% 0.01 294);
 
   --card: oklch(15% 0.014 294);
   --card-border: oklch(23% 0.014 294);
@@ -181,19 +178,16 @@ html[data-theme="azersoft"] .hero-dark-scope {
   --surface-invert: oklch(13% 0.014 294);
   --surface-invert-secondary: oklch(16.5% 0.011 294);
   --surface-invert-tertiary: oklch(21% 0.011 294);
-  --on-invert: oklch(95% 0.010 294);
+  --on-invert: oklch(95% 0.01 294);
   --on-invert-secondary: oklch(72% 0.013 294);
-  --on-invert-muted: oklch(68% 0.010 294);
+  --on-invert-muted: oklch(68% 0.01 294);
   --border-invert: oklch(21% 0.011 294);
   --border-invert-strong: oklch(29% 0.009 294);
 
   --theme-shadow-sm: 0 1px 3px oklch(9% 0.04 294 / 0.35);
-  --theme-shadow-md: 0 4px 12px oklch(9% 0.04 294 / 0.4),
-    0 0 1px oklch(9% 0.04 294 / 0.15);
-  --theme-shadow-lg: 0 8px 24px oklch(9% 0.04 294 / 0.45),
-    0 1px 2px oklch(50% 0.20 294 / 0.08);
-  --theme-shadow-xl: 0 24px 48px oklch(9% 0.04 294 / 0.55),
-    0 2px 4px oklch(50% 0.20 294 / 0.11);
+  --theme-shadow-md: 0 4px 12px oklch(9% 0.04 294 / 0.4), 0 0 1px oklch(9% 0.04 294 / 0.15);
+  --theme-shadow-lg: 0 8px 24px oklch(9% 0.04 294 / 0.45), 0 1px 2px oklch(50% 0.2 294 / 0.08);
+  --theme-shadow-xl: 0 24px 48px oklch(9% 0.04 294 / 0.55), 0 2px 4px oklch(50% 0.2 294 / 0.11);
 }
 
 /*
@@ -201,8 +195,8 @@ html[data-theme="azersoft"] .hero-dark-scope {
  * :root’s computed white. Re-bind --color-* so bg-background/… and text-foreground follow local
  * dark semantic tokens.
  */
-html[data-theme="azersoft"] .hdr-dark-island,
-html[data-theme="azersoft"] .hero-dark-scope {
+html[data-theme='azersoft'] .hdr-dark-island,
+html[data-theme='azersoft'] .hero-dark-scope {
   --color-background: var(--background);
   --color-background-secondary: var(--background-secondary);
   --color-background-tertiary: var(--background-tertiary);

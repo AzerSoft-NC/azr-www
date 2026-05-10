@@ -132,11 +132,12 @@ function isActive(href: string): boolean {
 }
 
 function getSocialIconData(url: string): { icon: string; label: string } {
-  if (url.includes('github.com'))    return { icon: 'github',    label: 'GitHub' };
+  if (url.includes('github.com')) return { icon: 'github', label: 'GitHub' };
   if (url.includes('instagram.com')) return { icon: 'instagram', label: 'Instagram' };
-  if (url.includes('x.com') || url.includes('twitter.com')) return { icon: 'x-twitter', label: 'X' };
-  if (url.includes('linkedin.com'))  return { icon: 'linkedin',  label: 'LinkedIn' };
-  if (url.includes('bsky.app'))      return { icon: 'bluesky',   label: 'Bluesky' };
+  if (url.includes('x.com') || url.includes('twitter.com'))
+    return { icon: 'x-twitter', label: 'X' };
+  if (url.includes('linkedin.com')) return { icon: 'linkedin', label: 'LinkedIn' };
+  if (url.includes('bsky.app')) return { icon: 'bluesky', label: 'Bluesky' };
   return { icon: 'link', label: 'Social' };
 }
 
@@ -145,269 +146,264 @@ const buttonId = `${menuId}-button`;
 ---
 
 <div class="dark hdr-dark-island">
-<header
-  data-header-island-dark
-  class={headerClasses}
-  data-menu-id={menuId}
-  data-button-id={buttonId}
-  data-header-shape={shape}
-  data-header-variant={variant}
-  data-header-color-scheme={colorScheme}
-  data-header-auto-hide={autoHide ? 'true' : 'false'}
-  data-header-invert-on-return={invertOnReturn ? 'true' : 'false'}
-  data-morph-to-bar={morphToBar ? 'true' : 'false'}
-  {...attrs}
->
-  <div class={cn(innerClasses, 'hdr-inner')}>
-    {
-      !hideLogo &&
-        (hasLogoSlot ? (
-          <slot name="logo" />
-        ) : (
-          <a href="/" class="flex items-center gap-2">
-            <Logo size={size === 'sm' ? 'md' : 'lg'} forceDark={isInvert} />
-            <span
-              class={cn(
-                'font-display text-xl font-bold tracking-tight dark:text-foreground',
-                isFloating
-                  ? 'hdr-logo-text'
-                  : isInvert
-                    ? 'text-foreground md:text-on-invert'
-                    : 'text-foreground'
-              )}
-              style="font-variant: small-caps;"
-            >
-              <span class="text-brand-500">{logoFirstWord}</span>
-              {logoRestWords ? (
-                <>
-                  {' '}
-                  {logoRestWords}
-                </>
-              ) : null}
-            </span>
-          </a>
-        ))
-    }
-
-    {
-      layout !== 'minimal' &&
-        (hasNavSlot ? (
-          <nav class="hidden items-center gap-1 md:flex" aria-label="Main navigation">
-            <slot name="nav" />
-          </nav>
-        ) : (
-          <nav class="hidden items-center gap-1 md:flex" aria-label="Main navigation">
-            {navItems.map(({ label, href }) => (
-              <a
-                href={href.startsWith('#') && !isLandingPage ? `/${href}` : href}
+  <header
+    data-header-island-dark
+    class={headerClasses}
+    data-menu-id={menuId}
+    data-button-id={buttonId}
+    data-header-shape={shape}
+    data-header-variant={variant}
+    data-header-color-scheme={colorScheme}
+    data-header-auto-hide={autoHide ? 'true' : 'false'}
+    data-header-invert-on-return={invertOnReturn ? 'true' : 'false'}
+    data-morph-to-bar={morphToBar ? 'true' : 'false'}
+    {...attrs}
+  >
+    <div class={cn(innerClasses, 'hdr-inner')}>
+      {
+        !hideLogo &&
+          (hasLogoSlot ? (
+            <slot name="logo" />
+          ) : (
+            <a href="/" class="flex items-center gap-2">
+              <Logo size={size === 'sm' ? 'md' : 'lg'} forceDark={isInvert} />
+              <span
                 class={cn(
-                  'nav-link relative rounded-md px-3 py-2 text-sm',
-                  'transition-all duration-(--transition-fast)',
-                  isFloating && 'hdr-invert-text',
+                  'font-display dark:text-foreground text-xl font-bold tracking-tight',
                   isFloating
-                    ? (isActive(href)
-                        ? 'hdr-nav-active font-semibold'
-                        : 'font-medium opacity-80 hover:opacity-100')
-                    : (isActive(href)
-                        ? 'nav-link-active font-semibold text-foreground bg-secondary'
-                        : 'nav-link-inactive font-medium text-foreground-muted hover:text-foreground hover:bg-secondary/70')
+                    ? 'hdr-logo-text'
+                    : isInvert
+                      ? 'text-foreground md:text-on-invert'
+                      : 'text-foreground'
                 )}
-                aria-current={isActive(href) ? 'page' : undefined}
+                style="font-variant: small-caps;"
               >
-                {label}
-              </a>
-            ))}
-          </nav>
+                <span class="text-brand-500">{logoFirstWord}</span>
+                {logoRestWords ? <> {logoRestWords}</> : null}
+              </span>
+            </a>
+          ))
+      }
+
+      {
+        layout !== 'minimal' &&
+          (hasNavSlot ? (
+            <nav class="hidden items-center gap-1 md:flex" aria-label="Main navigation">
+              <slot name="nav" />
+            </nav>
+          ) : (
+            <nav class="hidden items-center gap-1 md:flex" aria-label="Main navigation">
+              {navItems.map(({ label, href }) => (
+                <a
+                  href={href.startsWith('#') && !isLandingPage ? `/${href}` : href}
+                  class={cn(
+                    'nav-link relative rounded-md px-3 py-2 text-sm',
+                    'transition-all duration-(--transition-fast)',
+                    isFloating && 'hdr-invert-text',
+                    isFloating
+                      ? isActive(href)
+                        ? 'hdr-nav-active font-semibold'
+                        : 'font-medium opacity-80 hover:opacity-100'
+                      : isActive(href)
+                        ? 'nav-link-active text-foreground bg-secondary font-semibold'
+                        : 'nav-link-inactive text-foreground-muted hover:text-foreground hover:bg-secondary/70 font-medium'
+                  )}
+                  aria-current={isActive(href) ? 'page' : undefined}
+                >
+                  {label}
+                </a>
+              ))}
+            </nav>
+          ))
+      }
+
+      <div class="flex items-center gap-2 justify-self-end">
+        {
+          hasActionsSlot ? (
+            <slot name="actions" />
+          ) : (
+            <>
+              {showSocialLinks && siteConfig.socialLinks.length > 0 && (
+                <div class="hidden items-center gap-0.5 md:flex">
+                  {siteConfig.socialLinks.map((url) => {
+                    const { icon, label } = getSocialIconData(url);
+                    return (
+                      <a
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={label}
+                        class={cn(
+                          'rounded-md p-2 transition-colors duration-(--transition-fast)',
+                          'focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none',
+                          isFloating
+                            ? 'hdr-invert-text'
+                            : 'text-foreground-muted hover:text-foreground hover:bg-secondary/70'
+                        )}
+                      >
+                        <Icon name={icon} size="md" />
+                      </a>
+                    );
+                  })}
+                </div>
+              )}
+
+              {actions.map((action) => (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  icon={action.iconOnly}
+                  href={action.href}
+                  target={action.target}
+                  aria-label={action.label}
+                  class={isFloating ? 'hdr-invert-text' : undefined}
+                >
+                  <Icon name={action.icon} size="sm" />
+                  {!action.iconOnly && action.label}
+                </Button>
+              ))}
+
+              {showCta && (
+                <div class="hidden md:flex">
+                  <Button
+                    size="sm"
+                    href={ctaHref}
+                    target={ctaHref?.startsWith('http') ? '_blank' : undefined}
+                    class={cn('hdr-cta-brand', isFloating ? 'hdr-invert-cta' : undefined)}
+                  >
+                    {cta.icon && <Icon name={cta.icon} size="sm" />}
+                    {cta.label}
+                    {cta.trailingIcon && <Icon name={cta.trailingIcon} size="sm" />}
+                  </Button>
+                </div>
+              )}
+            </>
+          )
+        }
+
+        {
+          showMobileMenu && layout !== 'minimal' && (
+            <button
+              type="button"
+              id={buttonId}
+              class={cn(
+                'hdr-hamburger inline-flex items-center justify-center rounded-md p-2 md:hidden',
+                'text-brand-700 dark:text-foreground',
+                'transition-colors',
+                'focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none',
+                isFloating ? 'hover:bg-secondary/40' : 'hover:bg-secondary'
+              )}
+              aria-expanded="false"
+              aria-controls={menuId}
+              aria-label="Toggle menu"
+            >
+              <span class="menu-icon">
+                <Icon name="menu" size="md" />
+              </span>
+              <span class="close-icon hidden">
+                <Icon name="x" size="md" />
+              </span>
+            </button>
+          )
+        }
+      </div>
+    </div>
+
+    {
+      effectiveShowScrollProgress &&
+        (isFloating ? (
+          <div
+            class={`absolute inset-x-3 h-[2px] overflow-hidden rounded-full ${scrollProgressPosition === 'top' ? 'top-[2px]' : 'bottom-[2px]'}`}
+            aria-hidden="true"
+          >
+            <div
+              id="scroll-progress-bar"
+              class="bg-brand-500 absolute top-0 left-0 h-full w-0 transition-none"
+            />
+          </div>
+        ) : (
+          <div
+            id="scroll-progress-bar"
+            class={`bg-brand-500 absolute left-0 h-[2px] w-0 transition-none ${scrollProgressPosition === 'top' ? 'top-0' : 'bottom-0'}`}
+            aria-hidden="true"
+          />
         ))
     }
 
-    <div class="flex items-center gap-2 justify-self-end">
-      {
-        hasActionsSlot ? (
-          <slot name="actions" />
-        ) : (
-          <>
-            {showSocialLinks && siteConfig.socialLinks.length > 0 && (
-              <div class="hidden md:flex items-center gap-0.5">
-                {siteConfig.socialLinks.map((url) => {
-                  const { icon, label } = getSocialIconData(url);
-                  return (
-                    <a
-                      href={url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={label}
-                      class={cn(
-                        'rounded-md p-2 transition-colors duration-(--transition-fast)',
-                        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
-                        isFloating
-                          ? 'hdr-invert-text'
-                          : 'text-foreground-muted hover:text-foreground hover:bg-secondary/70'
-                      )}
-                    >
-                      <Icon name={icon} size="md" />
-                    </a>
-                  );
-                })}
-              </div>
-            )}
-
-            {actions.map((action) => (
-              <Button
-                variant="ghost"
-                size="sm"
-                icon={action.iconOnly}
-                href={action.href}
-                target={action.target}
-                aria-label={action.label}
-                class={isFloating ? 'hdr-invert-text' : undefined}
-              >
-                <Icon name={action.icon} size="sm" />
-                {!action.iconOnly && action.label}
-              </Button>
-            ))}
-
-            {showCta && (
-              <div class="hidden md:flex">
-                <Button
-                  size="sm"
-                  href={ctaHref}
-                  target={ctaHref?.startsWith('http') ? '_blank' : undefined}
-                  class={cn('hdr-cta-brand', isFloating ? 'hdr-invert-cta' : undefined)}
-                >
-                  {cta.icon && <Icon name={cta.icon} size="sm" />}
-                  {cta.label}
-                  {cta.trailingIcon && <Icon name={cta.trailingIcon} size="sm" />}
-                </Button>
-              </div>
-            )}
-          </>
-        )
-      }
-
-      {
-        showMobileMenu && layout !== 'minimal' && (
-          <button
-            type="button"
-            id={buttonId}
+    {
+      showMobileMenu &&
+        layout !== 'minimal' &&
+        (hasMobileMenuSlot ? (
+          <div
+            id={menuId}
             class={cn(
-              'hdr-hamburger inline-flex items-center justify-center rounded-md p-2 md:hidden',
-              'text-brand-700 dark:text-foreground',
-              'transition-colors',
-              'focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none',
-              isFloating ? 'hover:bg-secondary/40' : 'hover:bg-secondary'
+              'hidden origin-top scale-y-0 opacity-0 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.12)] md:hidden',
+              isFloating
+                ? 'bg-background/95 rounded-b-2xl backdrop-blur-xl'
+                : 'border-border bg-background border-t'
             )}
-            aria-expanded="false"
-            aria-controls={menuId}
-            aria-label="Toggle menu"
+            role="navigation"
+            aria-label="Mobile navigation"
           >
-            <span class="menu-icon">
-              <Icon name="menu" size="md" />
-            </span>
-            <span class="close-icon hidden">
-              <Icon name="x" size="md" />
-            </span>
-          </button>
-        )
-      }
-    </div>
-  </div>
+            <slot name="mobile-menu" />
+          </div>
+        ) : (
+          <div
+            id={menuId}
+            class={cn(
+              'hidden origin-top scale-y-0 opacity-0 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.12)] md:hidden',
+              isFloating
+                ? 'bg-background/95 rounded-b-2xl backdrop-blur-xl'
+                : 'border-border bg-background border-t'
+            )}
+            role="navigation"
+            aria-label="Mobile navigation"
+          >
+            <div class={cn('space-y-1 py-4', isFloating ? 'px-4' : 'mx-auto max-w-6xl px-6')}>
+              {navItems.map(({ label, href }) => (
+                <a
+                  href={href.startsWith('#') && !isLandingPage ? `/${href}` : href}
+                  class={cn(
+                    'mobile-nav-link block rounded-md px-3 py-2 text-sm',
+                    'transition-all duration-(--transition-fast)',
+                    isActive(href)
+                      ? 'mobile-nav-link-active bg-secondary text-foreground font-semibold'
+                      : 'mobile-nav-link-inactive text-foreground-muted hover:bg-secondary/70 hover:text-foreground font-medium'
+                  )}
+                  aria-current={isActive(href) ? 'page' : undefined}
+                >
+                  {label}
+                </a>
+              ))}
 
-  {effectiveShowScrollProgress && (
-    isFloating ? (
+              {showCta && (
+                <div class="border-border mt-3 border-t pt-3">
+                  <Button
+                    fullWidth
+                    href={ctaHref}
+                    target={ctaHref?.startsWith('http') ? '_blank' : undefined}
+                  >
+                    {cta.icon && <Icon name={cta.icon} size="sm" />}
+                    {cta.label}
+                    {cta.trailingIcon && <Icon name={cta.trailingIcon} size="sm" />}
+                  </Button>
+                </div>
+              )}
+            </div>
+          </div>
+        ))
+    }
+  </header>
+
+  {
+    showMobileMenu && layout !== 'minimal' && (
       <div
-        class={`absolute inset-x-3 h-[2px] overflow-hidden rounded-full ${scrollProgressPosition === 'top' ? 'top-[2px]' : 'bottom-[2px]'}`}
-        aria-hidden="true"
-      >
-        <div
-          id="scroll-progress-bar"
-          class="absolute left-0 top-0 h-full w-0 bg-brand-500 transition-none"
-        />
-      </div>
-    ) : (
-      <div
-        id="scroll-progress-bar"
-        class={`absolute left-0 h-[2px] w-0 bg-brand-500 transition-none ${scrollProgressPosition === 'top' ? 'top-0' : 'bottom-0'}`}
+        id={`${menuId}-backdrop`}
+        class="pointer-events-none fixed inset-0 z-40 opacity-0 transition-opacity duration-200 md:hidden"
         aria-hidden="true"
       />
     )
-  )}
-
-  {
-    showMobileMenu &&
-      layout !== 'minimal' &&
-      (hasMobileMenuSlot ? (
-        <div
-          id={menuId}
-          class={cn(
-            'hidden origin-top scale-y-0 opacity-0 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.12)] md:hidden',
-            isFloating
-              ? 'rounded-b-2xl bg-background/95 backdrop-blur-xl'
-              : 'border-border bg-background border-t'
-          )}
-          role="navigation"
-          aria-label="Mobile navigation"
-        >
-          <slot name="mobile-menu" />
-        </div>
-      ) : (
-        <div
-          id={menuId}
-          class={cn(
-            'hidden origin-top scale-y-0 opacity-0 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.12)] md:hidden',
-            isFloating
-              ? 'rounded-b-2xl bg-background/95 backdrop-blur-xl'
-              : 'border-border bg-background border-t'
-          )}
-          role="navigation"
-          aria-label="Mobile navigation"
-        >
-          <div class={cn(
-            'space-y-1 py-4',
-            isFloating ? 'px-4' : 'mx-auto max-w-6xl px-6'
-          )}>
-            {navItems.map(({ label, href }) => (
-              <a
-                href={href.startsWith('#') && !isLandingPage ? `/${href}` : href}
-                class={cn(
-                  'mobile-nav-link block rounded-md px-3 py-2 text-sm',
-                  'transition-all duration-(--transition-fast)',
-                  isActive(href)
-                    ? 'mobile-nav-link-active bg-secondary text-foreground font-semibold'
-                    : 'mobile-nav-link-inactive text-foreground-muted hover:bg-secondary/70 hover:text-foreground font-medium'
-                )}
-                aria-current={isActive(href) ? 'page' : undefined}
-              >
-                {label}
-              </a>
-            ))}
-
-            {showCta && (
-              <div class="border-border mt-3 border-t pt-3">
-                <Button fullWidth href={ctaHref} target={ctaHref?.startsWith('http') ? '_blank' : undefined}>
-                  {cta.icon && <Icon name={cta.icon} size="sm" />}
-                  {cta.label}
-                  {cta.trailingIcon && <Icon name={cta.trailingIcon} size="sm" />}
-                </Button>
-              </div>
-            )}
-
-          </div>
-        </div>
-      ))
   }
-</header>
-
-{
-  showMobileMenu && layout !== 'minimal' && (
-    <div
-      id={`${menuId}-backdrop`}
-      class="pointer-events-none fixed inset-0 z-40 opacity-0 transition-opacity duration-200 md:hidden"
-      aria-hidden="true"
-    />
-  )
-}
-
 </div>
 
 <script>
@@ -538,10 +534,17 @@ const buttonId = `${menuId}-button`;
 <script>
   const SCROLL_THRESHOLD = 60;
   const AUTO_HIDE_THRESHOLD = 150;
-  const BAR_SCROLLED_CLASSES = ['bg-background/80', 'backdrop-blur-lg', 'border-b', 'border-border/50'];
+  const BAR_SCROLLED_CLASSES = [
+    'bg-background/80',
+    'backdrop-blur-lg',
+    'border-b',
+    'border-border/50',
+  ];
 
   function initScrollWatcher() {
-    const scrollHeaders = document.querySelectorAll<HTMLElement>('header[data-header-shape="floating"], header[data-header-shape="bar"]');
+    const scrollHeaders = document.querySelectorAll<HTMLElement>(
+      'header[data-header-shape="floating"], header[data-header-shape="bar"]'
+    );
     scrollHeaders.forEach((header) => {
       if (header.dataset.scrollInit) return;
       header.dataset.scrollInit = 'true';
@@ -591,7 +594,10 @@ const buttonId = `${menuId}-button`;
               } else {
                 if (header.hasAttribute('data-header-hidden')) {
                   const maxScrollY = document.documentElement.scrollHeight - window.innerHeight;
-                  lastShownAtY = Math.min(currentScrollY, Math.max(0, maxScrollY - AUTO_HIDE_THRESHOLD));
+                  lastShownAtY = Math.min(
+                    currentScrollY,
+                    Math.max(0, maxScrollY - AUTO_HIDE_THRESHOLD)
+                  );
                   header.setAttribute('data-header-returned', '');
                 }
                 header.removeAttribute('data-header-hidden');
@@ -634,12 +640,16 @@ const buttonId = `${menuId}-button`;
       ticking = false;
     }
 
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(update);
-      }
-    }, { passive: true });
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(update);
+        }
+      },
+      { passive: true }
+    );
 
     update();
   }
@@ -670,7 +680,8 @@ const buttonId = `${menuId}-button`;
           href.startsWith('//') ||
           href.startsWith('mailto:') ||
           href.startsWith('tel:')
-        ) return;
+        )
+          return;
         if (href === window.location.pathname) return;
         if (header.hasAttribute('data-scrolled')) return; // already bar shape, navigate normally
 
@@ -690,68 +701,74 @@ const buttonId = `${menuId}-button`;
   .mobile-menu-blur {
     opacity: 0.3;
     filter: blur(4px);
-    transition: opacity 200ms, filter 200ms;
+    transition:
+      opacity 200ms,
+      filter 200ms;
   }
 
-  [data-header-shape="floating"] {
-    transition-property: translate, background, border-color, box-shadow, width, max-width, border-radius, margin-top;
+  [data-header-shape='floating'] {
+    transition-property:
+      translate, background, border-color, box-shadow, width, max-width, border-radius, margin-top;
     transition-duration: 300ms;
     transition-timing-function: ease;
   }
 
-  [data-header-shape="floating"][data-header-hidden] {
+  [data-header-shape='floating'][data-header-hidden] {
     translate: -50% calc(-100% - 1.5rem) !important;
   }
 
-  [data-header-shape="floating"][data-scrolled] {
+  [data-header-shape='floating'][data-scrolled] {
     background: color-mix(in oklch, var(--color-background) 92%, transparent);
     backdrop-filter: blur(24px);
     border-color: var(--color-border);
-    box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.14), 0 2px 8px -2px rgba(0, 0, 0, 0.08);
+    box-shadow:
+      0 8px 32px -8px rgba(0, 0, 0, 0.14),
+      0 2px 8px -2px rgba(0, 0, 0, 0.08);
   }
 
-  [data-header-shape="floating"][data-morph-to-bar="true"][data-scrolled] {
+  [data-header-shape='floating'][data-morph-to-bar='true'][data-scrolled] {
     width: 100%;
     max-width: 100%;
     border-radius: 0;
     margin-top: 0;
   }
 
-  [data-header-shape="floating"] .hdr-inner {
+  [data-header-shape='floating'] .hdr-inner {
     max-width: 72rem;
     margin-left: auto;
     margin-right: auto;
     transition: box-shadow 300ms;
   }
 
-  [data-header-shape="floating"][data-header-color-scheme="invert"] .hdr-invert-text {
+  [data-header-shape='floating'][data-header-color-scheme='invert'] .hdr-invert-text {
     color: var(--color-on-invert);
     transition: color 300ms;
   }
-  [data-header-shape="floating"][data-header-color-scheme="invert"][data-scrolled] .hdr-invert-text {
+  [data-header-shape='floating'][data-header-color-scheme='invert'][data-scrolled]
+    .hdr-invert-text {
     color: var(--color-foreground);
   }
 
-  [data-header-shape="floating"][data-header-color-scheme="invert"] .hdr-logo-text {
+  [data-header-shape='floating'][data-header-color-scheme='invert'] .hdr-logo-text {
     color: var(--color-on-invert);
     transition: color 300ms;
   }
-  [data-header-shape="floating"][data-header-color-scheme="invert"][data-scrolled] .hdr-logo-text {
+  [data-header-shape='floating'][data-header-color-scheme='invert'][data-scrolled] .hdr-logo-text {
     color: var(--color-brand-700);
   }
 
-  [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-logo-text {
+  [data-header-shape='floating'][data-header-color-scheme='default'] .hdr-logo-text {
     color: var(--color-brand-700);
   }
-  [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-invert-text {
+  [data-header-shape='floating'][data-header-color-scheme='default'] .hdr-invert-text {
     color: var(--color-foreground-muted);
     transition: color 300ms;
   }
-  [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-invert-text:hover {
+  [data-header-shape='floating'][data-header-color-scheme='default'] .hdr-invert-text:hover {
     color: var(--color-foreground);
   }
 
-  [data-header-shape="floating"] .nav-link::after {
+  [data-header-shape='floating'] .nav-link::after {
     content: '';
     position: absolute;
     bottom: 2px;
@@ -760,45 +777,51 @@ const buttonId = `${menuId}-button`;
     height: 2px;
     background: currentColor;
     border-radius: 1px;
-    transition: left 200ms, right 200ms;
+    transition:
+      left 200ms,
+      right 200ms;
   }
 
-  [data-header-shape="floating"] .nav-link:hover::after,
-  [data-header-shape="floating"] .nav-link.hdr-nav-active::after {
+  [data-header-shape='floating'] .nav-link:hover::after,
+  [data-header-shape='floating'] .nav-link.hdr-nav-active::after {
     left: 12px;
     right: 12px;
   }
 
-  [data-header-shape="floating"][data-header-color-scheme="invert"] .hdr-invert-cta {
+  [data-header-shape='floating'][data-header-color-scheme='invert'] .hdr-invert-cta {
     background: white;
     color: #111;
     border: 1px solid rgba(0, 0, 0, 0.15);
-    transition: background 300ms, color 300ms, border-color 300ms;
+    transition:
+      background 300ms,
+      color 300ms,
+      border-color 300ms;
   }
-  [data-header-shape="floating"][data-header-color-scheme="invert"] .hdr-invert-cta:hover {
+  [data-header-shape='floating'][data-header-color-scheme='invert'] .hdr-invert-cta:hover {
     background: rgba(255, 255, 255, 0.9);
   }
-  [data-header-shape="floating"][data-header-color-scheme="invert"][data-scrolled] .hdr-invert-cta {
+  [data-header-shape='floating'][data-header-color-scheme='invert'][data-scrolled] .hdr-invert-cta {
     background: var(--color-primary);
     color: var(--color-primary-foreground);
   }
-  [data-header-shape="floating"][data-header-color-scheme="invert"][data-scrolled] .hdr-invert-cta:hover {
+  [data-header-shape='floating'][data-header-color-scheme='invert'][data-scrolled]
+    .hdr-invert-cta:hover {
     opacity: 0.9;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    [data-header-shape="floating"],
-    [data-header-shape="floating"] .hdr-inner,
-    [data-header-shape="floating"] .hdr-invert-text,
-    [data-header-shape="floating"] .hdr-logo-text,
-    [data-header-shape="floating"] .hdr-invert-cta,
-    [data-header-shape="floating"] .nav-link::after {
+    [data-header-shape='floating'],
+    [data-header-shape='floating'] .hdr-inner,
+    [data-header-shape='floating'] .hdr-invert-text,
+    [data-header-shape='floating'] .hdr-logo-text,
+    [data-header-shape='floating'] .hdr-invert-cta,
+    [data-header-shape='floating'] .nav-link::after {
       transition: none !important;
     }
-    [data-header-shape="floating"][data-header-hidden] {
+    [data-header-shape='floating'][data-header-hidden] {
       translate: -50% calc(-100% - 1.5rem) !important;
     }
-    [data-header-shape="floating"][data-morph-to-bar="true"][data-scrolled] {
+    [data-header-shape='floating'][data-morph-to-bar='true'][data-scrolled] {
       width: 100%;
       max-width: 100%;
       border-radius: 0;
@@ -806,59 +829,81 @@ const buttonId = `${menuId}-button`;
     }
   }
 
-  html.dark [data-header-shape="floating"],
-  .hdr-dark-island [data-header-shape="floating"] {
+  html.dark [data-header-shape='floating'],
+  .hdr-dark-island [data-header-shape='floating'] {
     background: color-mix(in oklch, var(--color-background) 65%, transparent);
     border-color: color-mix(in oklch, var(--color-brand-400) 35%, transparent);
     box-shadow: none;
   }
-  html.dark [data-header-shape="floating"][data-scrolled],
-  .hdr-dark-island [data-header-shape="floating"][data-scrolled] {
+  html.dark [data-header-shape='floating'][data-scrolled],
+  .hdr-dark-island [data-header-shape='floating'][data-scrolled] {
     background: color-mix(in oklch, var(--color-background) 88%, transparent);
     border-color: rgba(255, 255, 255, 0.14);
-    box-shadow: 0 4px 32px rgba(255, 255, 255, 0.07), 0 12px 40px -8px rgba(0, 0, 0, 0.6), 0 2px 8px -2px rgba(0, 0, 0, 0.4);
+    box-shadow:
+      0 4px 32px rgba(255, 255, 255, 0.07),
+      0 12px 40px -8px rgba(0, 0, 0, 0.6),
+      0 2px 8px -2px rgba(0, 0, 0, 0.4);
   }
 
-  html:not(.dark) [data-header-shape="floating"]:not([data-scrolled]):not([data-header-island-dark]) {
+  html:not(.dark)
+    [data-header-shape='floating']:not([data-scrolled]):not([data-header-island-dark]) {
     border-color: color-mix(in oklch, var(--color-brand-500) 35%, transparent);
     box-shadow: none;
   }
-  html:not(.dark) [data-header-shape="floating"][data-scrolled]:not([data-header-island-dark]) {
-    box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.35), 0 2px 8px -2px rgba(0, 0, 0, 0.2);
+  html:not(.dark) [data-header-shape='floating'][data-scrolled]:not([data-header-island-dark]) {
+    box-shadow:
+      0 8px 32px -8px rgba(0, 0, 0, 0.35),
+      0 2px 8px -2px rgba(0, 0, 0, 0.2);
   }
 
-  [data-header-shape="floating"][data-header-color-scheme="invert"][data-scrolled] .hdr-logo-text {
+  [data-header-shape='floating'][data-header-color-scheme='invert'][data-scrolled] .hdr-logo-text {
     color: var(--color-brand-700);
   }
-  html.dark [data-header-shape="floating"][data-header-color-scheme="invert"][data-scrolled] .hdr-logo-text,
-  .hdr-dark-island [data-header-shape="floating"][data-header-color-scheme="invert"][data-scrolled] .hdr-logo-text {
+  html.dark
+    [data-header-shape='floating'][data-header-color-scheme='invert'][data-scrolled]
+    .hdr-logo-text,
+  .hdr-dark-island
+    [data-header-shape='floating'][data-header-color-scheme='invert'][data-scrolled]
+    .hdr-logo-text {
     color: var(--color-foreground);
   }
-  [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-logo-text {
+  [data-header-shape='floating'][data-header-color-scheme='default'] .hdr-logo-text {
     color: var(--color-brand-700);
   }
-  html.dark [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-logo-text,
-  .hdr-dark-island [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-logo-text {
+  html.dark [data-header-shape='floating'][data-header-color-scheme='default'] .hdr-logo-text,
+  .hdr-dark-island
+    [data-header-shape='floating'][data-header-color-scheme='default']
+    .hdr-logo-text {
     color: var(--color-foreground);
   }
 
-  [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-invert-text {
+  [data-header-shape='floating'][data-header-color-scheme='default'] .hdr-invert-text {
     color: var(--color-foreground-muted);
     transition: color 300ms;
   }
-  html.dark [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-invert-text,
-  .hdr-dark-island [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-invert-text {
+  html.dark [data-header-shape='floating'][data-header-color-scheme='default'] .hdr-invert-text,
+  .hdr-dark-island
+    [data-header-shape='floating'][data-header-color-scheme='default']
+    .hdr-invert-text {
     color: var(--color-foreground-muted);
   }
-  [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-invert-text:hover {
+  [data-header-shape='floating'][data-header-color-scheme='default'] .hdr-invert-text:hover {
     color: var(--color-foreground);
   }
 
   @media (max-width: 767px) {
-    html:not(.dark) [data-header-shape="floating"][data-header-color-scheme="invert"]:not([data-header-island-dark]) .hdr-logo-text {
+    html:not(.dark)
+      [data-header-shape='floating'][data-header-color-scheme='invert']:not(
+        [data-header-island-dark]
+      )
+      .hdr-logo-text {
       color: var(--color-brand-500);
     }
-    html:not(.dark) [data-header-shape="floating"][data-header-color-scheme="invert"][data-scrolled]:not([data-header-island-dark]) .hdr-logo-text {
+    html:not(.dark)
+      [data-header-shape='floating'][data-header-color-scheme='invert'][data-scrolled]:not(
+        [data-header-island-dark]
+      )
+      .hdr-logo-text {
       color: var(--color-brand-500);
     }
   }
@@ -866,45 +911,67 @@ const buttonId = `${menuId}-button`;
   /* ===== Returned state: color flip only when header comes back after being hidden ===== */
 
   /* Full-page dark only: flip to white capsule when header returns */
-  html.dark [data-header-shape="floating"][data-header-returned][data-header-invert-on-return="true"] {
+  html.dark
+    [data-header-shape='floating'][data-header-returned][data-header-invert-on-return='true'] {
     background: rgba(255, 255, 255, 0.95);
     border-color: rgba(0, 0, 0, 0.06);
-    box-shadow: 0 4px 32px rgba(255, 255, 255, 0.12), 0 8px 24px -4px rgba(0, 0, 0, 0.25);
+    box-shadow:
+      0 4px 32px rgba(255, 255, 255, 0.12),
+      0 8px 24px -4px rgba(0, 0, 0, 0.25);
   }
-  html.dark [data-header-shape="floating"][data-header-returned][data-header-invert-on-return="true"] .hdr-invert-text {
+  html.dark
+    [data-header-shape='floating'][data-header-returned][data-header-invert-on-return='true']
+    .hdr-invert-text {
     color: oklch(20% 0.005 250);
     transition: color 300ms;
   }
-  html.dark [data-header-shape="floating"][data-header-returned][data-header-invert-on-return="true"] .hdr-invert-text:hover {
+  html.dark
+    [data-header-shape='floating'][data-header-returned][data-header-invert-on-return='true']
+    .hdr-invert-text:hover {
     color: oklch(8% 0 0);
   }
-  html.dark [data-header-shape="floating"][data-header-returned][data-header-invert-on-return="true"] .hdr-logo-text {
+  html.dark
+    [data-header-shape='floating'][data-header-returned][data-header-invert-on-return='true']
+    .hdr-logo-text {
     color: var(--color-brand-700);
   }
   /* Light mode: flip to dark capsule */
-  html:not(.dark) [data-header-shape="floating"][data-header-returned][data-header-invert-on-return="true"] {
+  html:not(.dark)
+    [data-header-shape='floating'][data-header-returned][data-header-invert-on-return='true'] {
     background: oklch(12% 0.005 250 / 0.93);
     border-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.45), 0 2px 8px -2px rgba(0, 0, 0, 0.25);
+    box-shadow:
+      0 8px 32px -4px rgba(0, 0, 0, 0.45),
+      0 2px 8px -2px rgba(0, 0, 0, 0.25);
   }
-  html:not(.dark) [data-header-shape="floating"][data-header-returned][data-header-invert-on-return="true"] .hdr-invert-text {
+  html:not(.dark)
+    [data-header-shape='floating'][data-header-returned][data-header-invert-on-return='true']
+    .hdr-invert-text {
     color: rgba(255, 255, 255, 0.82);
     transition: color 300ms;
   }
-  html:not(.dark) [data-header-shape="floating"][data-header-returned][data-header-invert-on-return="true"] .hdr-invert-text:hover {
+  html:not(.dark)
+    [data-header-shape='floating'][data-header-returned][data-header-invert-on-return='true']
+    .hdr-invert-text:hover {
     color: rgba(255, 255, 255, 1);
   }
-  html:not(.dark) [data-header-shape="floating"][data-header-returned][data-header-invert-on-return="true"] .hdr-logo-text {
+  html:not(.dark)
+    [data-header-shape='floating'][data-header-returned][data-header-invert-on-return='true']
+    .hdr-logo-text {
     color: var(--color-brand-500);
   }
   /* ===== Returned state: fix button hover backgrounds ===== */
-  html.dark [data-header-shape="floating"][data-header-returned][data-header-invert-on-return="true"] button.hdr-invert-text:hover {
+  html.dark
+    [data-header-shape='floating'][data-header-returned][data-header-invert-on-return='true']
+    button.hdr-invert-text:hover {
     background-color: rgba(0, 0, 0, 0.08);
     color: oklch(8% 0 0);
   }
 
   /* Light mode: dark header needs dark hover, not light-mode secondary */
-  html:not(.dark) [data-header-shape="floating"][data-header-returned][data-header-invert-on-return="true"] button.hdr-invert-text:hover {
+  html:not(.dark)
+    [data-header-shape='floating'][data-header-returned][data-header-invert-on-return='true']
+    button.hdr-invert-text:hover {
     background-color: rgba(255, 255, 255, 0.12);
     color: rgba(255, 255, 255, 1);
   }
