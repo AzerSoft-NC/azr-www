@@ -72,7 +72,8 @@ const projects = defineCollection({
       description: z.string(),
       url: z.string().url().optional(),
       repo: z.string().url().optional(),
-      image: image().optional(),
+      /** Optimized asset via `image()` or root URL from `public/` (e.g. `/og-default.png`) */
+      image: z.union([z.string().regex(/^\/(?!\/)/), image()]).optional(),
       imageAlt: z.string().optional(),
       tags: z.array(z.string()).default([]),
       featured: z.boolean().default(false),
