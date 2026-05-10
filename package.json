@@ -36,6 +36,7 @@
     "format:check": "prettier --check .",
     "validate": "yarn lint && yarn check && yarn build",
     "deploy:check": "yarn format:check && yarn lint && yarn check && yarn test",
+    "deploy": "bash scripts/deploy.sh",
     "test": "vitest run",
     "test:e2e": "playwright test"
   },
