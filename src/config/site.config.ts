@@ -16,10 +16,6 @@ export interface SiteConfig {
     country: string;
   };
   socialLinks: string[];
-  twitter?: {
-    site: string;
-    creator: string;
-  };
   verification?: {
     google?: string;
     bing?: string;
@@ -84,10 +80,6 @@ const siteConfig: SiteConfig = {
     country: 'Nouvelle-Calédonie',
   },
   socialLinks: ['mailto:contact@azersoft.nc'],
-  twitter: {
-    site: '',
-    creator: '',
-  },
   verification: {
     google: GOOGLE_SITE_VERIFICATION,
   },

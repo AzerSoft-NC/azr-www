@@ -9,13 +9,63 @@ import Card from '@/components/ui/data-display/Card/Card.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import TypingEffect from '@/components/ui/TypingEffect.astro';
 import LandingLayout from '@/layouts/LandingLayout.astro';
-import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('blog', ({ data }) => data.locale === 'fr' && !data.draft))
-  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())
-  .slice(0, 3);
+const prestations = [
+  {
+    title: 'Sites Web',
+    icon: 'globe',
+    description: 'Site vitrine simple propulsé par Astro ou site WordPress.',
+  },
+  {
+    title: 'E-Commerce',
+    icon: 'shopping-cart',
+    description: 'Plateforme de vente en ligne Shopify ou Wordpress/WooCommerce.',
+  },
+  {
+    title: 'Applications',
+    icon: 'app-window',
+    description: 'Application web/mobile, adaptee a vos besoins.',
+  },
+];
+const typingWords = prestations.map((prestation) => prestation.title);
 
-const typingWords = ['Sites Web', 'E-Commerce', 'Applications'];
+const stack: [string, string][] = [
+  // Web
+  ['html5', 'html5'],
+  ['css3', 'css3'],
+  ['javascript', 'javascript'],
+  ['typescript', 'typescript'],
+  ['astro', 'astro'],
+
+  // Frontend
+  ['angular', 'angular'],
+  ['vuedotjs', 'vue.js'],
+  ['react', 'react'],
+  ['tailwindcss', 'tailwindcss'],
+  ['nodedotjs', 'node.js'],
+
+  // CMS
+  ['wordpress', 'wordpress'],
+  ['shopify', 'shopify'],
+
+  // Backend
+  ['go', 'go'],
+  ['openjdk', 'java'],
+  ['springboot', 'springboot'],
+  ['elasticsearch', 'elasticsearch'],
+
+  // Database
+  ['postgresql', 'postgresql'],
+
+  // Host/Infrastructure
+  ['nginx', 'nginx'],
+  ['git', 'git'],
+  ['github', 'github'],
+  ['docker', 'docker'],
+  ['firebase', 'firebase'],
+  ['digitalocean', 'digitalocean'],
+  ['claude', 'claude AI'],
+];
 ---
 
 <LandingLayout
@@ -46,7 +96,7 @@ const typingWords = ['Sites Web', 'E-Commerce', 'Applications'];
     id="stats"
     class="bg-background-secondary border-border border-t py-[var(--space-section-sm)]"
   >
-    <div class="mx-auto grid max-w-6xl gap-4 px-6 md:grid-cols-4">
+    <div class="mx-auto grid max-w-6xl gap-4 px-6 md:grid-cols-3">
       <Card padding="lg" data-reveal
         ><p class="text-foreground-muted text-sm">Expérience</p><p class="text-2xl font-bold">
           Depuis 2016
@@ -55,11 +105,6 @@ const typingWords = ['Sites Web', 'E-Commerce', 'Applications'];
       <Card padding="lg" data-reveal
         ><p class="text-foreground-muted text-sm">Projets</p><p class="text-2xl font-bold">
           30+ livrés
-        </p></Card
-      >
-      <Card padding="lg" data-reveal
-        ><p class="text-foreground-muted text-sm">Ridet</p><p class="text-2xl font-bold">
-          1 475 672
         </p></Card
       >
       <Card padding="lg" data-reveal
@@ -72,7 +117,7 @@ const typingWords = ['Sites Web', 'E-Commerce', 'Applications'];
 
   <section
     id="competences"
-    class="bg-background border-border border-t py-[var(--space-section-md)]"
+    class="bg-background border-border border-t py-[var(--space-section-sm)]"
   >
     <div class="mx-auto flex max-w-6xl flex-col gap-8 px-6">
       <div class="text-center" data-reveal>
@@ -84,21 +129,7 @@ const typingWords = ['Sites Web', 'E-Commerce', 'Applications'];
       </div>
       <div class="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-6">
         {
-          [
-            ['html5', 'html5'],
-            ['css3', 'css3'],
-            ['javascript', 'javascript'],
-            ['typescript', 'typescript'],
-            ['nodedotjs', 'node.js'],
-            ['angular', 'angular'],
-            ['docker', 'docker'],
-            ['nginx', 'nginx'],
-            ['postgresql', 'postgresql'],
-            ['wordpress', 'wordpress'],
-            ['go', 'go'],
-            ['openjdk', 'java'],
-            
-          ].map(([slug, label]) => (
+          stack.map(([slug, label]) => (
             <Card padding="md" class="text-center">
               <Icon name={`simple-icons:${slug}`} size="lg" class="text-brand-500 mx-auto" />
               <p class="text-foreground-muted mt-2 text-xs tracking-wide uppercase">{label}</p>
@@ -111,7 +142,7 @@ const typingWords = ['Sites Web', 'E-Commerce', 'Applications'];
 
   <section
     id="prestations"
-    class="bg-background-secondary border-border border-t py-[var(--space-section-md)]"
+    class="bg-background-secondary border-border border-t py-[var(--space-section-sm)]"
   >
     <div class="mx-auto max-w-6xl px-6">
       <div class="mb-8 text-center" data-reveal>
@@ -121,36 +152,21 @@ const typingWords = ['Sites Web', 'E-Commerce', 'Applications'];
           Ce que nous faisons
         </h2>
       </div>
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        <Card hover
-          ><h3 class="mb-2 font-semibold">Développement logiciel</h3><p
-            class="text-foreground-muted text-sm"
-          >
-            Applications web, applications métier, sites vitrines.
-          </p></Card
-        >
-        <Card hover
-          ><h3 class="mb-2 font-semibold">SIG</h3><p class="text-foreground-muted text-sm">
-            Systèmes d’information géographique et visualisation cartographique.
-          </p></Card
-        >
-        <Card hover
-          ><h3 class="mb-2 font-semibold">Conseil</h3><p class="text-foreground-muted text-sm">
-            Recueil du besoin, backlog, choix techniques, accompagnement d’équipe.
-          </p></Card
-        >
-        <Card hover
-          ><h3 class="mb-2 font-semibold">Audit et reprise</h3><p
-            class="text-foreground-muted text-sm"
-          >
-            Audit de code, qualité logicielle, migration et reprise de données.
-          </p></Card
-        >
+      <div class="grid gap-6 md:grid-cols-3">
+        {
+          prestations.map((prestation) => (
+            <Card hover>
+              <Icon name={prestation.icon} size="sm" class="text-brand-500 float-left mr-2" />
+              <h3 class="mb-2 font-semibold">{prestation.title}</h3>
+              <p class="text-foreground-muted text-sm">{prestation.description}</p>
+            </Card>
+          ))
+        }
       </div>
     </div>
   </section>
 
-  <section id="clients" class="bg-background border-border border-t py-[var(--space-section-md)]">
+  <section id="clients" class="bg-background border-border border-t py-[var(--space-section-sm)]">
     <div class="mx-auto max-w-6xl px-6">
       <div class="mb-8 text-center" data-reveal>
         <Badge variant="brand" pill>Clients</Badge><h2 class="font-display mt-4 text-3xl font-bold">
@@ -167,7 +183,9 @@ const typingWords = ['Sites Web', 'E-Commerce', 'Applications'];
         <Card
           variant="outline"
           padding="lg"
-          hover square centerContent
+          hover
+          square
+          centerContent
           href="https://www.mysupplement.nc"
           target="_blank"
           rel="noopener noreferrer"
@@ -183,7 +201,7 @@ const typingWords = ['Sites Web', 'E-Commerce', 'Applications'];
 
   <section
     id="contact"
-    class="bg-background-secondary border-border border-t py-[var(--space-section-md)]"
+    class="bg-background-secondary border-border border-t py-[var(--space-section-sm)]"
   >
     <div class="mx-auto max-w-4xl px-6">
       <div class="text-center">

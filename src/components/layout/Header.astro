@@ -126,7 +126,6 @@ function getSocialIconData(url: string): { icon: string; label: string } {
   if (url.includes('x.com') || url.includes('twitter.com'))
     return { icon: 'x-twitter', label: 'X' };
   if (url.includes('linkedin.com')) return { icon: 'linkedin', label: 'LinkedIn' };
-  if (url.includes('bsky.app')) return { icon: 'bluesky', label: 'Bluesky' };
   return { icon: 'link', label: 'Social' };
 }
 

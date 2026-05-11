@@ -11,8 +11,8 @@ export interface SocialLink {
 }
 
 export const SocialLinks: SocialLink[] = [
-  { platform: 'github', href: '#' },
-  { platform: 'twitter', href: '#' },
+  { platform: 'github', href: 'https://github.com/AzerSoft-NC-org' },
+  { platform: 'instagram', href: 'https://www.instagram.com/azersoft.nc/' },
 ];
 
 // Social platform to icon mapping
