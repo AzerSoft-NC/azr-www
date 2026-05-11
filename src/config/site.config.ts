@@ -86,12 +86,12 @@ const siteConfig: SiteConfig = {
   verification: {
     google: GOOGLE_SITE_VERIFICATION,
   },
-  authorImage: '/logo/logo_transparent.svg',
+  authorImage: '/logo/logo_m0_transparent.svg',
   blogImageOverlay: true,
   branding: {
     logo: {
       alt: 'Azer Soft',
-      imageUrl: '/logo/logo_transparent.svg',
+      imageUrl: '/logo/logo_m0_transparent.svg',
     },
     favicon: {
       src: '/favicon.png',

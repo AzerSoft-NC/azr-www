@@ -173,52 +173,6 @@ const typingWords = ['Sites Web', 'E-Commerce', 'Applications'];
   </section>
 
   <section
-    id="equipe"
-    class="bg-background-secondary border-border border-t py-[var(--space-section-md)]"
-  >
-    <div class="mx-auto max-w-4xl px-6">
-      <Card padding="lg" class="text-center">
-        <Badge variant="brand" pill>Equipe</Badge>
-        <h2 class="font-display mt-4 text-3xl font-bold">Marc Wadjahdi - Gerant</h2>
-        <p class="text-foreground-muted mt-3">
-          Developpeur et consultant. Accompagnement de projets logiciels en Nouvelle-Caledonie.
-        </p>
-        <Button href="/cv-marc-wadjahdi.pdf" class="mt-6"
-          >Telecharger CV <Icon name="download" size="sm" /></Button
-        >
-      </Card>
-    </div>
-  </section>
-
-  <section id="blog" class="bg-background border-border border-t py-[var(--space-section-md)]">
-    <div class="mx-auto flex max-w-6xl flex-col gap-8 px-6">
-      <div class="flex items-end justify-between">
-        <div>
-          <Badge variant="brand" pill>Blog</Badge><h2 class="font-display mt-4 text-3xl font-bold">
-            Articles recents
-          </h2>
-        </div><a href="/blog" class="text-brand-500 text-sm">Voir tout</a>
-      </div>
-      <div class="grid gap-6 md:grid-cols-3">
-        {
-          posts.map((post) => (
-            <BlogCard
-              title={post.data.title}
-              description={post.data.description}
-              href={`/blog/${post.id.replace('fr/', '')}`}
-              publishedAt={post.data.publishedAt}
-              tags={post.data.tags}
-              author={post.data.author}
-              image={post.data.image}
-              svgSlug={post.data.svgSlug}
-            />
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <section
     id="contact"
     class="bg-background-secondary border-border border-t py-[var(--space-section-md)]"
   >

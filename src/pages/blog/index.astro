@@ -44,59 +44,19 @@ const getPostUrl = (postId: string) => {
   showScrollProgress
   eagerReveal
 >
-  <Hero layout="centered" size="sm">
-    <Badge slot="badge" variant="brand" pill>
-      <Icon name="book" size="sm" />
-      Tous les articles
-    </Badge>
-
-    <h1 slot="title">Blog</h1>
-
-    <p slot="description">
-      Articles sur developpement logiciel, conseil, architecture et retours projet.
-    </p>
-  </Hero>
-
-  <!-- Featured Posts Section -->
-  {
-    featuredPosts.length > 0 && (
-      <section
-        id="featured-section"
-        class="bg-background-secondary border-border border-t py-[var(--space-section-md)]"
-      >
-        <div class="mx-auto flex max-w-6xl flex-col gap-8 px-6">
-          <h2 class="font-display text-foreground text-3xl font-bold md:text-4xl" data-reveal>
-            A la une
-          </h2>
-
-          <div class="grid gap-6 md:grid-cols-2">
-            {featuredPosts.map((post) => (
-              <div class="post-card" data-tags={JSON.stringify(post.data.tags)}>
-                <BlogCard
-                  title={post.data.title}
-                  description={post.data.description}
-                  href={getPostUrl(post.id)}
-                  publishedAt={post.data.publishedAt}
-                  tags={post.data.tags}
-                  author={post.data.author}
-                  image={post.data.image}
-                  svgSlug={post.data.svgSlug}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    )
-  }
-
   <!-- All Posts Section -->
   <section
     class:list={[
       featuredPosts.length > 0 ? 'bg-background' : 'bg-background-secondary',
-      'border-border border-t py-[var(--space-section-md)]',
+      'border-border border-t py-[var(--space-section-xs)]',
     ]}
   >
+    <div class="px-6 text-center">
+      <Badge variant="brand" pill>
+        <Icon name="book" size="sm" />
+        Tous les articles
+      </Badge>
+    </div>
     <div class="mx-auto flex max-w-6xl flex-col gap-8 px-6">
       <div class="flex flex-wrap items-center justify-between gap-4" data-reveal>
         {
@@ -187,43 +147,6 @@ const getPostUrl = (postId: string) => {
     </div>
   </section>
 
-  <!-- Follow CTA Section -->
-  <CTA
-    variant="default"
-    size="md"
-    maxWidth="lg"
-    glow={false}
-    data-reveal
-    class:list={[featuredPosts.length > 0 && '!bg-background-secondary']}
-  >
-    <h2 slot="heading" class="!text-4xl">Suivre le blog</h2>
-    <p slot="description" class="!text-lg text-balance">
-      Nouveaux articles, veille technique et retours experience.
-    </p>
-
-    <div class="flex flex-wrap items-center justify-center gap-3">
-      {
-        socialLinks.map((link) => (
-          <a
-            href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="border-border bg-background text-foreground hover:border-brand-500 hover:text-brand-500 inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-colors"
-          >
-            <Icon name={link.icon} size="sm" />
-            {link.label}
-          </a>
-        ))
-      }
-      <a
-        href={`mailto:${siteConfig.email}`}
-        class="border-border bg-background text-foreground hover:border-brand-500 hover:text-brand-500 inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-colors"
-      >
-        <Icon name="mail" size="sm" />
-        Email
-      </a>
-    </div>
-  </CTA>
 </PageLayout>
 
 <style>

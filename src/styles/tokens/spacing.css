@@ -60,6 +60,7 @@
   /* ---------------------------------------------------------------------------
      Section Padding - Size Variants
      --------------------------------------------------------------------------- */
+  --space-section-xs: clamp(var(--space-8), 4vw, var(--space-12));
   --space-section-sm: clamp(var(--space-12), 6vw, var(--space-16));
   --space-section-md: clamp(var(--space-16), 8vw, var(--space-24));
   --space-section-lg: clamp(var(--space-20), 10vw, var(--space-32));
