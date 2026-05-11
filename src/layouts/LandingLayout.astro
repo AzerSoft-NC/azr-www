@@ -10,7 +10,7 @@
 import BaseLayout from './BaseLayout.astro';
 import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
-import type { NavItem } from '@/components/layout/Header.astro';
+import { LandingNavItems } from '@/config/nav.config';
 
 interface Props {
   title?: string;
@@ -37,13 +37,6 @@ const {
   includeProfessionalServiceSchema = false,
   morphToBar = false,
 } = Astro.props;
-
-const landingNav: NavItem[] = [
-  { label: 'Compétences', href: '#competences' },
-  { label: 'Prestations', href: '#prestations' },
-  { label: 'Clients', href: '#clients' },
-  { label: 'Contact', href: '#contact' },
-];
 ---
 
 <BaseLayout
@@ -63,9 +56,9 @@ const landingNav: NavItem[] = [
     variant="default"
     colorScheme="default"
     size="lg"
-    nav={landingNav}
+    nav={LandingNavItems}
     showCta={true}
-    cta={{ label: 'Contactez-nous', href: '/contact', icon: 'mail', trailingIcon: '' }}
+    cta={{ label: 'Contactez-nous', href: '#contact', icon: 'mail', trailingIcon: '' }}
     autoHide={false}
     scrollProgressPosition="top"
     invertOnReturn={false}

@@ -18,33 +18,18 @@
  */
 import type { HTMLAttributes } from 'astro/types';
 import { cn } from '@/lib/cn';
-import { getNavItems, type NavItem as NavConfigItem } from '@/config/nav.config';
+import {
+  FooterNavItems,
+  FooterLinkGroups,
+  type FooterLinkGroup,
+  type NavItem,
+} from '@/config/nav.config';
 import { footerVariants, footerColumnGridVariants } from './footer.variants';
 import Logo from '@/components/ui/marketing/Logo/Logo.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import siteConfig from '@/config/site.config';
-
-export interface NavItem {
-  label: string;
-  href: string;
-  external?: boolean;
-}
-
-export interface FooterLinkGroup {
-  title: string;
-  links: NavItem[];
-}
-
-export interface SocialLink {
-  platform: 'github' | 'twitter' | 'linkedin' | 'facebook' | 'instagram' | string;
-  href: string;
-  label?: string;
-}
-
-export interface LegalLink {
-  label: string;
-  href: string;
-}
+import { getSocialIcon, SocialLinks, type SocialLink } from '@/config/socials.config';
+import { LegalLinks } from '@/config/legal.config';
 
 interface Props extends HTMLAttributes<'footer'> {
   /** Layout style */
@@ -66,7 +51,7 @@ interface Props extends HTMLAttributes<'footer'> {
   /** Custom copyright text (supports {year} and {siteName} placeholders) */
   copyright?: string;
   /** Legal links (Privacy, Terms, etc.) */
-  legalLinks?: LegalLink[];
+  legalLinks?: NavItem[];
   /** Hide logo */
   hideLogo?: boolean;
   /** Tagline text under logo */
@@ -75,30 +60,20 @@ interface Props extends HTMLAttributes<'footer'> {
 
 const {
   layout = 'simple',
-  columns = 3,
+  columns = 4,
   background = 'default',
-  nav,
-  linkGroups = [],
-  socialLinks = [],
+  nav = FooterNavItems,
+  linkGroups = FooterLinkGroups,
+  socialLinks = SocialLinks,
   showSocial = true,
   showCopyright = true,
   copyright = '© {year} {siteName}.',
-  legalLinks = [],
+  legalLinks = LegalLinks,
   hideLogo = false,
   tagline,
   class: className,
   ...attrs
 } = Astro.props;
-
-// Get navigation items
-const defaultNav: NavItem[] = getNavItems().map((item: NavConfigItem) => ({
-  label: item.label,
-  href: item.href,
-}));
-const navItems: NavItem[] = nav || defaultNav;
-
-// Default external links if none provided via nav
-const allNavItems: NavItem[] = nav ? navItems : navItems;
 
 // Process copyright text
 const currentYear = new Date().getFullYear();
@@ -116,18 +91,16 @@ const hasBottomSlot = Astro.slots.has('bottom');
 // Compute footer classes
 const footerClasses = cn(footerVariants({ background }), className);
 
-const logo = siteConfig.branding.footerLogo
+const logo = siteConfig.branding.footerLogo;
 
-// Social platform to icon mapping
-const socialIcons: Record<string, string> = {
-  github: 'github',
-  twitter: 'x-twitter',
-  linkedin: 'linkedin',
-};
-
-// Get icon for social platform
-function getSocialIcon(platform: string): string {
-  return socialIcons[platform] || platform;
+function footerLinkGroups(): FooterLinkGroup[] {
+  return [
+    ...FooterLinkGroups,
+    {
+      title: 'Légales',
+      links: [...LegalLinks],
+    },
+  ];
 }
 ---
 
@@ -157,7 +130,7 @@ function getSocialIcon(platform: string): string {
 
             {/* Navigation Links */}
             <nav class="text-foreground-muted flex flex-wrap justify-center gap-[var(--space-inline-lg)] text-sm font-medium md:gap-[var(--space-stack-lg)]">
-              {allNavItems.map((item) => (
+              {nav.map((item) => (
                 <a
                   href={item.href}
                   class="hover:text-foreground transition-colors"
@@ -245,7 +218,7 @@ function getSocialIcon(platform: string): string {
             {hasColumnsSlot ? (
               <slot name="columns" />
             ) : (
-              linkGroups.map((group) => (
+              footerLinkGroups().map((group) => (
                 <div class="space-y-[var(--space-stack-md)]">
                   <h3 class="text-foreground text-sm font-semibold">{group.title}</h3>
                   <ul class="space-y-2">
@@ -274,7 +247,7 @@ function getSocialIcon(platform: string): string {
           </div>
 
           {/* Bottom section */}
-          {(showCopyright || legalLinks.length > 0) && (
+          {showCopyright && (
             <div class="border-border mt-[var(--space-section-header)] flex flex-col items-center gap-[var(--space-stack-md)] border-t pt-[var(--space-stack-lg)] text-center">
               {hasBottomSlot ? (
                 <slot name="bottom" />
@@ -282,18 +255,6 @@ function getSocialIcon(platform: string): string {
                 <>
                   {showCopyright && (
                     <p class="text-foreground-muted text-sm" set:html={processedCopyright} />
-                  )}
-                  {legalLinks.length > 0 && (
-                    <div class="flex items-center gap-[var(--space-inline-lg)]">
-                      {legalLinks.map((link) => (
-                        <a
-                          href={link.href}
-                          class="text-foreground-muted hover:text-foreground text-sm transition-colors"
-                        >
-                          {link.label}
-                        </a>
-                      ))}
-                    </div>
                   )}
                 </>
               )}
@@ -335,7 +296,7 @@ function getSocialIcon(platform: string): string {
 
           {/* Navigation Links */}
           <nav class="text-foreground-muted flex flex-wrap justify-center gap-[var(--space-inline-lg)] text-sm font-medium">
-            {allNavItems.map((item) => (
+            {nav.map((item) => (
               <a
                 href={item.href}
                 class="hover:text-foreground transition-colors"

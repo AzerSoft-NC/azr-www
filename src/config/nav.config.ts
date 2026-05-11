@@ -8,22 +8,47 @@
 export interface NavItem {
   label: string;
   href: string;
-  order: number;
+  external?: boolean;
 }
 
-export const navItems: NavItem[] = [
-  { label: 'Accueil', href: '/', order: 1 },
-  { label: 'Compétences', href: '/#competences', order: 2 },
-  { label: 'Prestations', href: '/#prestations', order: 3 },
-  { label: 'Clients', href: '/#clients', order: 4 },
-  { label: 'Projets', href: '/projects', order: 5 },
-  { label: 'Blog', href: '/blog', order: 6 },
-  { label: 'Contact', href: '/#contact', order: 7 },
+export interface FooterLinkGroup {
+  title: string;
+  links: NavItem[];
+}
+
+export const LandingNavItems: NavItem[] = [
+  { label: 'Compétences', href: '#competences' },
+  { label: 'Prestations', href: '#prestations' },
+  { label: 'Clients', href: '#clients' },
+  { label: 'Contact', href: '#contact' },
 ];
 
-/**
- * Get navigation items sorted by order
- */
-export function getNavItems(): NavItem[] {
-  return [...navItems].sort((a, b) => a.order - b.order);
-}
+export const PageNavItems: NavItem[] = [
+  { label: 'Accueil', href: '/' },
+  // { label: 'Projets', href: '/projects' },
+  { label: 'Prestations', href: '/prestations' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Contact', href: '/contact' },
+  { label: 'À propos', href: '/about' },
+];
+
+export const FooterNavItems: NavItem[] = [];
+
+export const FooterLinkGroups: FooterLinkGroup[] = [
+  {
+    title: 'Prestations',
+    links: [
+      { label: 'Features', href: '#' },
+      { label: 'Pricing', href: '#' },
+      { label: 'Docs', href: '#' },
+    ],
+  },
+  {
+    title: 'Azer Soft',
+    links: [
+      { label: 'Blog', href: '/blog' },
+      { label: 'Contact', href: '/contact' },
+      { label: 'À propos', href: '/about' },
+    ],
+  },
+];
