@@ -55,6 +55,7 @@ public/pagefind/
 
 # Prefer Yarn; npm lockfile optional if someone uses npm by mistake
 package-lock.json
+.yarn/*
 
 # Internal docs
 southwell-astro-boilerplate-docs.md

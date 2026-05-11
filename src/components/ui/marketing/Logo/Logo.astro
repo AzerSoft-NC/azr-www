@@ -25,8 +25,17 @@ const sizeClasses: Record<string, { box: string; text: string; radius: string }>
   '2xl': { box: 'w-24 h-24', text: 'text-[68px]', radius: 'rounded-[14px]' },
 };
 
+const imgSizeClasses = {
+  sm: 'w-7',
+  md: 'w-8',
+  lg: 'w-30',
+  xl: 'w-14',
+  '2xl': 'w-24',
+};
+
 const { box, text, radius } = sizeClasses[size] ?? sizeClasses.md;
 const letter = letterProp ?? siteConfig.name.charAt(0).toUpperCase();
+const imgClasses = cn('inline-block h-auto shrink-0', imgSizeClasses[size], className);
 ---
 
 {
@@ -48,21 +57,9 @@ const letter = letterProp ?? siteConfig.name.charAt(0).toUpperCase();
     </span>
   ) : (
     <img
-      src="/logo/logo_transparent.svg"
+      src={siteConfig.branding.logo.imageUrl}
       alt={siteConfig.branding.logo.alt}
-      class={cn(
-        'inline-block h-auto shrink-0',
-        size === 'sm'
-          ? 'w-7'
-          : size === 'md'
-            ? 'w-8'
-            : size === 'lg'
-              ? 'w-30'
-              : size === 'xl'
-                ? 'w-14'
-                : 'w-20',
-        className
-      )}
+      class={imgClasses}
       loading="eager"
     />
   )
