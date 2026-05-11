@@ -7,6 +7,10 @@ interface Props extends HTMLAttributes<'div'>, Pick<HTMLAttributes<'a'>, 'target
   variant?: 'default' | 'solid' | 'outline' | 'ghost' | 'elevated';
   padding?: 'none' | 'sm' | 'md' | 'lg';
   hover?: boolean;
+  /** 1:1 aspect ratio (width from layout; height follows). */
+  square?: boolean;
+  /** Flex + text alignment to center slot content (pairs well with `square`). */
+  centerContent?: boolean;
   href?: string;
 }
 
@@ -14,6 +18,8 @@ const {
   variant = 'default',
   padding = 'md',
   hover = false,
+  square = false,
+  centerContent = false,
   href,
   class: className,
   ...attrs
@@ -24,6 +30,8 @@ const Element = href ? 'a' : 'div';
 const cardStyles = cn(
   cardVariants({ variant, padding, hover }),
   href && 'block cursor-pointer',
+  square && 'aspect-square',
+  centerContent && 'flex min-h-0 flex-col items-center justify-center text-center',
   className
 );
 ---
