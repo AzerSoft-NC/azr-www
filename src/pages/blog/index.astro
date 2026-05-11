@@ -1,15 +1,9 @@
 ---
-import PageLayout from '@/layouts/PageLayout.astro';
 import BlogCard from '@/components/blog/BlogCard.astro';
 import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
-import CTA from '@/components/ui/marketing/CTA/CTA.astro';
-import { Hero } from '@/components/hero';
+import PageLayout from '@/layouts/PageLayout.astro';
 import { getCollection } from 'astro:content';
-import siteConfig from '@/config/site.config';
-import { resolveSocialLinks } from '@/lib/utils';
-
-const socialLinks = resolveSocialLinks(siteConfig.socialLinks);
 
 // Get all published posts
 const allPosts = await getCollection('blog', ({ data }) => {
@@ -146,7 +140,6 @@ const getPostUrl = (postId: string) => {
       </div>
     </div>
   </section>
-
 </PageLayout>
 
 <style>

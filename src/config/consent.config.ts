@@ -38,8 +38,7 @@ const consentConfig: ConsentConfig = {
     },
     preferences: {
       label: 'Préférences',
-      description:
-        'Permettent de mémoriser vos choix (langue, région, options d’affichage, etc.).',
+      description: 'Permettent de mémoriser vos choix (langue, région, options d’affichage, etc.).',
       required: false,
       defaultEnabled: false,
       gcmTypes: ['functionality_storage', 'personalization_storage'],

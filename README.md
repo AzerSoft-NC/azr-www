@@ -8,7 +8,7 @@ Astro-based company website (v3), rebuilt from scratch from Astro-Rocket base.
 - Tailwind CSS v4
 - Static output (`dist/`)
 - Nginx on DigitalOcean droplet
-- Deployment target: droplet only 
+- Deployment target: droplet only
 
 ## Project Structure
 
