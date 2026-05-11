@@ -58,6 +58,7 @@ interface Props extends HTMLAttributes<'header'> {
   showActiveState?: boolean;
   logoText?: string;
   hideLogo?: boolean;
+  onlyLogo?: boolean;
   showLanguageSwitcher?: boolean;
   showSocialLinks?: boolean;
   showScrollProgress?: boolean;
@@ -89,6 +90,7 @@ const {
   morphToBar = false,
   logoText,
   hideLogo = false,
+  onlyLogo = false,
   class: className,
   ...attrs
 } = Astro.props;
@@ -167,20 +169,22 @@ const buttonId = `${menuId}-button`;
           ) : (
             <a href="/" class="flex items-center gap-2">
               <Logo size={size === 'sm' ? 'md' : 'lg'} forceDark={isInvert} />
-              <span
-                class={cn(
-                  'font-display dark:text-foreground text-xl font-bold tracking-tight',
-                  isFloating
-                    ? 'hdr-logo-text'
-                    : isInvert
-                      ? 'text-foreground md:text-on-invert'
-                      : 'text-foreground'
-                )}
-                style="font-variant: small-caps;"
-              >
-                <span class="text-brand-500">{logoFirstWord}</span>
-                {logoRestWords ? <> {logoRestWords}</> : null}
-              </span>
+              {onlyLogo && (
+                <span
+                  class={cn(
+                    'font-display dark:text-foreground text-xl font-bold tracking-tight',
+                    isFloating
+                      ? 'hdr-logo-text'
+                      : isInvert
+                        ? 'text-foreground md:text-on-invert'
+                        : 'text-foreground'
+                  )}
+                  style="font-variant: small-caps;"
+                >
+                  <span class="text-brand-500">{logoFirstWord}</span>
+                  {logoRestWords ? <> {logoRestWords}</> : null}
+                </span>
+              )}
             </a>
           ))
       }

@@ -1,17 +1,15 @@
 ---
-import LandingLayout from '@/layouts/LandingLayout.astro';
+import mySupplementLogo from '@/assets/clients/my_supplement.png';
+import optLogo from '@/assets/clients/opt.png';
+import psudLogo from '@/assets/clients/psud.png';
 import { Hero } from '@/components/hero';
-import Button from '@/components/ui/form/Button/Button.astro';
+import ContactForm from '@/components/patterns/ContactForm.astro';
 import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Card from '@/components/ui/data-display/Card/Card.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
-import BlogCard from '@/components/blog/BlogCard.astro';
-import ContactForm from '@/components/patterns/ContactForm.astro';
 import TypingEffect from '@/components/ui/TypingEffect.astro';
+import LandingLayout from '@/layouts/LandingLayout.astro';
 import { getCollection } from 'astro:content';
-import optLogo from '@/assets/clients/opt.png';
-import psudLogo from '@/assets/clients/psud.png';
-import obiOneLogo from '@/assets/clients/logo_obi_one.png';
 
 const posts = (await getCollection('blog', ({ data }) => data.locale === 'fr' && !data.draft))
   .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())
@@ -159,14 +157,24 @@ const typingWords = ['Sites Web', 'E-Commerce', 'Applications'];
         </h2>
       </div>
       <div class="grid gap-6 md:grid-cols-3">
-        <Card padding="lg"
+        <Card padding="lg" variant="outline"
           ><img src={optLogo.src} alt="OPT" class="mx-auto h-16 object-contain" /></Card
         >
-        <Card padding="lg"
+        <Card padding="lg" variant="outline"
           ><img src={psudLogo.src} alt="Province Sud" class="mx-auto h-16 object-contain" /></Card
         >
-        <Card padding="lg"
-          ><img src={obiOneLogo.src} alt="Obi-One" class="mx-auto h-16 object-contain" /></Card
+        <Card
+          variant="outline"
+          padding="lg"
+          hover
+          href="https://www.mysupplement.nc"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><img
+            src={mySupplementLogo.src}
+            alt="Obi-One"
+            class="mx-auto h-16 object-contain"
+          /></Card
         >
       </div>
     </div>

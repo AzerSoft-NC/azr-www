@@ -116,6 +116,8 @@ const hasBottomSlot = Astro.slots.has('bottom');
 // Compute footer classes
 const footerClasses = cn(footerVariants({ background }), className);
 
+const logo = siteConfig.branding.footerLogo
+
 // Social platform to icon mapping
 const socialIcons: Record<string, string> = {
   github: 'github',
@@ -142,7 +144,7 @@ function getSocialIcon(platform: string): string {
                   <slot name="logo" />
                 ) : (
                   <a href="/" aria-label={siteConfig.name}>
-                    <Logo size="lg" class="bg-brand-700" />
+                    <Logo size="lg" class="bg-brand-700" img={logo} />
                   </a>
                 )}
                 {(hasTaglineSlot || tagline) && (
@@ -212,7 +214,7 @@ function getSocialIcon(platform: string): string {
                   <slot name="logo" />
                 ) : (
                   <a href="/" aria-label={siteConfig.name}>
-                    <Logo size="lg" class="bg-brand-700" />
+                    <Logo size="lg" class="bg-brand-700" img={logo} />
                   </a>
                 )}
                 {(hasTaglineSlot || tagline) && (
@@ -320,7 +322,7 @@ function getSocialIcon(platform: string): string {
               <slot name="logo" />
             ) : (
               <a href="/" aria-label={siteConfig.name}>
-                <Logo size="lg" class="bg-brand-700" />
+                <Logo size="lg" class="bg-brand-700" img={logo} />
               </a>
             ))}
 

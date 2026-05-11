@@ -7,6 +7,7 @@
 import BaseLayout from './BaseLayout.astro';
 import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
+import type { NavItem } from '@/components/layout/Header.astro';
 
 interface Props {
   title?: string;
@@ -29,6 +30,14 @@ const {
   showScrollProgress = false,
   eagerReveal = false,
 } = Astro.props;
+
+const pageNav: NavItem[] = [
+  { label: 'Accueil', href: '/' },
+  { label: 'Pricing', href: '/pricing' },
+  { label: 'About', href: '/about' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Contact', href: '/contact' },
+];
 ---
 
 <BaseLayout
@@ -46,6 +55,7 @@ const {
     shape="bar"
     variant="solid"
     size="lg"
+    nav={pageNav}
     showActiveState
     showCta={false}
     showScrollProgress={showScrollProgress}

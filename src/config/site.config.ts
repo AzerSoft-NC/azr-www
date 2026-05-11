@@ -43,6 +43,11 @@ export interface SiteConfig {
       /** Path to logo image for structured data (e.g. '/logo/logo_transparent.svg'). File in public/. */
       imageUrl?: string;
     };
+    footerLogo: {
+      alt: string;
+      /** Path to logo image for structured data (e.g. '/logo/logo_transparent.svg'). File in public/. */
+      imageUrl?: string;
+    };
     /** Favicon under public/ — PNG/ICO/WebP ou SVG */
     favicon: {
       /** URL absolue du site, ex. '/favicon.png' */
@@ -92,6 +97,10 @@ const siteConfig: SiteConfig = {
     logo: {
       alt: 'Azer Soft',
       imageUrl: '/logo/logo_m0_transparent.svg',
+    },
+    footerLogo: {
+      alt: 'Azer Soft',
+      imageUrl: '/logo/logo_mx_transparent.svg',
     },
     favicon: {
       src: '/favicon.png',
