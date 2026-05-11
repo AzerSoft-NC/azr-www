@@ -96,6 +96,7 @@ const stack = defineCollection({
     url: z.url(),
     icon: z.string(), // icon name, e.g. 'brand-astro'
     colorOklch: z.string(), // OKLCH params, e.g. '62.5% 0.22 38'
+    featured: z.boolean().default(false),
     order: z.number().default(0),
   }),
 });

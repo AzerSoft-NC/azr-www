@@ -3,6 +3,7 @@ import mySupplementLogo from '@/assets/clients/my_supplement.png';
 import optLogo from '@/assets/clients/opt.png';
 import psudLogo from '@/assets/clients/psud.png';
 import { Hero } from '@/components/hero';
+import TechStack from '@/components/landing/TechStack.astro';
 import ContactForm from '@/components/patterns/ContactForm.astro';
 import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Card from '@/components/ui/data-display/Card/Card.astro';
@@ -29,43 +30,6 @@ const prestations = [
 ];
 const typingWords = prestations.map((prestation) => prestation.title);
 
-const stack: [string, string][] = [
-  // Web
-  ['html5', 'html5'],
-  ['css3', 'css3'],
-  ['javascript', 'javascript'],
-  ['typescript', 'typescript'],
-  ['astro', 'astro'],
-
-  // Frontend
-  ['angular', 'angular'],
-  ['vuedotjs', 'vue.js'],
-  ['react', 'react'],
-  ['tailwindcss', 'tailwindcss'],
-  ['nodedotjs', 'node.js'],
-
-  // CMS
-  ['wordpress', 'wordpress'],
-  ['shopify', 'shopify'],
-
-  // Backend
-  ['go', 'go'],
-  ['openjdk', 'java'],
-  ['springboot', 'springboot'],
-  ['elasticsearch', 'elasticsearch'],
-
-  // Database
-  ['postgresql', 'postgresql'],
-
-  // Host/Infrastructure
-  ['nginx', 'nginx'],
-  ['git', 'git'],
-  ['github', 'github'],
-  ['docker', 'docker'],
-  ['firebase', 'firebase'],
-  ['digitalocean', 'digitalocean'],
-  ['claude', 'claude AI'],
-];
 ---
 
 <LandingLayout
@@ -115,30 +79,12 @@ const stack: [string, string][] = [
     </div>
   </section>
 
-  <section
-    id="competences"
-    class="bg-background border-border border-t py-[var(--space-section-sm)]"
-  >
-    <div class="mx-auto flex max-w-6xl flex-col gap-8 px-6">
-      <div class="text-center" data-reveal>
-        <Badge variant="brand" pill>Compétences</Badge><h2
-          class="font-display mt-4 text-3xl font-bold"
-        >
-          Stack technique
-        </h2>
-      </div>
-      <div class="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-6">
-        {
-          stack.map(([slug, label]) => (
-            <Card padding="md" class="text-center">
-              <Icon name={`simple-icons:${slug}`} size="lg" class="text-brand-500 mx-auto" />
-              <p class="text-foreground-muted mt-2 text-xs tracking-wide uppercase">{label}</p>
-            </Card>
-          ))
-        }
-      </div>
-    </div>
-  </section>
+
+  <TechStack
+  badge="Compétences"
+  title="Technologies utilisées"
+  background="secondary"
+/>
 
   <section
     id="prestations"

@@ -17,8 +17,8 @@ export interface FooterLinkGroup {
 }
 
 export const LandingNavItems: NavItem[] = [
-  { label: 'Compétences', href: '#competences' },
-  { label: 'Prestations', href: '#prestations' },
+  { label: 'Compétences', href: '#tech-stack' },
+  { label: 'Préstations', href: '#prestations' },
   { label: 'Clients', href: '#clients' },
   { label: 'Contact', href: '#contact' },
 ];

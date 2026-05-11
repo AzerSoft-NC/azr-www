@@ -15,17 +15,20 @@ interface Props {
   description?: string;
   badge?: string;
   background?: 'primary' | 'secondary';
+  featured?: boolean;
 }
 
-const { title, description, badge, background = 'secondary' } = Astro.props;
+const { title, description, badge, background = 'secondary', featured = true } = Astro.props;
 
 const items = await getCollection('stack');
-const stack = items.sort((a, b) => a.data.order - b.data.order);
+const stack = items
+  .filter((item) => !featured || item.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
 
 const bgClass = background === 'primary' ? 'bg-background' : 'bg-background-secondary';
 ---
 
-<section class={`border-y border-border ${bgClass} py-[var(--space-section-md)]`}>
+<section id="tech-stack" class={`border-y border-border ${bgClass} py-[var(--space-section-md)]`}>
   <div class="mx-auto flex max-w-6xl flex-col gap-8 px-6">
     {
       (badge || title || description) && (
