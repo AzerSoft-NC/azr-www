@@ -13,11 +13,12 @@ export interface NavItem {
 
 export const navItems: NavItem[] = [
   { label: 'Accueil', href: '/', order: 1 },
-  { label: 'Competences', href: '/#competences', order: 2 },
+  { label: 'Compétences', href: '/#competences', order: 2 },
   { label: 'Prestations', href: '/#prestations', order: 3 },
   { label: 'Clients', href: '/#clients', order: 4 },
-  { label: 'Blog', href: '/blog', order: 5 },
-  { label: 'Contact', href: '/#contact', order: 6 },
+  { label: 'Projets', href: '/projects', order: 5 },
+  { label: 'Blog', href: '/blog', order: 6 },
+  { label: 'Contact', href: '/#contact', order: 7 },
 ];
 
 /**

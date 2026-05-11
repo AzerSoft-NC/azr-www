@@ -29,8 +29,8 @@ interface Score {
 
 const scores: Score[] = [
   { label: 'Performance', value: 100, icon: 'zap' },
-  { label: 'Accessibility', value: 100, icon: 'users' },
-  { label: 'Best Practices', value: 100, icon: 'shield-check' },
+  { label: 'Accessibilité', value: 100, icon: 'users' },
+  { label: 'Bonnes pratiques', value: 100, icon: 'shield-check' },
   { label: 'SEO', value: 100, icon: 'search' },
 ];
 
@@ -54,7 +54,7 @@ const wrapperProps = staggered ? { 'data-reveal-children': true } : {};
             class="lh-number font-display text-brand-500 text-4xl font-bold"
             data-target={score.value}
             data-stagger={i}
-            aria-label={`${score.label}: ${score.value} out of 100`}
+            aria-label={`${score.label} : ${score.value} sur 100`}
           >
             0
           </span>

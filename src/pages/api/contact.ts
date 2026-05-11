@@ -6,10 +6,10 @@ import { Resend } from 'resend';
 import siteConfig from '@/config/site.config';
 
 const contactSchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters').max(100),
-  email: z.email('Please enter a valid email address'),
+  name: z.string().min(2, 'Le nom doit contenir au moins 2 caractères').max(100),
+  email: z.email('Adresse courriel invalide'),
   subject: z.string().max(200).optional(),
-  message: z.string().min(10, 'Message must be at least 10 characters').max(5000),
+  message: z.string().min(10, 'Le message doit contenir au moins 10 caractères').max(5000),
   honeypot: z.string().max(0), // Anti-spam: must be empty
 });
 
@@ -57,7 +57,10 @@ export const POST: APIRoute = async ({ request }) => {
     if (!apiKey) {
       console.error('RESEND_API_KEY is not set');
       return new Response(
-        JSON.stringify({ success: false, errors: { form: ['Email service is not configured'] } }),
+        JSON.stringify({
+          success: false,
+          errors: { form: ["L'envoi de courriels n'est pas configuré sur le serveur."] },
+        }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
       );
     }
@@ -70,17 +73,17 @@ export const POST: APIRoute = async ({ request }) => {
 
     const subject = result.data.subject
       ? `[${siteLabel}] ${result.data.subject}`
-      : `[${siteLabel}] New contact from ${result.data.name}`;
+      : `[${siteLabel}] Nouveau message de ${result.data.name}`;
 
     const { error } = await resend.emails.send({
-      from: `Contact Form <${fromEmail}>`,
+      from: `Formulaire de contact <${fromEmail}>`,
       to: toEmail,
       replyTo: result.data.email,
       subject,
       html: `
-        <p><strong>Name:</strong> ${result.data.name}</p>
-        <p><strong>Email:</strong> ${result.data.email}</p>
-        <p><strong>Message:</strong></p>
+        <p><strong>Nom :</strong> ${result.data.name}</p>
+        <p><strong>Courriel :</strong> ${result.data.email}</p>
+        <p><strong>Message :</strong></p>
         <p>${result.data.message.replace(/\n/g, '<br>')}</p>
       `,
     });
@@ -90,7 +93,7 @@ export const POST: APIRoute = async ({ request }) => {
       return new Response(
         JSON.stringify({
           success: false,
-          errors: { form: [error.message || 'Failed to send email'] },
+          errors: { form: [error.message || "L'envoi du courriel a échoué"] },
         }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
       );
@@ -104,7 +107,10 @@ export const POST: APIRoute = async ({ request }) => {
     console.error('Contact form error:', error);
 
     return new Response(
-      JSON.stringify({ success: false, errors: { form: ['An unexpected error occurred'] } }),
+      JSON.stringify({
+        success: false,
+        errors: { form: ['Une erreur inattendue est survenue. Veuillez réessayer.'] },
+      }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }

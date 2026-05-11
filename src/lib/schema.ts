@@ -66,7 +66,7 @@ export function createProfessionalServiceSchema(): WithContext<LocalBusiness> {
       addressCountry: siteConfig.address?.country,
     },
     areaServed: [
-      { '@type': 'Country', name: 'New Caledonia' },
+      { '@type': 'Country', name: 'Nouvelle-Calédonie' },
       { '@type': 'Country', name: 'France' },
     ],
     sameAs: siteConfig.socialLinks,
@@ -92,7 +92,7 @@ export function createOrganizationSchema(): WithContext<Organization> {
       ? {
           '@type': 'ContactPoint',
           telephone: siteConfig.phone,
-          contactType: 'customer service',
+          contactType: 'service client',
           areaServed: 'NC',
           availableLanguage: ['fr'],
         }

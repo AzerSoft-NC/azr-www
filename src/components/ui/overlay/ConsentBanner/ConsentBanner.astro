@@ -32,8 +32,8 @@ const privacyPolicyUrl = PUBLIC_PRIVACY_POLICY_URL;
 
 // Merge UI text: props override config defaults
 const ui = { ...consentConfig.ui, ...uiOverrides };
-const alwaysOnLabel = alwaysOnLabelProp ?? ui.alwaysOnLabel ?? 'Always on';
-const privacyPolicyLabel = ui.privacyPolicyLabel ?? 'Privacy Policy';
+const alwaysOnLabel = alwaysOnLabelProp ?? ui.alwaysOnLabel ?? 'Toujours actif';
+const privacyPolicyLabel = ui.privacyPolicyLabel ?? 'Politique de confidentialité';
 
 const isTop = position === 'top';
 
@@ -61,7 +61,7 @@ const configJson = JSON.stringify(consentConfig);
         ]}
         role="dialog"
         aria-modal="false"
-        aria-label="Cookie consent"
+        aria-label="Consentement aux cookies"
       >
         <div class="consent-banner-inner">
           <div class="consent-banner-content">
@@ -130,7 +130,7 @@ const configJson = JSON.stringify(consentConfig);
           'consent-reopener',
           isTop ? 'consent-reopener--top' : 'consent-reopener--bottom',
         ]}
-        aria-label="Open cookie settings"
+        aria-label="Ouvrir les paramètres des cookies"
       >
         <svg
           width="18"

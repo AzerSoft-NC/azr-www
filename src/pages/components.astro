@@ -45,26 +45,26 @@ import EmptyState from '@/components/patterns/EmptyState.astro';
 ---
 
 <PageLayout
-  title="Component Showcase"
-  description="Explore Astro Rocket's comprehensive UI component library. Production-ready, accessible, and beautifully designed."
+  title="Bibliothèque de composants"
+  description="Galerie interne des composants UI du site Azer Soft (démo technique, non référencée)."
   noindex={true}
 >
   <!-- Hero Section -->
   <Hero layout="split" size="lg">
-    <Badge slot="badge" variant="brand" pill>50+ production components</Badge>
+    <Badge slot="badge" variant="brand" pill>Composants de production</Badge>
 
     <h1 slot="title">
-      Component <span class="text-brand-500">Library</span>
+      Bibliothèque <span class="text-brand-500">UI</span>
     </h1>
 
     <p slot="description">
-      Production-ready UI primitives built with accessibility and performance in mind. Copy, paste,
-      and customize to match your brand.
+      Primitives prêtes à l’emploi, accessibilité et performance. Réutilisables et adaptables à la
+      charte du site.
     </p>
 
     <Fragment slot="actions">
       <Button href="#hero" class="hero-btn-brand">
-        Browse Components
+        Parcourir les composants
         <Icon name="arrow-right" size="sm" />
       </Button>
       <Button
@@ -73,7 +73,7 @@ import EmptyState from '@/components/patterns/EmptyState.astro';
         class="hero-btn-learn"
       >
         <Icon name="github" size="sm" />
-        View Source
+        Voir le dépôt du thème
       </Button>
     </Fragment>
   </Hero>

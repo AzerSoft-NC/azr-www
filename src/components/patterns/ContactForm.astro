@@ -13,7 +13,7 @@ interface Props {
 
 const {
   action = '/api/contact',
-  successMessage = 'Message envoye avec succes.',
+  successMessage = 'Message envoyé avec succès.',
   class: className,
 } = Astro.props;
 ---
@@ -83,7 +83,7 @@ const {
 
     if (!form || !button || !message) return;
 
-    const successMessage = form.dataset.successMessage || 'Message envoye avec succes.';
+    const successMessage = form.dataset.successMessage || 'Message envoyé avec succès.';
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -108,12 +108,12 @@ const {
         } else {
           const errors = data.errors
             ? Object.values(data.errors).flat().join(', ')
-            : 'Une erreur est survenue';
+            : 'Une erreur est survenue.';
           message.textContent = errors as string;
           message.className = 'text-sm text-destructive';
         }
       } catch {
-        message.textContent = 'Impossible d envoyer le message. Veuillez reessayer.';
+        message.textContent = "Impossible d'envoyer le message. Veuillez réessayer.";
         message.className = 'text-sm text-destructive';
       } finally {
         button.disabled = false;

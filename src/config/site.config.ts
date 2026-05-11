@@ -78,10 +78,10 @@ const siteConfig: SiteConfig = {
   phone: '+687873499',
   address: {
     street: '',
-    city: 'Noumea',
+    city: 'Nouméa',
     state: '',
     zip: '98800',
-    country: 'New Caledonia',
+    country: 'Nouvelle-Calédonie',
   },
   socialLinks: ['mailto:contact@azersoft.nc'],
   twitter: {

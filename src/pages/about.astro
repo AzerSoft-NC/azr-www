@@ -1,6 +1,6 @@
 ---
 /**
- * About page
+ * À propos — Azer Soft
  * URL: /about
  */
 import PageLayout from '@/layouts/PageLayout.astro';
@@ -9,156 +9,99 @@ import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Card from '@/components/ui/data-display/Card/Card.astro';
 import Button from '@/components/ui/form/Button/Button.astro';
 import { Hero } from '@/components/hero';
-import TypingEffect from '@/components/ui/TypingEffect.astro';
 import TechStack from '@/components/landing/TechStack.astro';
 import LetterGlitchBand from '@/components/patterns/LetterGlitchBand.astro';
-import BlogImageSVG from '@/components/blog/BlogImageSVG.astro';
 ---
 
 <PageLayout
-  title="About Astro Rocket — Web Designer & Developer | Veghel"
-  description="Designer & developer — Crafting modern web experiences shaped by clean design, solid structure, and attention to detail."
+  title="À propos — Azer Soft"
+  description="Société de services informatiques en Nouvelle-Calédonie : développement, SIG, conseil et accompagnement projet depuis 2016."
 >
   <Hero layout="centered" size="sm">
     <Badge slot="badge" variant="brand" pill>
       <Icon name="user" size="sm" />
-      About me
+      À propos
     </Badge>
     <h1 slot="title">
-      <span class="text-foreground [-webkit-text-fill-color:currentColor]">Astro Rocket —</span><br
-      />
+      <span class="text-foreground [-webkit-text-fill-color:currentColor]">Azer Soft</span><br />
       <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)]">
-        <TypingEffect
-          words={[
-            'Web Designer',
-            'Web Developer',
-            'Astro Developer',
-            'Claude Code User',
-            'UI / UX Enthusiast',
-            'Blogger',
-            'Coffee lover',
-          ]}
-        />
+        Votre partenaire numérique
       </span>
     </h1>
 
     <p slot="description">
-      I care about both sides of the craft — how a site looks and how it performs. Here's a bit more
-      about how I think and work.
+      Nous concevons et maintenons des applications, des sites et des outils métiers, avec une
+      attention constante à la qualité, à la sécurité et à la pérennité de vos systèmes.
     </p>
   </Hero>
 
-  <!-- What's possible now -->
   <section class="bg-background-secondary border-border border-t py-[var(--space-section-md)]">
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-12 lg:grid-cols-2">
-        <!-- Left: text -->
         <div class="flex flex-col gap-4" data-reveal="right">
-          <div class="flex flex-col gap-6">
-            <Badge variant="brand" pill class="self-start">The partnership</Badge>
-            <h2 class="font-display text-foreground text-3xl font-bold md:text-4xl">
-              Meet the team:<br /> Astro Rocket & Claude
-            </h2>
-          </div>
+          <Badge variant="brand" pill class="self-start">Qui sommes-nous</Badge>
+          <h2 class="font-display text-foreground text-3xl font-bold md:text-4xl">
+            Une équipe locale, des livrables concrets
+          </h2>
           <p class="text-foreground-muted text-lg leading-relaxed">
-            I'm a web designer and developer with 16 years of hands‑on experience. Today I work
-            alongside <a
-              href="https://claude.ai/code"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="decoration-brand-500 hover:text-brand-400 underline underline-offset-2 transition-colors"
-              >Claude</a
-            > — not as a shortcut, but as a genuine collaborator that helps me think through design decisions,
-            review code, and build more thoroughly than I could alone.
+            Azer Soft est une société calédonienne implantée à Nouméa. Depuis 2016, nous
+            accompagnons les entreprises, les collectivités et les associations sur des sujets de
+            développement logiciel, de cartographie et de systèmes d’information géographique, de
+            conseil technique et d’audit.
           </p>
           <p class="text-foreground-muted text-lg leading-relaxed">
-            This isn't about automating the work — it's about raising the standard of it. Every
-            design decision still comes from craft and experience. Every line of code is still
-            written with intention. Claude helps me think more rigorously, not less. The work stays
-            mine. The thinking gets sharper.
+            Nous privilégions le dialogue, la transparence sur les choix techniques et des solutions
+            adaptées au contexte régional — performance, disponibilité des compétences et respect
+            de vos contraintes métier.
           </p>
         </div>
-        <!-- Right: two stacked partner cards -->
-        <div class="flex h-full flex-col gap-4" data-reveal="left" data-reveal-delay="1">
-          <Card variant="elevated" hover class="flex flex-1 flex-col justify-center">
+
+        <div class="flex flex-col gap-4" data-reveal="left" data-reveal-delay="1">
+          <Card variant="elevated" hover class="flex flex-col justify-center">
             <div class="flex items-start gap-4">
               <div
                 class="from-brand-500/20 to-brand-500/5 text-brand-500 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br"
               >
-                <Icon name="code-2" size="md" />
+                <Icon name="map-pin" size="md" />
               </div>
               <div class="min-w-0 flex-1">
-                <p class="casesensitive text-foreground-muted mb-1 text-xs font-bold tracking-wide">
-                  Web Designer & Developer
-                </p>
-                <h3 class="text-foreground text-base font-semibold">Astro Rocket</h3>
+                <h3 class="text-foreground text-base font-semibold">Nouméa &amp; Calédonie</h3>
                 <p class="text-foreground-muted mt-1.5 text-sm leading-relaxed">
-                  16 years of craft — design, code, performance, and honest communication. Based in
-                  Veghel, working worldwide.
+                  Interventions sur l’ensemble du territoire et accompagnement à distance lorsque
+                  c’est pertinent pour votre organisation.
                 </p>
-                <div class="mt-3 flex flex-wrap gap-1.5">
-                  <Badge size="sm" variant="brand">Astro</Badge>
-                  <Badge size="sm" variant="brand">Tailwind</Badge>
-                  <Badge size="sm" variant="brand">TypeScript</Badge>
-                </div>
               </div>
             </div>
           </Card>
-          <Card
-            variant="elevated"
-            hover
-            href="https://claude.ai/code"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group flex flex-1 flex-col justify-center"
-          >
-            <div class="flex items-start justify-between gap-4">
-              <div class="flex min-w-0 flex-1 items-start gap-4">
-                <div
-                  class="from-brand-500/20 to-brand-500/5 text-brand-500 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br"
-                >
-                  <Icon name="sparkles" size="md" />
-                </div>
-                <div class="min-w-0 flex-1">
-                  <p
-                    class="casesensitive text-foreground-muted mb-1 text-xs font-bold tracking-wide"
-                  >
-                    AI Thinking Partner
-                  </p>
-                  <h3 class="text-foreground text-base font-semibold">Claude</h3>
-                  <p class="text-foreground-muted mt-1.5 text-sm leading-relaxed">
-                    Reasoning through decisions, reviewing code and copy, exploring alternatives — a
-                    second perspective at every stage of a project.
-                  </p>
-                  <div class="mt-3 flex flex-wrap gap-1.5">
-                    <Badge size="sm" variant="brand">Design review</Badge>
-                    <Badge size="sm" variant="brand">Code QA</Badge>
-                    <Badge size="sm" variant="brand">Deep thinking</Badge>
-                  </div>
-                </div>
+          <Card variant="elevated" hover class="flex flex-col justify-center">
+            <div class="flex items-start gap-4">
+              <div
+                class="from-brand-500/20 to-brand-500/5 text-brand-500 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br"
+              >
+                <Icon name="shield-check" size="md" />
               </div>
-              <Icon
-                name="arrow-up-right"
-                size="sm"
-                class="text-foreground-muted group-hover:text-brand-500 shrink-0 transition-colors"
-              />
+              <div class="min-w-0 flex-1">
+                <h3 class="text-foreground text-base font-semibold">Fiabilité &amp; qualité</h3>
+                <p class="text-foreground-muted mt-1.5 text-sm leading-relaxed">
+                  Revue de code, tests, documentation et transfert de compétences pour des systèmes
+                  maintenables dans la durée.
+                </p>
+              </div>
             </div>
           </Card>
         </div>
       </div>
     </div>
   </section>
-  <!-- Values -->
+
   <section class="bg-background border-border border-t py-[var(--space-section-md)]">
     <div class="mx-auto max-w-6xl px-6">
       <div class="mb-8 flex flex-col items-center gap-4 text-center" data-reveal>
-        <div class="flex flex-col items-center gap-6">
-          <Badge variant="brand" pill>My Process</Badge>
-          <h2 class="font-display text-foreground text-4xl font-bold">How I Work</h2>
-        </div>
+        <Badge variant="brand" pill>Notre façon de travailler</Badge>
+        <h2 class="font-display text-foreground text-4xl font-bold">Ce qui nous guide</h2>
         <p class="text-foreground-muted mx-auto max-w-2xl text-lg text-balance">
-          These aren't aspirations — they're the constraints every project is held to, from the
-          first conversation to the final handover.
+          Des engagements simples : écouter le besoin, livrer dans les délais convenus, et rester
+          disponibles après la mise en production.
         </p>
       </div>
       <div class="grid gap-8 md:grid-cols-3">
@@ -170,10 +113,10 @@ import BlogImageSVG from '@/components/blog/BlogImageSVG.astro';
               <Icon name="zap" size="md" />
             </div>
             <div class="min-w-0 flex-1">
-              <h3 class="text-foreground text-base font-semibold">Performance First</h3>
+              <h3 class="text-foreground text-base font-semibold">Performance utile</h3>
               <p class="text-foreground-muted mt-1.5 text-sm leading-relaxed">
-                Fast sites rank better, convert better, and keep users happy. I optimise for speed
-                from the ground up.
+                Nous optimisons ce qui compte pour vos utilisateurs : temps de réponse, clarté des
+                parcours et robustesse des données.
               </p>
             </div>
           </div>
@@ -183,13 +126,13 @@ import BlogImageSVG from '@/components/blog/BlogImageSVG.astro';
             <div
               class="from-brand-500/20 to-brand-500/5 text-brand-500 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br"
             >
-              <Icon name="award" size="md" />
+              <Icon name="users" size="md" />
             </div>
             <div class="min-w-0 flex-1">
-              <h3 class="text-foreground text-base font-semibold">Experience That Shows</h3>
+              <h3 class="text-foreground text-base font-semibold">Proximité</h3>
               <p class="text-foreground-muted mt-1.5 text-sm leading-relaxed">
-                Sixteen years of experience means I know what works, what doesn't, and exactly what
-                your project needs.
+                Un interlocuteur dédié, des points d’étape réguliers et des livrables compris par
+                vos équipes métier.
               </p>
             </div>
           </div>
@@ -202,9 +145,10 @@ import BlogImageSVG from '@/components/blog/BlogImageSVG.astro';
               <Icon name="rocket" size="md" />
             </div>
             <div class="min-w-0 flex-1">
-              <h3 class="text-foreground text-base font-semibold">Modern from the Ground Up</h3>
+              <h3 class="text-foreground text-base font-semibold">Technologies actuelles</h3>
               <p class="text-foreground-muted mt-1.5 text-sm leading-relaxed">
-                Built with today's tooling. Fast, maintainable, and ready for whatever comes next.
+                Stacks modernes (web, SIG, bases de données, conteneurisation) choisies selon votre
+                contexte et vos contraintes d’exploitation.
               </p>
             </div>
           </div>
@@ -212,328 +156,40 @@ import BlogImageSVG from '@/components/blog/BlogImageSVG.astro';
       </div>
     </div>
   </section>
-  <!-- My Stack -->
+
   <TechStack
-    badge="Tools & Tech"
-    title="My Stack"
-    description="The tools I rely on every day to build fast, modern websites — chosen for performance, great developer experience, and reliability."
+    badge="Technologies"
+    title="Outils &amp; environnements"
+    description="Un aperçu des briques que nous utilisons au quotidien pour concevoir et faire évoluer vos systèmes."
     background="secondary"
   />
-  <!-- FAQ -->
-  <section class="bg-background border-border border-t py-[var(--space-section-md)]">
-    <div class="mx-auto flex max-w-6xl flex-col gap-8 px-6">
-      <div class="flex flex-col items-center gap-4 text-center" data-reveal>
-        <div class="flex flex-col items-center gap-6">
-          <Badge variant="brand" pill>Good to know</Badge>
-          <h2 class="font-display text-foreground text-3xl font-bold md:text-4xl">
-            Frequently asked questions
-          </h2>
-        </div>
-        <p class="text-foreground-muted mx-auto max-w-2xl text-lg text-balance">
-          Some of the questions I get asked most often.
-        </p>
-      </div>
 
-      <div class="grid gap-6 md:grid-cols-2">
-        <!-- Card 1: About Astro -->
-        <Card variant="elevated" padding="lg" data-reveal data-reveal-delay="1">
-          <div class="border-border flex items-center gap-3 border-b pb-4">
-            <div
-              class="from-brand-500/20 to-brand-500/5 text-brand-500 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br"
-            >
-              <Icon name="rocket" size="md" />
-            </div>
-            <h3 class="font-display text-foreground text-base font-semibold">About Astro</h3>
-          </div>
-          <div class="w-full">
-            <details class="border-border border-b" name="faq-astro">
-              <summary
-                class="text-foreground hover:text-foreground-secondary flex w-full cursor-pointer list-none items-center justify-between py-4 text-left text-sm font-medium transition-colors [&::-webkit-details-marker]:hidden"
-              >
-                What is Astro?
-                <Icon
-                  name="chevron-down"
-                  size="sm"
-                  class="faq-icon text-foreground-muted shrink-0 transition-transform duration-200"
-                />
-              </summary>
-              <div class="text-foreground-muted pb-4 text-sm leading-relaxed">
-                Astro is a modern web framework built for content-driven sites. It ships zero
-                JavaScript by default — only sending what the page actually needs. The result is
-                fast load times, excellent Core Web Vitals scores, and lean, maintainable code.
-              </div>
-            </details>
-            <details class="border-border border-b" name="faq-astro">
-              <summary
-                class="text-foreground hover:text-foreground-secondary flex w-full cursor-pointer list-none items-center justify-between py-4 text-left text-sm font-medium transition-colors [&::-webkit-details-marker]:hidden"
-              >
-                Why do you build with Astro?
-                <Icon
-                  name="chevron-down"
-                  size="sm"
-                  class="faq-icon text-foreground-muted shrink-0 transition-transform duration-200"
-                />
-              </summary>
-              <div class="text-foreground-muted pb-4 text-sm leading-relaxed">
-                Because it matches the way I think about the web: lean, purposeful, and built to
-                last. Astro lets me ship fast sites without fighting the framework — minimal
-                JavaScript, clean HTML, great SEO — so I can focus on the design and details that
-                actually matter.
-              </div>
-            </details>
-            <details class="border-border border-b" name="faq-astro">
-              <summary
-                class="text-foreground hover:text-foreground-secondary flex w-full cursor-pointer list-none items-center justify-between py-4 text-left text-sm font-medium transition-colors [&::-webkit-details-marker]:hidden"
-              >
-                Do you always build with Astro?
-                <Icon
-                  name="chevron-down"
-                  size="sm"
-                  class="faq-icon text-foreground-muted shrink-0 transition-transform duration-200"
-                />
-              </summary>
-              <div class="text-foreground-muted pb-4 text-sm leading-relaxed">
-                Almost always. For portfolios, business sites, marketing pages, and blogs, Astro is
-                the right tool. If a project genuinely calls for something different, I'll be
-                upfront about it. But Astro handles most of what clients need, and it does it
-                exceptionally well.
-              </div>
-            </details>
-            <details class="border-border border-b" name="faq-astro">
-              <summary
-                class="text-foreground hover:text-foreground-secondary flex w-full cursor-pointer list-none items-center justify-between py-4 text-left text-sm font-medium transition-colors [&::-webkit-details-marker]:hidden"
-              >
-                Do you build Astro themes?
-                <Icon
-                  name="chevron-down"
-                  size="sm"
-                  class="faq-icon text-foreground-muted shrink-0 transition-transform duration-200"
-                />
-              </summary>
-              <div class="text-foreground-muted pb-4 text-sm leading-relaxed">
-                Yes. I built <a
-                  href="https://astro.build/themes/details/astro-rocket/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="decoration-brand-500 hover:text-brand-400 underline underline-offset-2 transition-colors"
-                  >Astro Rocket</a
-                > — a free, production-ready theme listed on the official Astro themes directory. It includes
-                a full component library, blog support, dark mode, SEO, and everything you need to launch
-                a fast modern website without starting from scratch.
-              </div>
-            </details>
-            <details class="border-border border-b last:border-0" name="faq-astro">
-              <summary
-                class="text-foreground hover:text-foreground-secondary flex w-full cursor-pointer list-none items-center justify-between py-4 text-left text-sm font-medium transition-colors [&::-webkit-details-marker]:hidden"
-              >
-                Do you plan to build more Astro themes?
-                <Icon
-                  name="chevron-down"
-                  size="sm"
-                  class="faq-icon text-foreground-muted shrink-0 transition-transform duration-200"
-                />
-              </summary>
-              <div class="text-foreground-muted pb-4 text-sm leading-relaxed">
-                Yes, that's the plan. Astro Rocket is actively maintained and I have ideas for new
-                themes in the pipeline. Follow along on the blog or keep an eye on the official
-                Astro themes directory for what's next.
-              </div>
-            </details>
-          </div>
-        </Card>
-
-        <!-- Card 2: About the work -->
-        <Card variant="elevated" padding="lg" data-reveal data-reveal-delay="2">
-          <div class="border-border flex items-center gap-3 border-b pb-4">
-            <div
-              class="from-brand-500/20 to-brand-500/5 text-brand-500 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br"
-            >
-              <Icon name="user" size="md" />
-            </div>
-            <h3 class="font-display text-foreground text-base font-semibold">About the work</h3>
-          </div>
-          <div class="w-full">
-            <details class="border-border border-b" name="faq-work">
-              <summary
-                class="text-foreground hover:text-foreground-secondary flex w-full cursor-pointer list-none items-center justify-between py-4 text-left text-sm font-medium transition-colors [&::-webkit-details-marker]:hidden"
-              >
-                Do you use AI when you build a website?
-                <Icon
-                  name="chevron-down"
-                  size="sm"
-                  class="faq-icon text-foreground-muted shrink-0 transition-transform duration-200"
-                />
-              </summary>
-              <div class="text-foreground-muted pb-4 text-sm leading-relaxed">
-                Yes — I work alongside Claude as a thinking partner throughout every project. Not as
-                a shortcut, but as a second perspective that helps me think through design
-                decisions, review code, and spot things I might otherwise miss.
-              </div>
-            </details>
-            <details class="border-border border-b" name="faq-work">
-              <summary
-                class="text-foreground hover:text-foreground-secondary flex w-full cursor-pointer list-none items-center justify-between py-4 text-left text-sm font-medium transition-colors [&::-webkit-details-marker]:hidden"
-              >
-                Are you a company or agency?
-                <Icon
-                  name="chevron-down"
-                  size="sm"
-                  class="faq-icon text-foreground-muted shrink-0 transition-transform duration-200"
-                />
-              </summary>
-              <div class="text-foreground-muted pb-4 text-sm leading-relaxed">
-                No. I'm a designer and developer who works solo, driven by genuine enthusiasm for
-                the craft — not by commercial targets. There's no sales team, no account manager, no
-                handoff to a junior. You work directly with me from the first conversation to the
-                final delivery.
-              </div>
-            </details>
-            <details class="border-border border-b" name="faq-work">
-              <summary
-                class="text-foreground hover:text-foreground-secondary flex w-full cursor-pointer list-none items-center justify-between py-4 text-left text-sm font-medium transition-colors [&::-webkit-details-marker]:hidden"
-              >
-                How do you choose which projects to take on?
-                <Icon
-                  name="chevron-down"
-                  size="sm"
-                  class="faq-icon text-foreground-muted shrink-0 transition-transform duration-200"
-                />
-              </summary>
-              <div class="text-foreground-muted pb-4 text-sm leading-relaxed">
-                I look for projects where good design and solid execution actually matter to the
-                client. I work best when there's a clear goal, an open line of communication, and a
-                client who trusts the process. I'd rather take on fewer projects and do them
-                properly than stretch across too many at once.
-              </div>
-            </details>
-            <details class="border-border border-b" name="faq-work">
-              <summary
-                class="text-foreground hover:text-foreground-secondary flex w-full cursor-pointer list-none items-center justify-between py-4 text-left text-sm font-medium transition-colors [&::-webkit-details-marker]:hidden"
-              >
-                Do you offer support or maintenance after launch?
-                <Icon
-                  name="chevron-down"
-                  size="sm"
-                  class="faq-icon text-foreground-muted shrink-0 transition-transform duration-200"
-                />
-              </summary>
-              <div class="text-foreground-muted pb-4 text-sm leading-relaxed">
-                Yes. Whether it's small updates, content changes, or something more involved — I'm
-                available after launch. We can agree on whatever arrangement works best for the
-                project.
-              </div>
-            </details>
-            <details class="border-border border-b last:border-0" name="faq-work">
-              <summary
-                class="text-foreground hover:text-foreground-secondary flex w-full cursor-pointer list-none items-center justify-between py-4 text-left text-sm font-medium transition-colors [&::-webkit-details-marker]:hidden"
-              >
-                Do you work with clients outside the Netherlands?
-                <Icon
-                  name="chevron-down"
-                  size="sm"
-                  class="faq-icon text-foreground-muted shrink-0 transition-transform duration-200"
-                />
-              </summary>
-              <div class="text-foreground-muted pb-4 text-sm leading-relaxed">
-                Absolutely. I'm based in Veghel but work with clients worldwide. Most projects run
-                entirely remote, which works well for clear briefs and good communication. Time zone
-                differences are rarely a problem.
-              </div>
-            </details>
-          </div>
-        </Card>
-      </div>
-    </div>
-  </section>
-
-  <!-- More about me -->
-  <section class="bg-background-secondary border-border border-t py-[var(--space-section-md)]">
-    <div class="mx-auto max-w-6xl px-6">
-      <div class="grid gap-10 lg:grid-cols-2">
-        <!-- Text -->
-        <div class="flex flex-col justify-center gap-4" data-reveal="right">
-          <Badge variant="brand" pill class="self-start">Backstory</Badge>
-          <h2 class="font-display text-foreground text-3xl font-bold md:text-4xl">
-            The longer story
-          </h2>
-          <p class="text-foreground-muted text-lg leading-relaxed">
-            You've seen the work, the process, and the tools. If you'd like to know the person
-            behind them, I've put the whole story in one place.
-          </p>
-          <Button
-            size="lg"
-            href="https://hansmartens.dev/blog/hans-martens-web-designer-veghel"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="mt-2 self-start"
-          >
-            Read the full story
-            <Icon name="arrow-right" size="sm" />
-          </Button>
-        </div>
-
-        <!-- Image -->
-        <div
-          class="mx-auto w-full max-w-sm sm:max-w-md lg:max-w-none"
-          data-reveal="left"
-          data-reveal-delay="1"
-        >
-          <a
-            href="https://hansmartens.dev/blog/hans-martens-web-designer-veghel"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group border-brand-500/20 bg-brand-500/5 ring-border/60 hover:border-brand-500/40 block overflow-hidden rounded-2xl border shadow-md ring-1 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
-            aria-label="Read the introduction post"
-          >
-            <div class="transition-transform duration-300 group-hover:scale-105">
-              <BlogImageSVG
-                slug="hi-im-hans-martens"
-                title="Hi, I'm Hans Martens — the longer story"
-              />
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
   <section class="bg-background border-border relative z-10 border-t py-[var(--space-section-md)]">
-    <!-- Mobile: flat section, no card -->
     <div class="glitch:hidden mx-auto max-w-2xl px-6 text-center" data-reveal>
-      <Badge variant="brand" pill class="mb-6">Let's talk</Badge>
+      <Badge variant="brand" pill class="mb-6">Contact</Badge>
       <h2 class="font-display text-foreground mb-4 text-4xl font-bold text-balance">
-        Sound like a good fit?
+        Un projet à lancer ou une question technique ?
       </h2>
       <p class="text-foreground-muted mb-8 text-lg text-balance">
-        If my background and approach match what you're looking for, I'm open to new projects. Let's
-        have a conversation.
+        Expliquez-nous votre contexte : nous vous répondons rapidement pour en discuter.
       </p>
       <Button size="lg" href="/contact" class="cta-btn-brand">
-        Start a Project
+        Écrire à Azer Soft
         <Icon name="arrow-right" size="sm" />
       </Button>
     </div>
 
-    <!-- Desktop: contained LetterGlitch band with glass card -->
     <LetterGlitchBand>
       <h2 class="font-display text-foreground mb-4 text-4xl font-bold text-balance">
-        Sound like a good fit?
+        Un projet à lancer ou une question technique ?
       </h2>
       <p class="text-foreground-muted mb-8 text-lg text-balance">
-        If my background and approach match what you're looking for, I'm open to new projects. Let's
-        have a conversation.
+        Expliquez-nous votre contexte : nous vous répondons rapidement pour en discuter.
       </p>
       <Button size="lg" href="/contact" class="hero-btn-brand">
-        Start a Project
+        Écrire à Azer Soft
         <Icon name="arrow-right" size="sm" />
       </Button>
     </LetterGlitchBand>
   </section>
 </PageLayout>
-
-<style>
-  details[open] > summary .faq-icon {
-    transform: rotate(180deg);
-  }
-</style>

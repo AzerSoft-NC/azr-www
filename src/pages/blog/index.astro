@@ -40,7 +40,7 @@ const getPostUrl = (postId: string) => {
 
 <PageLayout
   title="Blog - Azer Soft"
-  description="Articles Azer Soft sur developpement, conseil et projets logiciels."
+  description="Articles Azer Soft sur le développement, le conseil et les projets logiciels."
   showScrollProgress
   eagerReveal
 >
@@ -200,7 +200,12 @@ const getPostUrl = (postId: string) => {
       }
 
       if (filterCount) {
-        filterCount.textContent = `${visibleCount} article${visibleCount !== 1 ? 's' : ''}`;
+        filterCount.textContent =
+          visibleCount === 0
+            ? 'Aucun article'
+            : visibleCount === 1
+              ? '1 article'
+              : `${visibleCount} articles`;
         filterCount.classList.remove('hidden');
       }
     });

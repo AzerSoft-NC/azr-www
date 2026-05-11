@@ -13,17 +13,17 @@ const consentConfig: ConsentConfig = {
 
   categories: {
     necessary: {
-      label: 'Necessary',
+      label: 'Nécessaires',
       description:
-        'Essential cookies required for the website to function. These cannot be disabled.',
+        'Cookies indispensables au fonctionnement du site. Ils ne peuvent pas être désactivés.',
       required: true,
       defaultEnabled: true,
       gcmTypes: ['security_storage'],
     },
     analytics: {
-      label: 'Analytics',
+      label: 'Statistiques',
       description:
-        'Help us understand how visitors interact with the website by collecting anonymous usage data.',
+        'Nous aident à comprendre comment les visiteurs utilisent le site grâce à des données d’usage anonymisées.',
       required: false,
       defaultEnabled: false,
       gcmTypes: ['analytics_storage'],
@@ -31,14 +31,15 @@ const consentConfig: ConsentConfig = {
     marketing: {
       label: 'Marketing',
       description:
-        'Used to deliver relevant ads and track ad campaign performance across websites.',
+        'Permettent la diffusion de publicités pertinentes et le suivi des campagnes sur différents sites.',
       required: false,
       defaultEnabled: false,
       gcmTypes: ['ad_storage', 'ad_user_data', 'ad_personalization'],
     },
     preferences: {
-      label: 'Preferences',
-      description: 'Allow the website to remember choices you make, such as language or region.',
+      label: 'Préférences',
+      description:
+        'Permettent de mémoriser vos choix (langue, région, options d’affichage, etc.).',
       required: false,
       defaultEnabled: false,
       gcmTypes: ['functionality_storage', 'personalization_storage'],
@@ -46,16 +47,16 @@ const consentConfig: ConsentConfig = {
   },
 
   ui: {
-    heading: 'Cookie Preferences',
+    heading: 'Préférences de cookies',
     description:
-      'We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic.',
-    acceptAll: 'Accept All',
-    declineAll: 'Decline All',
-    customize: 'Customize',
-    savePreferences: 'Save Preferences',
-    settingsHeading: 'Privacy Settings',
-    alwaysOnLabel: 'Always on',
-    privacyPolicyLabel: 'Privacy Policy',
+      'Nous utilisons des cookies pour améliorer votre navigation, proposer des contenus adaptés et mesurer l’audience.',
+    acceptAll: 'Tout accepter',
+    declineAll: 'Tout refuser',
+    customize: 'Personnaliser',
+    savePreferences: 'Enregistrer mes choix',
+    settingsHeading: 'Paramètres de confidentialité',
+    alwaysOnLabel: 'Toujours actif',
+    privacyPolicyLabel: 'Politique de confidentialité',
   },
 
   /** Milliseconds before banner slides in */

@@ -37,10 +37,10 @@ const {
   mode = 'place',
   mapType = 'roadmap',
   consentCategory = 'marketing',
-  ariaLabel = 'Google Maps',
-  placeholderTitle = 'Map',
-  placeholderDescription = 'Accept cookies to load the interactive map.',
-  externalLinkText = 'View on Google Maps',
+  ariaLabel = 'Carte Google Maps',
+  placeholderTitle = 'Carte',
+  placeholderDescription = 'Acceptez les cookies pour afficher la carte interactive.',
+  externalLinkText = 'Voir sur Google Maps',
   class: className,
   ...rest
 } = Astro.props;
@@ -113,8 +113,8 @@ const id = `google-map-${Math.random().toString(36).slice(2, 9)}`;
           </svg>
           <p class="google-map-setup__title">Google Maps</p>
           <p class="google-map-setup__desc">
-            Add <code>PUBLIC_GOOGLE_MAPS_API_KEY</code> to your <code>.env</code> file to enable the
-            map.
+            Ajoutez <code>PUBLIC_GOOGLE_MAPS_API_KEY</code> dans votre fichier <code>.env</code> pour
+            activer la carte.
           </p>
         </div>
       </div>
@@ -146,7 +146,7 @@ const id = `google-map-${Math.random().toString(36).slice(2, 9)}`;
           <p class="google-map-placeholder__desc">{placeholderDescription}</p>
 
           <button class="google-map-placeholder__btn" data-map-load={id} type="button">
-            Load Map
+            Charger la carte
           </button>
 
           <a

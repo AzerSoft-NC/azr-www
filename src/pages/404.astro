@@ -5,8 +5,8 @@ import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 ---
 
 <LandingLayout
-  title="Page not found"
-  description="The page you're looking for has either been moved, deleted, or never existed in the first place."
+  title="Page introuvable"
+  description="La page demandée a été déplacée, supprimée ou n’a jamais existé."
   noindex
 >
   <section
@@ -51,40 +51,39 @@ import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 
         <!-- Copy -->
         <h1 class="font-display text-foreground mb-4 text-2xl font-bold md:text-3xl">
-          Looks like you've drifted off course
+          Vous semblez vous être égaré
         </h1>
 
         <p class="text-foreground-muted mx-auto mb-10 max-w-md text-lg">
-          The page you're looking for has either been moved, deleted, or never existed in the first
-          place.
+          La page demandée a été déplacée, supprimée ou n’a jamais existé.
         </p>
 
         <!-- CTAs -->
         <div class="mb-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Button href="/" size="lg">
             <Icon name="arrow-left" size="sm" />
-            Back to home
+            Retour à l’accueil
           </Button>
-          <Button href="/blog" variant="outline" size="lg"> Browse blog </Button>
+          <Button href="/blog" variant="outline" size="lg">Voir le blog</Button>
         </div>
 
         <!-- Quick Links -->
         <div
           class="bg-secondary/50 border-border inline-flex items-center gap-2 rounded-full border px-4 py-2"
         >
-          <span class="text-foreground-muted text-sm">Quick Links:</span>
+          <span class="text-foreground-muted text-sm">Liens utiles :</span>
           <a
-            href="/#features"
+            href="/#prestations"
             class="text-foreground hover:text-brand-500 text-sm font-medium transition-colors"
           >
-            Features
+            Prestations
           </a>
           <span class="text-foreground-subtle">|</span>
           <a
-            href="/components"
+            href="/contact"
             class="text-foreground hover:text-brand-500 text-sm font-medium transition-colors"
           >
-            Components
+            Contact
           </a>
         </div>
       </div>

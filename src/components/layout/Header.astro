@@ -78,7 +78,7 @@ const {
   nav,
   extraNav = [],
   showCta = false,
-  cta = { label: 'Start a project', href: '/contact' },
+  cta = { label: 'Nous contacter', href: '/contact' },
   actions = [],
   showMobileMenu = true,
   showSocialLinks = false,
@@ -192,11 +192,11 @@ const buttonId = `${menuId}-button`;
       {
         layout !== 'minimal' &&
           (hasNavSlot ? (
-            <nav class="hidden items-center gap-1 md:flex" aria-label="Main navigation">
+            <nav class="hidden items-center gap-1 md:flex" aria-label="Navigation principale">
               <slot name="nav" />
             </nav>
           ) : (
-            <nav class="hidden items-center gap-1 md:flex" aria-label="Main navigation">
+            <nav class="hidden items-center gap-1 md:flex" aria-label="Navigation principale">
               {navItems.map(({ label, href }) => (
                 <a
                   href={href.startsWith('#') && !isLandingPage ? `/${href}` : href}
@@ -299,7 +299,7 @@ const buttonId = `${menuId}-button`;
               )}
               aria-expanded="false"
               aria-controls={menuId}
-              aria-label="Toggle menu"
+              aria-label="Ouvrir ou fermer le menu"
             >
               <span class="menu-icon">
                 <Icon name="menu" size="md" />
@@ -347,7 +347,7 @@ const buttonId = `${menuId}-button`;
                 : 'border-border bg-background border-t'
             )}
             role="navigation"
-            aria-label="Mobile navigation"
+            aria-label="Navigation mobile"
           >
             <slot name="mobile-menu" />
           </div>
@@ -361,7 +361,7 @@ const buttonId = `${menuId}-button`;
                 : 'border-border bg-background border-t'
             )}
             role="navigation"
-            aria-label="Mobile navigation"
+            aria-label="Navigation mobile"
           >
             <div class={cn('space-y-1 py-4', isFloating ? 'px-4' : 'mx-auto max-w-6xl px-6')}>
               {navItems.map(({ label, href }) => (
