@@ -86,4 +86,5 @@
      --------------------------------------------------------------------------- */
   --space-page-top: var(--space-32); /* 128px - clearance for fixed header + breathing room */
   --space-page-top-sm: var(--space-24); /* 96px - smaller top clearance */
+  --space-page-top-xs: var(--space-12); /* 48px - smaller top clearance */
 }
