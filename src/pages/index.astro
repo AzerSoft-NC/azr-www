@@ -9,26 +9,11 @@ import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Card from '@/components/ui/data-display/Card/Card.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import TypingEffect from '@/components/ui/TypingEffect.astro';
+import { offers } from '@/config/offers.config';
 import LandingLayout from '@/layouts/LandingLayout.astro';
 
-const prestations = [
-  {
-    title: 'Sites Web',
-    icon: 'globe',
-    description: 'Site vitrine simple propulsé par Astro ou site WordPress.',
-  },
-  {
-    title: 'E-Commerce',
-    icon: 'shopping-cart',
-    description: 'Plateforme de vente en ligne Shopify ou Wordpress/WooCommerce.',
-  },
-  {
-    title: 'Applications',
-    icon: 'app-window',
-    description: 'Application web/mobile, adaptee a vos besoins.',
-  },
-];
-const typingWords = prestations.map((prestation) => prestation.title);
+
+const typingWords = offers.map((prestation) => prestation.title);
 ---
 
 <LandingLayout
@@ -99,11 +84,11 @@ const typingWords = prestations.map((prestation) => prestation.title);
       </div>
       <div class="grid gap-6 md:grid-cols-3">
         {
-          prestations.map((prestation) => (
+          offers.map((prestation) => (
             <Card hover>
               <Icon name={prestation.icon} size="sm" class="text-brand-500 float-left mr-2" />
               <h3 class="mb-2 font-semibold">{prestation.title}</h3>
-              <p class="text-foreground-muted text-sm">{prestation.description}</p>
+              <p class="text-foreground-muted text-sm">{prestation.shortDescription}</p>
             </Card>
           ))
         }

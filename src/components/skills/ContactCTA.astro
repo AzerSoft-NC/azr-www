@@ -3,6 +3,7 @@ import CTASection from '@/components/ui/marketing/CTA/CTA.astro';
 import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Button from '@/components/ui/form/Button/Button.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+import LetterGlitchBand from '../patterns/LetterGlitchBand.astro';
 ---
 
 <CTASection variant="invert" size="sm" maxWidth="md" class="relative z-10">
@@ -16,9 +17,19 @@ import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 
   <Fragment slot="actions">
     <Button size="lg" href="/contact" class="cta-btn-brand">
-      Écrire à Azer Soft
+      Écrivez Nous
       <Icon name="arrow-right" size="sm" />
     </Button>
   </Fragment>
   
+  <LetterGlitchBand>
+    <h2 class="font-display text-foreground mb-4 text-4xl font-bold text-balance">
+      Un projet à lancer ?
+    </h2>
+    <p class="text-foreground-muted mb-8 text-lg text-balance">Expliquez-nous votre projet .</p>
+    <Button size="lg" href="/contact" class="hero-btn-brand">
+      
+      <Icon name="arrow-right" size="sm" />
+    </Button>
+  </LetterGlitchBand>
 </CTASection>

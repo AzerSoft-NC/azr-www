@@ -18,6 +18,7 @@ const {
   class: className,
 } = Astro.props;
 
+
 const mailerEndpoint = (endpointFromProp ?? import.meta.env.PUBLIC_MAILER_ENDPOINT ?? '').trim();
 ---
 
@@ -102,18 +103,10 @@ const mailerEndpoint = (endpointFromProp ?? import.meta.env.PUBLIC_MAILER_ENDPOI
       message.classList.add('hidden');
 
       try {
-        const url = typeof mailerEndpoint === 'string' ? mailerEndpoint.trim() : '';
-        if (!url) {
-          message.textContent =
-            "L'envoi de messages n'est pas configuré (PUBLIC_MAILER_ENDPOINT manquant).";
-          message.className = 'text-sm text-destructive';
-          return;
-        }
-
         const formData = new FormData(form);
         const payload = Object.fromEntries(formData.entries());
 
-        const response = await fetch(url, {
+        const response = await fetch(mailerEndpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),

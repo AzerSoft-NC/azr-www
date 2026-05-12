@@ -1,193 +1,121 @@
 ---
 /**
- * À propos — Azer Soft
- * URL: /about
+ * Nos offres — Azer Soft
+ * URL: /offers
  */
 import PageLayout from '@/layouts/PageLayout.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Card from '@/components/ui/data-display/Card/Card.astro';
-import Button from '@/components/ui/form/Button/Button.astro';
 import { Hero } from '@/components/hero';
-import TechStack from '@/components/landing/TechStack.astro';
-import LetterGlitchBand from '@/components/patterns/LetterGlitchBand.astro';
+import ContactCTA from '@/components/skills/ContactCTA.astro';
+import { offers } from '@/config/offers.config';
 ---
 
 <PageLayout
-  title="À propos — Azer Soft"
+  title="Nos offres — Azer Soft"
   description="Société de services informatiques en Nouvelle-Calédonie : développement, SIG, conseil et accompagnement projet depuis 2016."
 >
   <Hero layout="centered" size="sm">
     <Badge slot="badge" variant="brand" pill>
-      <Icon name="user" size="sm" />
-      À propos
+      <Icon name="briefcase" size="sm" />
+      Nos offres
     </Badge>
     <h1 slot="title">
       <span class="text-foreground [-webkit-text-fill-color:currentColor]">Azer Soft</span><br />
       <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)]">
-        Votre partenaire numérique
+        Ce que nous faisons
       </span>
     </h1>
-
     <p slot="description">
-      Nous concevons et maintenons des applications, des sites et des outils métiers, avec une
-      attention constante à la qualité, à la sécurité et à la pérennité de vos systèmes.
+      Découvrez les services que nous proposons.
     </p>
   </Hero>
 
-  <section class="bg-background-secondary border-border border-t py-[var(--space-section-md)]">
-    <div class="mx-auto max-w-6xl px-6">
-      <div class="grid gap-12 lg:grid-cols-2">
-        <div class="flex flex-col gap-4" data-reveal="right">
-          <Badge variant="brand" pill class="self-start">Qui sommes-nous</Badge>
-          <h2 class="font-display text-foreground text-3xl font-bold md:text-4xl">
-            Une équipe locale, des livrables concrets
-          </h2>
-          <p class="text-foreground-muted text-lg leading-relaxed">
-            Azer Soft est une société calédonienne implantée à Nouméa. Depuis 2016, nous
-            accompagnons les entreprises, les collectivités et les associations sur des sujets de
-            développement logiciel, de cartographie et de systèmes d’information géographique, de
-            conseil technique et d’audit.
-          </p>
-          <p class="text-foreground-muted text-lg leading-relaxed">
-            Nous privilégions le dialogue, la transparence sur les choix techniques et des solutions
-            adaptées au contexte régional — performance, disponibilité des compétences et respect de
-            vos contraintes métier.
-          </p>
+  {offers.map((offer, i) => {
+    const isEven = i % 2 === 0;
+    return (
+      <section class="bg-background-secondary border-border border-t py-[var(--space-section-md)]">
+        <div class="mx-auto max-w-6xl px-6">
+          <div class="grid gap-12 lg:grid-cols-2">
+
+            {isEven ? (
+              <>
+                <div class="flex flex-col gap-4" data-reveal="right">
+                  <Badge variant="brand" pill class="self-start">
+                    <Icon name={offer.icon} size="sm" />
+                    {offer.title}
+                  </Badge>
+                  <h2 class="font-display text-foreground text-3xl font-bold md:text-4xl">
+                    {offer.title}
+                  </h2>
+                  <p class="text-foreground-muted text-lg leading-relaxed">
+                    {offer.description}
+                  </p>
+                  <p class="text-brand-500 mt-2 text-sm font-semibold uppercase tracking-wide">
+                    Tarif: {offer.tarif}
+                  </p>
+                </div>
+
+                <div class="flex flex-col gap-4" data-reveal="left" data-reveal-delay="1">
+                  {offer.points.map((point) => (
+                    <Card variant="elevated" hover class="flex flex-col justify-center">
+                      <div class="flex items-start gap-4">
+                        <div class="from-brand-500/20 to-brand-500/5 text-brand-500 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br">
+                          <Icon name={point.icon} size="md" />
+                        </div>
+                        <div class="min-w-0 flex-1">
+                          <h3 class="text-foreground text-base font-semibold">{point.label}</h3>
+                          <p class="text-foreground-muted mt-1.5 text-sm leading-relaxed">
+                            {point.description}
+                          </p>
+                        </div>
+                      </div>
+                    </Card>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <>
+                <div class="flex flex-col gap-4" data-reveal="right" data-reveal-delay="1">
+                  {offer.points.map((point) => (
+                    <Card variant="elevated" hover class="flex flex-col justify-center">
+                      <div class="flex items-start gap-4">
+                        <div class="from-brand-500/20 to-brand-500/5 text-brand-500 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br">
+                          <Icon name={point.icon} size="md" />
+                        </div>
+                        <div class="min-w-0 flex-1">
+                          <h3 class="text-foreground text-base font-semibold">{point.label}</h3>
+                          <p class="text-foreground-muted mt-1.5 text-sm leading-relaxed">
+                            {point.description}
+                          </p>
+                        </div>
+                      </div>
+                    </Card>
+                  ))}
+                </div>
+
+                <div class="flex flex-col gap-4" data-reveal="left">
+                  <Badge variant="brand" pill class="self-start">
+                    <Icon name={offer.icon} size="sm" />
+                    {offer.title}
+                  </Badge>
+                  <h2 class="font-display text-foreground text-3xl font-bold md:text-4xl">
+                    {offer.title}
+                  </h2>
+                  <p class="text-foreground-muted text-lg leading-relaxed">
+                    {offer.description}
+                  </p>
+                  <p class="text-brand-500 mt-2 text-sm font-semibold uppercase tracking-wide">
+                    Tarif: {offer.tarif}
+                  </p>
+                </div>
+              </>
+            )}
+
+          </div>
         </div>
-
-        <div class="flex flex-col gap-4" data-reveal="left" data-reveal-delay="1">
-          <Card variant="elevated" hover class="flex flex-col justify-center">
-            <div class="flex items-start gap-4">
-              <div
-                class="from-brand-500/20 to-brand-500/5 text-brand-500 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br"
-              >
-                <Icon name="map-pin" size="md" />
-              </div>
-              <div class="min-w-0 flex-1">
-                <h3 class="text-foreground text-base font-semibold">Nouméa &amp; Calédonie</h3>
-                <p class="text-foreground-muted mt-1.5 text-sm leading-relaxed">
-                  Interventions sur l’ensemble du territoire et accompagnement à distance lorsque
-                  c’est pertinent pour votre organisation.
-                </p>
-              </div>
-            </div>
-          </Card>
-          <Card variant="elevated" hover class="flex flex-col justify-center">
-            <div class="flex items-start gap-4">
-              <div
-                class="from-brand-500/20 to-brand-500/5 text-brand-500 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br"
-              >
-                <Icon name="shield-check" size="md" />
-              </div>
-              <div class="min-w-0 flex-1">
-                <h3 class="text-foreground text-base font-semibold">Fiabilité &amp; qualité</h3>
-                <p class="text-foreground-muted mt-1.5 text-sm leading-relaxed">
-                  Revue de code, tests, documentation et transfert de compétences pour des systèmes
-                  maintenables dans la durée.
-                </p>
-              </div>
-            </div>
-          </Card>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="bg-background border-border border-t py-[var(--space-section-md)]">
-    <div class="mx-auto max-w-6xl px-6">
-      <div class="mb-8 flex flex-col items-center gap-4 text-center" data-reveal>
-        <Badge variant="brand" pill>Notre façon de travailler</Badge>
-        <h2 class="font-display text-foreground text-4xl font-bold">Ce qui nous guide</h2>
-        <p class="text-foreground-muted mx-auto max-w-2xl text-lg text-balance">
-          Des engagements simples : écouter le besoin, livrer dans les délais convenus, et rester
-          disponibles après la mise en production.
-        </p>
-      </div>
-      <div class="grid gap-8 md:grid-cols-3">
-        <Card hover data-reveal>
-          <div class="flex items-start gap-4">
-            <div
-              class="from-brand-500/20 to-brand-500/5 text-brand-500 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br"
-            >
-              <Icon name="zap" size="md" />
-            </div>
-            <div class="min-w-0 flex-1">
-              <h3 class="text-foreground text-base font-semibold">Performance utile</h3>
-              <p class="text-foreground-muted mt-1.5 text-sm leading-relaxed">
-                Nous optimisons ce qui compte pour vos utilisateurs : temps de réponse, clarté des
-                parcours et robustesse des données.
-              </p>
-            </div>
-          </div>
-        </Card>
-        <Card hover data-reveal data-reveal-delay="1">
-          <div class="flex items-start gap-4">
-            <div
-              class="from-brand-500/20 to-brand-500/5 text-brand-500 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br"
-            >
-              <Icon name="users" size="md" />
-            </div>
-            <div class="min-w-0 flex-1">
-              <h3 class="text-foreground text-base font-semibold">Proximité</h3>
-              <p class="text-foreground-muted mt-1.5 text-sm leading-relaxed">
-                Un interlocuteur dédié, des points d’étape réguliers et des livrables compris par
-                vos équipes métier.
-              </p>
-            </div>
-          </div>
-        </Card>
-        <Card hover data-reveal data-reveal-delay="2">
-          <div class="flex items-start gap-4">
-            <div
-              class="from-brand-500/20 to-brand-500/5 text-brand-500 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br"
-            >
-              <Icon name="rocket" size="md" />
-            </div>
-            <div class="min-w-0 flex-1">
-              <h3 class="text-foreground text-base font-semibold">Technologies actuelles</h3>
-              <p class="text-foreground-muted mt-1.5 text-sm leading-relaxed">
-                Stacks modernes (web, SIG, bases de données, conteneurisation) choisies selon votre
-                contexte et vos contraintes d’exploitation.
-              </p>
-            </div>
-          </div>
-        </Card>
-      </div>
-    </div>
-  </section>
-
-  <TechStack
-    badge="Technologies"
-    title="Outils & environnements"
-    description="Un aperçu des briques que nous utilisons au quotidien pour concevoir et faire évoluer vos systèmes."
-    background="secondary"
-  />
-
-  <section class="bg-background border-border relative z-10 border-t py-[var(--space-section-md)]">
-    <div class="glitch:hidden mx-auto max-w-2xl px-6 text-center" data-reveal>
-      <Badge variant="brand" pill class="mb-6">Contact</Badge>
-      <h2 class="font-display text-foreground mb-4 text-4xl font-bold text-balance">
-        Un projet à lancer ou une question technique ?
-      </h2>
-      <p class="text-foreground-muted mb-8 text-lg text-balance">
-        Expliquez-nous votre contexte : nous vous répondons rapidement pour en discuter.
-      </p>
-      <Button size="lg" href="/contact" class="cta-btn-brand">
-        Écrire à Azer Soft
-        <Icon name="arrow-right" size="sm" />
-      </Button>
-    </div>
-
-    <LetterGlitchBand>
-      <h2 class="font-display text-foreground mb-4 text-4xl font-bold text-balance">
-        Un projet à lancer ?
-      </h2>
-      <p class="text-foreground-muted mb-8 text-lg text-balance">Expliquez-nous votre projet .</p>
-      <Button size="lg" href="/contact" class="hero-btn-brand">
-        Écrivez Nous
-        <Icon name="arrow-right" size="sm" />
-      </Button>
-    </LetterGlitchBand>
-  </section>
+      </section>
+    );
+  })}
 </PageLayout>

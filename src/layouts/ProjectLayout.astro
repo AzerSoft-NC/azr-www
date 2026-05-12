@@ -1,14 +1,13 @@
 ---
-import type { ImageMetadata } from 'astro';
-import type { CollectionEntry } from 'astro:content';
-import BaseLayout from './BaseLayout.astro';
-import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
-import Breadcrumbs from '@/components/seo/Breadcrumbs.astro';
+import Header from '@/components/layout/Header.astro';
 import ProjectHero from '@/components/projects/ProjectHero.astro';
 import Card from '@/components/ui/data-display/Card/Card.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import siteConfig from '@/config/site.config';
+import type { ImageMetadata } from 'astro';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
 
 interface Props {
   title: string;
@@ -41,12 +40,6 @@ const {
 } = Astro.props;
 
 const ogImage = typeof image === 'string' ? image : image?.src || siteConfig.ogImage;
-
-const breadcrumbs = [
-  { label: 'Accueil', href: '/' },
-  { label: 'Projets', href: '/projects' },
-  { label: title },
-];
 ---
 
 <BaseLayout title={title} description={description} image={ogImage} imageAlt={imageAlt || title}>
@@ -77,8 +70,6 @@ const breadcrumbs = [
 
     <article class="pt-8 pb-[var(--space-section-md)]">
       <div class="mx-auto max-w-4xl px-6">
-        <Breadcrumbs items={breadcrumbs} class="mb-8" />
-
         <div class="prose prose-lg max-w-none" data-reveal-content>
           <slot />
         </div>
