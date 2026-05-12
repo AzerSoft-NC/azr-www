@@ -4,6 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import icon from 'astro-icon';
 import { defineConfig, envField } from 'astro/config';
+import { fileURLToPath } from 'node:url';
 
 export default defineConfig({
   output: 'static',
@@ -62,6 +63,11 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
+    resolve: {
+      alias: {
+        '/assets': fileURLToPath(new URL('./src/assets', import.meta.url)),
+      },
+    },
   },
 
   security: {

@@ -59,22 +59,27 @@ const typingWords = prestations.map((prestation) => prestation.title);
     id="stats"
     class="bg-background-secondary border-border border-t py-[var(--space-section-sm)]"
   >
-    <div class="mx-auto grid max-w-6xl gap-4 px-6 md:grid-cols-3">
-      <Card padding="lg" data-reveal
-        ><p class="text-foreground-muted text-sm">Expérience</p><p class="text-2xl font-bold">
-          Depuis 2016
-        </p></Card
-      >
-      <Card padding="lg" data-reveal
-        ><p class="text-foreground-muted text-sm">Projets</p><p class="text-2xl font-bold">
-          30+ livrés
-        </p></Card
-      >
-      <Card padding="lg" data-reveal
-        ><p class="text-foreground-muted text-sm">Localisation</p><p class="text-2xl font-bold">
-          Nouméa
-        </p></Card
-      >
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="mb-8 text-center" data-reveal>
+        <Badge variant="brand" pill>Statistiques</Badge>
+      </div>
+      <div class="mx-auto grid max-w-6xl gap-4 px-6 md:grid-cols-3">
+        <Card padding="lg" data-reveal
+          ><p class="text-foreground-muted text-sm">Expérience</p><p class="text-2xl font-bold">
+            Depuis 2016
+          </p></Card
+        >
+        <Card padding="lg" data-reveal
+          ><p class="text-foreground-muted text-sm">Projets</p><p class="text-2xl font-bold">
+            30+ livrés
+          </p></Card
+        >
+        <Card padding="lg" data-reveal
+          ><p class="text-foreground-muted text-sm">Localisation</p><p class="text-2xl font-bold">
+            Nouméa
+          </p></Card
+        >
+      </div>
     </div>
   </section>
 
