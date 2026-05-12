@@ -6,22 +6,25 @@ import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import { cn } from '@/lib/cn';
 
 interface Props {
-  action?: string;
+  /** URL du service mailer (JSON POST). Par défaut : `PUBLIC_MAILER_ENDPOINT`. */
+  endpoint?: string;
   successMessage?: string;
   class?: string;
 }
 
 const {
-  action = '/api/contact',
+  endpoint: endpointFromProp,
   successMessage = 'Message envoyé avec succès.',
   class: className,
 } = Astro.props;
+
+const mailerEndpoint = (endpointFromProp ?? import.meta.env.PUBLIC_MAILER_ENDPOINT ?? '').trim();
 ---
 
 <form
   id="contact-form"
-  action={action}
-  method="POST"
+  action="#"
+  method="post"
   class={cn('space-y-6', className)}
   data-success-message={successMessage}
 >
@@ -75,13 +78,19 @@ const {
   </div>
 </form>
 
-<script>
+<script is:inline define:vars={{ mailerEndpoint }}>
   function initContactForm() {
-    const form = document.getElementById('contact-form') as HTMLFormElement;
-    const button = document.getElementById('submit-button') as HTMLButtonElement;
-    const message = document.getElementById('form-message') as HTMLDivElement;
+    const form = document.getElementById('contact-form');
+    const button = document.getElementById('submit-button');
+    const message = document.getElementById('form-message');
 
-    if (!form || !button || !message) return;
+    if (
+      !(form instanceof HTMLFormElement) ||
+      !(button instanceof HTMLButtonElement) ||
+      !(message instanceof HTMLElement)
+    ) {
+      return;
+    }
 
     const successMessage = form.dataset.successMessage || 'Message envoyé avec succès.';
 
@@ -93,10 +102,21 @@ const {
       message.classList.add('hidden');
 
       try {
+        const url = typeof mailerEndpoint === 'string' ? mailerEndpoint.trim() : '';
+        if (!url) {
+          message.textContent =
+            "L'envoi de messages n'est pas configuré (PUBLIC_MAILER_ENDPOINT manquant).";
+          message.className = 'text-sm text-destructive';
+          return;
+        }
+
         const formData = new FormData(form);
-        const response = await fetch(form.action, {
+        const payload = Object.fromEntries(formData.entries());
+
+        const response = await fetch(url, {
           method: 'POST',
-          body: formData,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
         });
 
         const data = await response.json();
@@ -109,7 +129,7 @@ const {
           const errors = data.errors
             ? Object.values(data.errors).flat().join(', ')
             : 'Une erreur est survenue.';
-          message.textContent = errors as string;
+          message.textContent = errors;
           message.className = 'text-sm text-destructive';
         }
       } catch {

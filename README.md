@@ -39,6 +39,16 @@ yarn build
 
 Output goes to `dist/`.
 
+## Contact form / mailer
+
+The contact form posts **JSON** from the browser to a public HTTP endpoint (no secrets in the static site). Set at build time:
+
+- **`PUBLIC_MAILER_ENDPOINT`** — full URL of the mailer route (for example `https://apps.azersoft.nc/mail/forms/azersoft-contact` once your reverse proxy is configured).
+
+Payload fields: `name`, `email`, `subject`, `message`, `honeypot` (empty for humans). The UI expects JSON responses shaped like `{ "success": true }` or `{ "success": false, "errors": { "field": ["…"] } }`.
+
+Service implementation, CORS, rate limits, and SMTP live in the **[azr-mailer](https://github.com/azersoft/azr-mailer)** repository.
+
 ## Deploy
 
 Use `deploy/README.md` for droplet setup.

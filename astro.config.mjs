@@ -22,8 +22,12 @@ export default defineConfig({
         optional: true,
       }),
       PUBLIC_GTM_ID: envField.string({ context: 'client', access: 'public', optional: true }),
-      RESEND_API_KEY: envField.string({ context: 'server', access: 'secret', optional: true }),
-      RESEND_FROM_EMAIL: envField.string({ context: 'server', access: 'secret', optional: true }),
+      PUBLIC_MAILER_ENDPOINT: envField.string({
+        context: 'client',
+        access: 'public',
+        optional: true,
+        default: '',
+      }),
       GOOGLE_SITE_VERIFICATION: envField.string({
         context: 'server',
         access: 'public',
