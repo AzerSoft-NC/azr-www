@@ -1,0 +1,24 @@
+---
+import CTASection from '@/components/ui/marketing/CTA/CTA.astro';
+import Badge from '@/components/ui/data-display/Badge/Badge.astro';
+import Button from '@/components/ui/form/Button/Button.astro';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+---
+
+<CTASection variant="invert" size="sm" maxWidth="md" class="relative z-10">
+  <Badge slot="logo" variant="brand" pill>Contact</Badge>
+
+  <h2 slot="heading">Un projet à lancer ?</h2>
+
+  <p slot="description">
+    Expliquez-nous votre contexte et vos objectifs.
+  </p>
+
+  <Fragment slot="actions">
+    <Button size="lg" href="/contact" class="cta-btn-brand">
+      Écrire à Azer Soft
+      <Icon name="arrow-right" size="sm" />
+    </Button>
+  </Fragment>
+  
+</CTASection>
