@@ -1,119 +1,37 @@
 ---
-title: 'Astro Rocket'
-description: 'Starter Astro 6 prêt pour la production pour designers et développeurs — 12 thèmes live, 57+ composants, pile SEO complète, animations soignées et système de design pour lancer un site tel quel.'
-url: 'https://astrorocket.dev'
-repo: 'https://github.com/hansmartens68/Astro-Rocket'
-tags: ['Astro', 'TypeScript', 'Tailwind CSS', 'Open Source']
+title: 'Site vitrine Azer Soft '
+description: 'Site vitrine entièrement statique pour le référencement et de bons scores Lighthouse, construit avec Astro sur la base du template Astro Rocket.'
+url: 'https://azersoft.nc'
+repo: 'https://github.com/AzerSoft-NC/azr-www'
+tags: ['Astro', 'TypeScript', 'Tailwind CSS', 'Open Source','Site web']
 featured: true
 order: 1
 year: 2026
 role: 'Design & développement'
-services: ['Système de design', 'Bibliothèque de composants', 'Open source']
-image: '/og-default.png'
+services: ['Astro', 'WordPress', 'Shopify', 'E-commerce', 'Application web', 'Application mobile']
+image: '@/assets/blog/azersoft_v3.png'
 ---
 
 import LighthouseScoresGrid from '@/components/landing/LighthouseScoresGrid.astro';
 
 ## À propos du projet
 
-Astro Rocket est un starter Astro 6 prêt pour la production livré comme **site complet et stylé** — pas comme page blanche. Clonez, adaptez les textes, mettez en ligne. Le reste est déjà en place.
+Ce dépôt correspond au **site vitrine d’Azer Soft** ([azersoft.nc](https://azersoft.nc)) : un site web volontairement **simple et entièrement statique** (HTML généré au build, pas de serveur d’application pour les pages), pour favoriser le **référencement** et obtenir de **bons scores Lighthouse** (performance, accessibilité, bonnes pratiques, SEO).
 
-Il couvre tout le nécessaire pour un portfolio ou un site marketing sérieux : système de design complet, 57+ composants, 12 thèmes de couleur activables en un clic, modes clair / sombre / système, blog MDX, projets, collections de contenu, SEO (métadonnées, JSON-LD, fil d’Ariane), sitemap, consentement cookies avec Google Consent Mode v2, animations en couches — le tout câblé et fonctionnel dès le premier jour.
+La base technique est **[Astro](https://astro.build)** avec le template **[Astro Rocket](https://github.com/hansmartens68/Astro-Rocket)** — starter orienté sites marketing et portfolios, déjà structuré (design system, blog MDX, SEO, thèmes, etc.). Nous l’avons adapté au contenu et à l’identité Azer Soft.
 
-Le site démo affiche **100 sur toutes les catégories Lighthouse** par défaut. Il s’adresse aux designers, freelances et développeurs qui veulent un site impeccable dès la mise en ligne.
+Pour le contexte métier, les objectifs de la refonte et le passage en « v3 », voir l’article du blog : **[www.azersoft.nc v3](https://azersoft.nc/blog/presentation-v3)**.
 
-## Lighthouse : 100 partout
+## Astro Rocket
 
-Astro Rocket obtient **100 sur chaque axe Lighthouse — mobile et desktop** sur la démo publique [astrorocket.dev](https://astrorocket.dev) : Performance, Accessibilité, Bonnes pratiques et SEO. Ce n’est pas une page benchmark bidon : c’est le site complet, avec animations, thèmes, formulaire de contact, curseur et CTA LetterGlitch.
+Le template apporte notamment : **thèmes** (plusieurs palettes via variables CSS, modes clair / sombre / système), une **librairie de composants** Astro + TypeScript + Tailwind avec tokens, **identité** centralisée (`siteConfig`, favicon), **icônes** Iconify (Lucide, marques) et une couche **SEO** (JSON-LD, Open Graph, sitemap, robots, Search Console).
+
+Côté **interface et produit** : en-tête et hero soignés, animations et effets optionnels (curseur, LetterGlitch sur desktop), **formulaire** de contact (Zod, honeypot) relié à [azr-mailer](https://github.com/azersoft/azr-mailer) pour rester statique côté pages, **Pagefind** pour la recherche, **cookies / consentement** et emplacements **GA4 / GTM**, **collections** de contenu typées (Zod), **locales** dans les schémas, **déploiement** (Vercel, Netlify, Cloudflare) et **CI** GitHub — le tout avec **peu de JavaScript** (îlots uniquement). Astro Rocket est **MIT** et repose sur [Velocity](https://github.com/southwellmedia/velocity) ; le dépôt du thème est sur [GitHub](https://github.com/hansmartens68/Astro-Rocket).
+
+## Lighthouse
+
+La démo du template sur [astrorocket.dev](https://astrorocket.dev) vise **100** sur les quatre axes Lighthouse (y compris sur le site complet, pas une page isolée). Les jauges ci-dessous illustrent ce résultat type ; en conditions réelles les scores peuvent légèrement varier. Notre site suit la même idée : HTML statique, images et CSS soignés, peu de JS.
 
 <div class="my-10">
   <LighthouseScoresGrid staggered={false} />
 </div>
-
-Lighthouse s’exécute dans un Chromium isolé avec CPU et réseau bridés : les scores peuvent varier d’un point selon la machine, le réseau et la charge. Les valeurs ci-dessus correspondent au résultat typique sur la démo en ligne.
-
-Le thème intègre un composant `LighthouseScores` réutilisable — jauges circulaires façon Lighthouse animées de 0 à 100 à l’entrée dans le viewport.
-
-Ces scores découlent de choix d’architecture : sortie statique Astro (peu de JS par défaut), préchargement des polices, CSS inlined, reports de mise en page limités, images via le pipeline Astro, contraste et clavier sur les îlots interactifs, et une couche SEO complète (pas seulement quelques balises meta).
-
-## 12 thèmes. Changement instantané.
-
-Le sélecteur de thème est l’un des détails les plus satisfaisants : douze palettes — **orange, ambre, citron vert, émeraude, sarcelle, cyan, ciel, bleu, indigo, violet, pourpre et magenta** — basculent depuis une pilule dans l’en-tête. Un clic : boutons, liens, badges, barre de progression, cartes blog et accents suivent, sans rechargement ni redéploiement.
-
-Le secret tient aux **variables CSS** sur `data-theme` à la racine : tout est côté navigateur.
-
-## Modes couleur — système, clair, sombre
-
-Trois états explicites : **Clair**, **Sombre** ou **Système** (suit `prefers-color-scheme` en direct). Le choix est mémorisé dans `localStorage`. Un petit script dans `<head>` évite le flash au chargement.
-
-## 57+ composants, huit familles
-
-La bibliothèque structure le projet : composants Astro, TypeScript, Tailwind v4, compatibles thème et mode sombre. La page **composants** de la démo en ligne regroupe formulaires, affichage de données, retours utilisateur, surcouches, marketing, motifs, landing et SEO.
-
-Sous le capot, une architecture à **trois niveaux de tokens** (référence → sémantique → composant) fait remonter un changement de `--brand-500` sur l’ensemble de l’interface.
-
-## Identité de marque générée
-
-Modifier `siteConfig.name` met à jour le monogramme et le favicon SVG dans la couleur de marque — favicon pré-rendu au build, badge mis à jour au changement de thème.
-
-## Iconify — milliers d’icônes, un composant
-
-Le composant `Icon` exploite le catalogue Iconify : **Lucide** pour l’UI et **Simple Icons** pour les marques — uniquement les icônes réellement utilisées ne partent pas à la volée dans un bundle monstrueux.
-
-## SEO — pile complète
-
-- **Données structurées JSON-LD** — `WebSite`, `Organization`, `Person` sur l’accueil ; `BlogPosting` sur les articles ; fil d’Ariane partout
-- **Open Graph + Twitter Cards**
-- **URLs canoniques** à partir du domaine de production
-- **Sitemap** généré au build
-- **Contrôle robots** par page (`noindex`, `nofollow`)
-- **Vérification Search Console** via variables d’environnement
-- **Image OG par défaut** pour les aperçus sociaux
-
-## En-tête flottant
-
-Pilule en verre dépoli au-dessus du hero, masquage au scroll vers le bas, retour discret au scroll vers le haut ; sur mobile, dégradés adaptés.
-
-## Grille derrière le hero
-
-Motif radial en CSS pur (`linear-gradient` + masque) — coût nul à l’exécution, recoloration automatique avec le thème.
-
-## Traînée du curseur (desktop)
-
-Effet en trois couches (point, anneau comète) désactivé sur pointeur grossier et `prefers-reduced-motion`.
-
-## Animations
-
-Barre de progression de scroll, anneau optionnel, indicateur de scroll du hero, **effet de dactylo** avec largeur figée pour éviter les sauts de layout, reveals à l’intersection (`data-reveal`, `data-reveal-children`, `data-reveal-content`), courbe ressort `cubic-bezier(0.22, 1.6, 0.36, 1)`, compteurs animés, micro-interactions sur les cartes, et respect systématique de **réduction des mouvements**.
-
-## CTA LetterGlitch
-
-Bande LetterGlitch sur le CTA de fermeture (desktop), version plate sur mobile pour garder le calme sur petit écran.
-
-## Formulaires
-
-Formulaire de contact avec **Zod**, **honeypot** et envoi via un **service mailer central** ([azr-mailer](https://github.com/azersoft/azr-mailer)) — le site reste statique, le navigateur envoie du JSON à une URL publique.
-
-## Recherche, confidentialité, analyses
-
-**Pagefind** pour la recherche statique. **Bandeau cookies** compatible **Google Consent Mode v2**. Emplacements **GA4 / GTM** derrière consentement, activables par variables d’environnement.
-
-## Collections de contenu
-
-Collections typées (`blog`, `projects`, `stack`, etc.) validées au build avec Zod.
-
-## Internationalisation (i18n)
-
-Schémas avec locale (`en`, `es`, `fr`) et arborescence prête pour du contenu préfixé par langue.
-
-## Déploiement
-
-Configurations **Vercel**, **Netlify** et **Cloudflare Pages** dans le dépôt ; CI GitHub Actions pour lint, types et build.
-
-## Peu de JavaScript par défaut
-
-Le HTML part statique ; seuls les îlots (thème, formulaire, effets, etc.) hydratent.
-
-## Open source
-
-Astro Rocket est sous licence **MIT**, listé dans l’annuaire officiel des thèmes Astro, et s’appuie sur [Velocity](https://github.com/southwellmedia/velocity) par Southwell Media. Pour remercier l’auteur, une étoile sur [GitHub](https://github.com/hansmartens68/Astro-Rocket) suffit amplement.

@@ -2,7 +2,7 @@ export const offers = [
   {
     title: 'Sites Web',
     icon: 'globe',
-    shortDescription: 'Site vitrine rapide et administrable avec Astro ou WordPress.',
+    shortDescription: 'Site vitrine avec Astro ou WordPress.',
     description:
       "Nous concevons des sites vitrines modernes, rapides et accessibles, adaptés à votre image et à votre budget. Que vous ayez besoin d'une présence en ligne simple ou d'un site géré en autonomie, nous réalisons votre projet avec Astro ou WordPress selon vos contraintes.",
     points: [
@@ -22,7 +22,7 @@ export const offers = [
         description: "Interface fluide sur tous les appareils, du smartphone à l'écran large.",
       },
     ],
-    tarif: 'À partir de 100,000 CFP'
+    tarif: 'À partir de 100,000 CFP',
   },
   {
     title: 'E-Commerce',
@@ -50,7 +50,7 @@ export const offers = [
           'Intégration du paiement EpayNC pour la Nouvelle-Calédonie (https://www.epaync.nc/).',
       },
     ],
-    tarif: 'À partir de 300,000 CFP'
+    tarif: 'À partir de 300,000 CFP',
   },
   {
     title: 'Applications',

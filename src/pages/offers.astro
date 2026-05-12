@@ -8,7 +8,6 @@ import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Card from '@/components/ui/data-display/Card/Card.astro';
 import { Hero } from '@/components/hero';
-import ContactCTA from '@/components/skills/ContactCTA.astro';
 import { offers } from '@/config/offers.config';
 ---
 
@@ -118,4 +117,26 @@ import { offers } from '@/config/offers.config';
       </section>
     );
   })}
+
+<section id="clients" class="bg-background border-border border-t py-[var(--space-section-sm)]">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="mb-8 text-center" data-reveal>
+      <Badge variant="brand" pill>
+        <Icon name="info" size="sm" />
+        Disclaimer
+      </Badge>
+      <h2 class="font-display mt-4 text-3xl font-bold">
+        Tarifs indicatifs
+      </h2>
+      <p class="text-foreground-muted mx-auto mt-4 max-w-2xl text-lg">
+        Les tarifs peuvent varier en fonction des projets et de leur complexité.
+      </p>
+      <p class="text-foreground-muted mx-auto mt-4 max-w-2xl text-lg">
+        Les tarifs prennent en compte la création du site web, l'hébergement, le référencement naturel.
+        La création d'une charte graphique, d'un logo, etc. n'est pas comprise dans le tarif.
+      </p>
+    </div>
+  </div>
+</section>
+
 </PageLayout>
