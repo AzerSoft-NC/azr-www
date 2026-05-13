@@ -1,5 +1,3 @@
-import { SITE_URL, GOOGLE_SITE_VERIFICATION } from 'astro:env/server';
-
 export interface SiteConfig {
   name: string;
   description: string;
@@ -67,7 +65,7 @@ const siteConfig: SiteConfig = {
   name: 'Azer Soft',
   description:
     'Société de services informatiques en Nouvelle-Calédonie : développement logiciel, conseil, audit, SIG et accompagnement projet.',
-  url: SITE_URL || 'https://azersoft.nc',
+  url: process.env.SITE_URL || 'https://azersoft.nc',
   ogImage: '/og-default.png',
   author: 'Azer Soft SARL',
   email: 'contact@azersoft.nc',
@@ -81,7 +79,7 @@ const siteConfig: SiteConfig = {
   },
   socialLinks: ['mailto:contact@azersoft.nc'],
   verification: {
-    google: GOOGLE_SITE_VERIFICATION,
+    google: process.env.GOOGLE_SITE_VERIFICATION,
   },
   authorImage: '/logo/logo_m0_transparent.svg',
   blogImageOverlay: true,

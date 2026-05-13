@@ -35,12 +35,11 @@
  * www.google-analytics.com will silently drop all tracking requests with
  * no console errors. The wildcard *.google-analytics.com is required.
  */
-import { PUBLIC_GA_MEASUREMENT_ID, PUBLIC_GTM_ID, PUBLIC_CONSENT_ENABLED } from 'astro:env/client';
 import consentConfig from '@/config/consent.config';
 
-const gaId = PUBLIC_GA_MEASUREMENT_ID;
-const gtmId = PUBLIC_GTM_ID;
-const consentEnabled = PUBLIC_CONSENT_ENABLED;
+const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+const gtmId = import.meta.env.PUBLIC_GTM_ID;
+const consentEnabled = import.meta.env.PUBLIC_CONSENT_ENABLED === 'true';
 const consentMode = consentConfig.mode;
 const storageKey = consentConfig.storageKey;
 const configVersion = consentConfig.version;

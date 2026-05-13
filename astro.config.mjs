@@ -5,10 +5,19 @@ import tailwindcss from '@tailwindcss/vite';
 import icon from 'astro-icon';
 import { defineConfig, envField } from 'astro/config';
 import { fileURLToPath } from 'node:url';
+import { loadEnv } from 'vite';
+
+const env = loadEnv(process.env.NODE_ENV || 'production', process.cwd(), '');
+const rawSiteUrl = (env.SITE_URL || process.env.SITE_URL || '').trim().replace(/^['"]|['"]$/g, '');
+const siteUrl = rawSiteUrl
+  ? rawSiteUrl.startsWith('http://') || rawSiteUrl.startsWith('https://')
+    ? rawSiteUrl
+    : `https://${rawSiteUrl}`
+  : 'https://example.com';
 
 export default defineConfig({
   output: 'static',
-  site: process.env.SITE_URL || 'https://example.com',
+  site: siteUrl,
 
   build: {
     inlineStylesheets: 'always',

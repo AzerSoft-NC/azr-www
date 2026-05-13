@@ -15,13 +15,7 @@ interface Props {
   day: number;
 }
 
-const {
-  title,
-  description,
-  year,
-  month,
-  day,
-} = Astro.props;
+const { title, description, year, month, day } = Astro.props;
 
 const date = formatDate(new Date(year, month - 1, day));
 ---
@@ -56,7 +50,6 @@ const date = formatDate(new Date(year, month - 1, day));
         </div>
       </div>
     </article>
-
   </div>
 
   <Footer slot="footer" layout="columns" background="invert" />

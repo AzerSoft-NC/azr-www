@@ -28,14 +28,22 @@ const {
 
 const pageTitle = title ? `${title} — ${siteConfig.name}` : siteConfig.name;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const siteOrigin = (() => {
+  try {
+    return new URL(siteConfig.url).toString();
+  } catch {
+    return 'https://example.com';
+  }
+})();
+
+const canonicalURL = new URL(Astro.url.pathname, siteOrigin);
 
 // Process image - fall back to the static default OG image
 let ogImage: string;
 if (image) {
-  ogImage = image.startsWith('http') ? image : new URL(image, Astro.site).toString();
+  ogImage = image.startsWith('http') ? image : new URL(image, siteOrigin).toString();
 } else {
-  ogImage = new URL(siteConfig.ogImage, Astro.site).toString();
+  ogImage = new URL(siteConfig.ogImage, siteOrigin).toString();
 }
 
 const robotsContent = [noindex ? 'noindex' : 'index', nofollow ? 'nofollow' : 'follow'].join(', ');
