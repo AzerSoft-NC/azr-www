@@ -101,6 +101,19 @@ const stack = defineCollection({
   }),
 });
 
+// Legal pages (terms, privacy, mentions) — MDX in src/content/legal
+const legal = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/legal' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    year: z.number(),
+    month: z.number(),
+    day: z.number(),
+    draft: z.boolean().default(false),
+  }),
+});
+
 export const collections = {
   blog,
   pages,
@@ -108,4 +121,5 @@ export const collections = {
   faqs,
   stack,
   projects,
+  legal,
 };

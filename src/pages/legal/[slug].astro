@@ -1,0 +1,35 @@
+---
+import LegalLayout from '@/layouts/LegalLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const legal = await getCollection('legal', ({ data }) =>
+    import.meta.env.PROD ? data.draft !== true : true,
+  );
+  return legal.map((entry) => ({
+    params: { slug: entry.id.replace(/\.mdx?$/, '') },
+  }));
+}
+
+const { slug } = Astro.params;
+
+const legal = await getCollection('legal', ({ data }) =>
+  import.meta.env.PROD ? data.draft !== true : true,
+);
+const doc = legal.find((it) => it.id.replace(/\.mdx?$/, '') === slug);
+if (!doc) {
+  return Astro.redirect('/404');
+}
+
+const { Content } = await render(doc);
+---
+
+<LegalLayout
+  title={doc.data.title}
+  description={doc.data.description}
+  year={doc.data.year}
+  month={doc.data.month}
+  day={doc.data.day}
+>
+  <Content />
+</LegalLayout>

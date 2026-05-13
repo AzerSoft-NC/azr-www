@@ -1,0 +1,24 @@
+---
+import LegalLayout from '@/layouts/LegalLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+const legal = await getCollection('legal', ({ data }) =>
+  import.meta.env.PROD ? data.draft !== true : true,
+);
+const mentions = legal.find((it) => it.id.replace(/\.mdx?$/, '') === 'mentions');
+if (!mentions) {
+  return Astro.redirect('/404');
+}
+
+const { Content } = await render(mentions);
+---
+
+<LegalLayout
+  title={mentions.data.title}
+  description={mentions.data.description}
+  year={mentions.data.year}
+  month={mentions.data.month}
+  day={mentions.data.day}
+>
+  <Content />
+</LegalLayout>

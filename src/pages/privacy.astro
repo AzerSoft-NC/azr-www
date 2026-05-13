@@ -1,0 +1,62 @@
+---
+import { Badge, Card, Icon } from '@/components/ui';
+import LegalLayout from '@/layouts/LegalLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+const legal = await getCollection('legal', ({ data }) =>
+  import.meta.env.PROD ? data.draft !== true : true
+);
+const privacy = legal.find((it) => it.id.replace(/\.mdx?$/, '') === 'privacy')!;
+
+const { Content } = await render(privacy);
+
+const othersPolicies = [
+  {
+    title: 'Application Shopify - NC Shipping Rates',
+    description: "Politique de confidentialité de l'application NC Shipping Rates de Azer Soft.",
+    icon: 'shopify',
+    url: '/legal/privacy-nc-shipping-rates',
+  },
+];
+---
+
+<LegalLayout
+  title={privacy.data.title}
+  description={privacy.data.description}
+  year={privacy.data.year}
+  month={privacy.data.month}
+  day={privacy.data.day}
+>
+  <Content />
+
+  <section
+    id="redirects"
+    class="bg-background-secondary border-border border-t py-[var(--space-section-xs)]"
+  >
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="mb-8 text-center" data-reveal>
+        <Badge variant="brand" pill>Redirection</Badge><h2
+          class="font-display mt-4 text-3xl font-bold"
+        >
+          Autres politiques de confidentialité
+        </h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        {
+          othersPolicies.map((policy) => (
+            <Card hover>
+              <h4 class="mb-2 font-semibold">{policy.title}</h4>
+              <p class="text-foreground-muted text-sm">{policy.description}</p>
+              <a
+                href={policy.url}
+                class="float-right text-primary text-sm font-medium underline underline-offset-4 hover:no-underline"
+              >
+                Voir →
+              </a>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</LegalLayout>

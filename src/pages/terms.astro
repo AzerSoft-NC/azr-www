@@ -1,0 +1,21 @@
+---
+import LegalLayout from '@/layouts/LegalLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+const legal = await getCollection('legal', ({ data }) =>
+  import.meta.env.PROD ? data.draft !== true : true,
+);
+const termsOfUse = legal.find((it) => it.id.replace(/\.mdx?$/, '') === 'terms')!;
+
+const { Content } = await render(termsOfUse!);
+---
+
+<LegalLayout
+  title={termsOfUse.data.title}
+  description={termsOfUse.data.description}
+  year={termsOfUse.data.year}
+  month={termsOfUse.data.month}
+  day={termsOfUse.data.day}
+>
+  <Content />
+</LegalLayout>

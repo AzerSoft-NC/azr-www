@@ -9,4 +9,5 @@ import type { NavItem } from './nav.config';
 export const LegalLinks: NavItem[] = [
   { label: 'Politique de confidentialité', href: '/privacy' },
   { label: "Conditions d'utilisation", href: '/terms' },
+  { label: 'Mentions légales', href: '/mentions' },
 ];

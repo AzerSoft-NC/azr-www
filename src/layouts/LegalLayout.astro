@@ -1,0 +1,63 @@
+---
+import { Hero } from '@/components/hero';
+import Footer from '@/components/layout/Footer.astro';
+import Header from '@/components/layout/Header.astro';
+import { Badge } from '@/components/ui';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+import { formatDate } from '@/lib/utils';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  year: number;
+  month: number;
+  day: number;
+}
+
+const {
+  title,
+  description,
+  year,
+  month,
+  day,
+} = Astro.props;
+
+const date = formatDate(new Date(year, month - 1, day));
+---
+
+<BaseLayout title={title} description={description}>
+  <Header
+    slot="header"
+    position="fixed"
+    shape="bar"
+    variant="solid"
+    size="lg"
+    showCta={false}
+    showScrollProgress
+  />
+
+  <div class="min-h-screen pt-16">
+    <Hero layout="centered" size="sm">
+      <Badge slot="badge" variant="brand" pill>
+        <Icon name="clock" size="sm" />
+        Dernière mise à jour : {date}
+      </Badge>
+      <h1 slot="title">
+        <span class="text-foreground [-webkit-text-fill-color:currentColor]">{title}</span>
+      </h1>
+      <p slot="description">{description}</p>
+    </Hero>
+
+    <article class="pt-8 pb-[var(--space-section-md)]">
+      <div class="mx-auto max-w-4xl px-6">
+        <div class="prose prose-lg max-w-none" data-reveal-content>
+          <slot />
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <Footer slot="footer" layout="columns" background="invert" />
+</BaseLayout>
