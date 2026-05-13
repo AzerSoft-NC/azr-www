@@ -9,12 +9,14 @@ export const offers = [
       {
         icon: 'zap',
         label: 'Performance',
-        description: 'Scores Lighthouse optimisés, temps de chargement réduits et hébergement adapté.',
+        description:
+          'Scores Lighthouse optimisés, temps de chargement réduits et hébergement adapté.',
       },
       {
         icon: 'search',
         label: 'SEO & accessibilité',
-        description: 'Balisage sémantique, métadonnées structurées et conformité aux standards WCAG.',
+        description:
+          'Balisage sémantique, métadonnées structurées et conformité aux standards WCAG.',
       },
       {
         icon: 'smartphone',
@@ -29,7 +31,7 @@ export const offers = [
     icon: 'shopping-cart',
     shortDescription: 'Boutique en ligne clé en main avec Shopify ou WooCommerce.',
     description:
-      'Nous déployons et configurons des boutiques en ligne adaptées au marché calédonien. De la mise en place du catalogue produits à l\'intégration des modes de paiement locaux, nous vous accompagnons à chaque étape pour lancer votre activité en ligne sereinement.',
+      "Nous déployons et configurons des boutiques en ligne adaptées au marché calédonien. De la mise en place du catalogue produits à l'intégration des modes de paiement locaux, nous vous accompagnons à chaque étape pour lancer votre activité en ligne sereinement.",
     points: [
       {
         icon: 'shopping-bag',
@@ -62,12 +64,14 @@ export const offers = [
       {
         icon: 'code',
         label: 'Développement sur mesure',
-        description: "Architecture pensée pour évoluer avec vos besoins et la taille de votre équipe.",
+        description:
+          'Architecture pensée pour évoluer avec vos besoins et la taille de votre équipe.',
       },
       {
         icon: 'shield-check',
         label: 'Qualité & tests',
-        description: 'Revue de code, tests automatisés et intégration continue pour des livrables fiables.',
+        description:
+          'Revue de code, tests automatisés et intégration continue pour des livrables fiables.',
       },
       {
         icon: 'users',
@@ -75,6 +79,6 @@ export const offers = [
         description: 'Documentation, formation et accompagnement post-livraison inclus.',
       },
     ],
-    tarif: 'En fonction du projet'
+    tarif: 'En fonction du projet',
   },
 ];
