@@ -1,0 +1,69 @@
+---
+title: 'NC Shipping Rates'
+description: 'Application Shopify pour calculer et afficher les frais de livraison en Nouvelle-Calédonie : zones par communes, règles (prix, poids, montant de commande) en XPF, validations et checkout.'
+url: 'https://apps.shopify.com/nc-shipping-rates?locale=fr'
+tags:
+  [
+    'Shopify',
+    'Remix',
+    'React',
+    'Prisma',
+    'PostgreSQL',
+    'Docker',
+    'Polaris',
+    'E-commerce',
+  ]
+featured: true
+order: 2
+year: 2026
+role: 'Conception & développement'
+services:
+  [
+    'Shopify',
+    'E-commerce',
+    'Application web',
+    'API',
+    'Infra & déploiement',
+  ]
+image: '@/assets/projetcs/nc-shipping-rates.png'
+imageAlt: "Interface d'administration NC Shipping Rates : tarif par défaut en XPF et tableau des zones de livraison en Nouvelle-Calédonie"
+---
+
+## À propos du projet
+
+**NC Shipping Rates** est une **application Shopify** destinée aux marchands qui livrent en **Nouvelle-Calédonie**. Elle permet de **définir des zones** (listes de communes), d’y associer des **règles de tarification** (montant affiché en **XPF**, contraintes sur le **poids** et/ou la **valeur du panier**), et d’appliquer un **tarif par défaut** lorsqu’aucune règle ne correspond. L’interface d’administration repose sur **Polaris** (capture ci-dessus dans le hero du projet).
+
+Le code vit dans un dépôt **privé** ; la référence publique est la **fiche App Store** : [NC Shipping Rates sur Shopify](https://apps.shopify.com/nc-shipping-rates?locale=fr).
+
+## Fonctionnalités côté marchand
+
+- **Tarif de livraison par défaut** en XPF, utilisé comme repli lorsque les règles ne couvrent pas le cas.
+- **Zones de livraison** : regroupement de **communes** calédoniennes, avec **plusieurs règles** possibles par zone.
+- **Règles** : prix de livraison, bornes de **poids** et/ou de **montant de commande** pour affiner le calcul au checkout.
+- **Validations des tarifs** : aide à repérer les trous de couverture ou les incohérences entre zones et communes.
+- **Personnalisation des libellés** au moment du paiement (checkout), pour un wording adapté aux clients.
+
+## Stack technique
+
+L’app est une **Shopify app** construite avec **Remix** et **React** (routes et mutations côté serveur, UI React). La persistance passe par **Prisma** sur **PostgreSQL**. L’environnement de développement et les déploiements s’appuient sur **Docker** pour des builds et exécutions reproductibles.
+
+## Hébergement
+
+L’application est hébergée sur un **droplet DigitalOcean**, avec la base PostgreSQL gérée dans le même périmètre d’infra (services conteneurisés ou VM selon la cible de déploiement).
+
+## Démonstration vidéo
+
+La vidéo ci-dessous présente le parcours et l’interface de l’application (démo publique sur YouTube).
+
+<div class="border-border relative my-10 aspect-video w-full overflow-hidden rounded-xl border">
+  <iframe
+    class="absolute inset-0 h-full w-full"
+    src="https://www.youtube.com/embed/92QUE-uDwVo"
+    title="NC Shipping Rates — démonstration sur YouTube"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+    loading="lazy"
+  ></iframe>
+</div>
+
+[Lien direct vers la vidéo sur YouTube](https://www.youtube.com/watch?v=92QUE-uDwVo).
