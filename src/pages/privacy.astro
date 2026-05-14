@@ -45,7 +45,10 @@ const othersPolicies = [
         {
           othersPolicies.map((policy) => (
             <Card hover>
-              <h4 class="mb-2 font-semibold">{policy.title}</h4>
+              <h4 class="mb-2 font-semibold">
+                <Icon name={policy.icon} size="sm" />
+                {policy.title}
+              </h4>
               <p class="text-foreground-muted text-sm">{policy.description}</p>
               <a
                 href={policy.url}
