@@ -4,6 +4,7 @@ import Textarea from '@/components/ui/form/Textarea/Textarea.astro';
 import Button from '@/components/ui/form/Button/Button.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import { cn } from '@/lib/cn';
+import siteConfig from '@/config/site.config';
 
 interface Props {
   /** URL du service mailer (JSON POST). Par défaut : `PUBLIC_MAILER_ENDPOINT`. */
@@ -19,7 +20,14 @@ const {
 } = Astro.props;
 
 const mailerEndpoint = (endpointFromProp ?? import.meta.env.PUBLIC_MAILER_ENDPOINT ?? '').trim();
+
+const { email } = siteConfig;
 ---
+
+<p class="text-foreground-subtle text-sm">
+  Nous sommes désolés, mais le formulaire de contact est momentanément fermé. Veuillez nous
+  contacter par email à <a href={`mailto:${email}`}>{email}</a>.
+</p>
 
 <form
   id="contact-form"
@@ -37,6 +45,7 @@ const mailerEndpoint = (endpointFromProp ?? import.meta.env.PUBLIC_MAILER_ENDPOI
       required
       autocomplete="name"
       placeholder="Votre nom"
+      disabled={true}
     />
     <Input
       label="Email"
@@ -45,6 +54,7 @@ const mailerEndpoint = (endpointFromProp ?? import.meta.env.PUBLIC_MAILER_ENDPOI
       required
       autocomplete="email"
       placeholder="vous@exemple.com"
+      disabled={true}
     />
   </div>
 
@@ -53,6 +63,7 @@ const mailerEndpoint = (endpointFromProp ?? import.meta.env.PUBLIC_MAILER_ENDPOI
     name="subject"
     type="text"
     placeholder="Creation de site, application, audit..."
+    disabled={true}
   />
 
   <Textarea
@@ -61,6 +72,7 @@ const mailerEndpoint = (endpointFromProp ?? import.meta.env.PUBLIC_MAILER_ENDPOI
     required
     rows={5}
     placeholder="Expliquez votre projet en quelques lignes."
+    disabled={true}
   />
 
   <!-- Honeypot field for spam protection -->
@@ -71,7 +83,7 @@ const mailerEndpoint = (endpointFromProp ?? import.meta.env.PUBLIC_MAILER_ENDPOI
   <div id="form-message" class="hidden text-sm"></div>
 
   <div class="flex justify-center">
-    <Button type="submit" id="submit-button" class="gap-2">
+    <Button type="submit" id="submit-button" class="gap-2" disabled={true}>
       Envoyer le message
       <Icon name="send" size="sm" />
     </Button>

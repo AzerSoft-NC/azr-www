@@ -1,0 +1,11 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SITE_URL: ${SITE_URL:?SITE_URL not set}
+    environment:
+      PORT: ${PORT:?PORT not set}
+    ports:
+      - "${DOCKER_WEB_PORT:?DOCKER_WEB_PORT not set}:${PORT:?PORT not set}"
