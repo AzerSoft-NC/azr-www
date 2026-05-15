@@ -2,6 +2,7 @@
 import mySupplementLogo from '@/assets/clients/my_supplement.png';
 import optLogo from '@/assets/clients/opt.png';
 import psudLogo from '@/assets/clients/psud.png';
+import landingHeroBg from '@/assets/landing-hero-bg.png';
 import { Hero } from '@/components/hero';
 import TechStack from '@/components/landing/TechStack.astro';
 import ContactForm from '@/components/patterns/ContactForm.astro';
@@ -25,7 +26,7 @@ const typingWords = offers.map((prestation) => prestation.title);
   <Hero
     layout="centered"
     size="xl"
-    backgroundImage="/assets/landing-hero-bg.png"
+    backgroundImage={landingHeroBg.src}
     showScrollIndicator
     introLogoImage="/logo/logo_inverted_trasnparent.svg"
     introLogoColor="color-mix(in oklch, var(--color-background) 82%, transparent)"
