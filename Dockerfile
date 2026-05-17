@@ -25,7 +25,4 @@ COPY --from=builder /app/dist ./dist
 RUN chown -R node:node /app
 USER node
 
-ENV PORT=4321
-EXPOSE 4321
-
-CMD ["sh", "-c", "exec serve dist -l \"tcp://0.0.0.0:${PORT:-4321}\""]
+CMD ["sh", "-c", "exec serve dist -l \"tcp://0.0.0.0:${PORT}\""]

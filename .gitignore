@@ -10,7 +10,11 @@ dist/
 # Environment variables
 .env
 .env.local
-.env.*.local
+.env.development.local
+.env.test.local
+.env.prod*
+.deploy
+.env*.local
 
 # Deployment config (local only — use .deploy.example as template)
 .deploy

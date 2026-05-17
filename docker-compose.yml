@@ -1,10 +1,16 @@
+name: ${DOCKER_NAME:?DOCKER_NAME not set}
+
 services:
   web:
+    image: ${DOCKER_NAME}:${DOCKER_IMAGE_TAG:-latest}
+    container_name: ${DOCKER_NAME}-web
     build:
       context: .
       dockerfile: Dockerfile
       args:
         SITE_URL: ${SITE_URL:?SITE_URL not set}
+        PUBLIC_CONSENT_ENABLED: ${PUBLIC_CONSENT_ENABLED:-true}
+        PUBLIC_PRIVACY_POLICY_URL: ${PUBLIC_PRIVACY_POLICY_URL:-${SITE_URL}/privacy}
     environment:
       PORT: ${PORT:?PORT not set}
     ports:
