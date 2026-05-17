@@ -7,6 +7,9 @@ dist/
 # Astro
 .astro/
 
+# Docker
+.docker
+
 # Environment variables
 .env
 .env.local
