@@ -28,15 +28,14 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "build:local": "astro build --mode development",
+    "build:prod": "astro build --mode production",
     "preview": "astro preview",
     "check": "astro check",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "validate": "yarn lint && yarn check && yarn build",
-    "deploy:check": "yarn format:check && yarn lint && yarn check && yarn test",
-    "deploy": "bash scripts/deploy.sh",
     "test": "vitest run",
     "test:e2e": "playwright test"
   },
