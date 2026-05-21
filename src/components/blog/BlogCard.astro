@@ -29,7 +29,7 @@ const readingTime = Math.max(1, Math.ceil(estimatedWords / wordsPerMinute));
   class="group border-brand-500/30 bg-background ring-brand-500/20 hover:border-brand-500 rounded-lg border p-6 ring-1 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"
   data-reveal
 >
-  <a href={href} class="block">
+  <a href={href} class="block" aria-label={`Lire l'article : ${title}`}>
     <div
       class="bg-background-secondary from-brand-100/65 dark:from-brand-900/60 dark:to-brand-600/25 relative mb-4 overflow-hidden rounded-md bg-gradient-to-br to-transparent"
       style="color: var(--brand-500);"

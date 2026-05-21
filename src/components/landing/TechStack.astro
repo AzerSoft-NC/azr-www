@@ -16,9 +16,20 @@ interface Props {
   badge?: string;
   background?: 'primary' | 'secondary';
   featured?: boolean;
+  /** Page-level stack section uses h1; embedded sections use h2 (default). */
+  titleAs?: 'h1' | 'h2';
 }
 
-const { title, description, badge, background = 'secondary', featured = true } = Astro.props;
+const {
+  title,
+  description,
+  badge,
+  background = 'secondary',
+  featured = true,
+  titleAs = 'h2',
+} = Astro.props;
+
+const TitleTag = titleAs;
 
 const items = await getCollection('stack');
 const stack = items
@@ -40,7 +51,9 @@ const bgClass = background === 'primary' ? 'bg-background' : 'bg-background-seco
                   {badge}
                 </Badge>
               )}
-              {title && <h2 class="font-display text-foreground text-4xl font-bold">{title}</h2>}
+              {title && (
+                <TitleTag class="font-display text-foreground text-4xl font-bold">{title}</TitleTag>
+              )}
             </div>
           )}
           {description && (
@@ -65,6 +78,7 @@ const bgClass = background === 'primary' ? 'bg-background' : 'bg-background-seco
               href={item.data.url}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`${item.data.name} — site officiel (nouvel onglet)`}
               class="h-full text-center"
             >
               <div class="flex flex-col items-center gap-[var(--space-stack-sm)]">

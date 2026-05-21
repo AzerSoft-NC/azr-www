@@ -37,7 +37,9 @@ const projects = items.sort((a, b) => a.data.order - b.data.order);
       <section class="bg-background-secondary border-border border-t py-[var(--space-section-md)]">
         <div class="mx-auto flex max-w-6xl flex-col gap-8 px-6">
           <div class="grid gap-6 md:grid-cols-2">
-            {projects.map((project) => (
+            {projects.map((project, index) => {
+              const eagerImage = index < 2;
+              return (
               <Card
                 variant="elevated"
                 hover
@@ -63,8 +65,9 @@ const projects = items.sort((a, b) => a.data.order - b.data.order);
                             ? 'aspect-video md:aspect-auto md:h-full'
                             : 'aspect-video',
                         ]}
-                        loading="lazy"
-                        decoding="async"
+                        loading={eagerImage ? 'eager' : 'lazy'}
+                        decoding={eagerImage ? 'sync' : 'async'}
+                        fetchpriority={eagerImage && index === 0 ? 'high' : undefined}
                       />
                     ) : (
                       <Image
@@ -82,7 +85,9 @@ const projects = items.sort((a, b) => a.data.order - b.data.order);
                             ? 'aspect-video md:aspect-auto md:h-full'
                             : 'aspect-video',
                         ]}
-                        loading="lazy"
+                        loading={eagerImage ? 'eager' : 'lazy'}
+                        decoding={eagerImage ? 'sync' : 'async'}
+                        fetchpriority={eagerImage && index === 0 ? 'high' : undefined}
                       />
                     )}
                   </div>
@@ -124,7 +129,8 @@ const projects = items.sort((a, b) => a.data.order - b.data.order);
                   </div>
                 </div>
               </Card>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
