@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import mySupplementLogo from '@/assets/clients/my_supplement.png';
 import optLogo from '@/assets/clients/opt.png';
 import psudLogo from '@/assets/clients/psud.png';
@@ -14,6 +16,36 @@ import { offers } from '@/config/offers.config';
 import LandingLayout from '@/layouts/LandingLayout.astro';
 
 const typingWords = offers.map((prestation) => prestation.title);
+
+const clients: {
+  name: string;
+  image: ImageMetadata;
+  href: string;
+  target: '_blank';
+  rel: 'noopener noreferrer';
+}[] = [
+  {
+    name: 'OPT',
+    image: optLogo,
+    href: 'https://www.opt.nc/fr',
+    target: '_blank',
+    rel: 'noopener noreferrer',
+  },
+  {
+    name: 'Province Sud',
+    image: psudLogo,
+    href: 'https://www.province-sud.nc',
+    target: '_blank',
+    rel: 'noopener noreferrer',
+  },
+  {
+    name: 'My Supplement',
+    image: mySupplementLogo,
+    href: 'https://www.mysupplement.nc',
+    target: '_blank',
+    rel: 'noopener noreferrer',
+  },
+];
 ---
 
 <LandingLayout
@@ -104,27 +136,30 @@ const typingWords = offers.map((prestation) => prestation.title);
         </h2>
       </div>
       <div class="grid gap-6 md:grid-cols-3">
-        <Card padding="lg" variant="outline" square centerContent
-          ><img src={optLogo.src} alt="OPT" class="mx-auto object-contain" /></Card
-        >
-        <Card padding="lg" variant="outline" square centerContent
-          ><img src={psudLogo.src} alt="Province Sud" class="mx-auto object-contain" /></Card
-        >
-        <Card
-          variant="outline"
-          padding="lg"
-          hover
-          square
-          centerContent
-          href="https://www.mysupplement.nc"
-          target="_blank"
-          rel="noopener noreferrer"
-          ><img
-            src={mySupplementLogo.src}
-            alt="My Supplement"
-            class="mx-auto object-contain"
-          /></Card
-        >
+        {
+          clients.map((client) => (
+            <Card
+              padding="lg"
+              variant="outline"
+              square
+              centerContent
+              href={client.href}
+              target={client.target}
+              rel={client.rel}
+            >
+              <Image
+                src={client.image}
+                alt={client.name}
+                layout="none"
+                widths={[140, 280]}
+                sizes="(max-width: 768px) 33vw, 200px"
+                class="mx-auto max-h-20 w-full object-contain"
+                loading="lazy"
+                decoding="async"
+              />
+            </Card>
+          ))
+        }
       </div>
     </div>
   </section>

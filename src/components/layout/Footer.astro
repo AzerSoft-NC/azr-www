@@ -187,7 +187,7 @@ function footerLinkGroups(): FooterLinkGroup[] {
                   <slot name="logo" />
                 ) : (
                   <a href="/" aria-label={siteConfig.name}>
-                    <Logo size="lg" class="bg-brand-700" img={logo} />
+                    <Logo size="lg" class="bg-brand-700" img={logo} lazyLoad={true} />
                   </a>
                 )}
                 {(hasTaglineSlot || tagline) && (

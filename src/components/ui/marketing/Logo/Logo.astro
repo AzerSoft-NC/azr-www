@@ -18,9 +18,10 @@ interface Props {
     alt?: string;
     imageUrl?: string;
   };
+  lazyLoad?: boolean;
 }
 
-const { size = 'md', class: className, letter: letterProp, img } = Astro.props;
+const { size = 'md', class: className, letter: letterProp, img, lazyLoad = false } = Astro.props;
 
 const sizeClasses: Record<string, { box: string; text: string; radius: string }> = {
   sm: { box: 'w-5 h-5', text: 'text-[14px]', radius: 'rounded-[4px]' },
@@ -63,6 +64,10 @@ const alt = img?.alt ?? siteConfig.branding.logo.alt;
       {letter}
     </span>
   ) : (
-    <img src={src} alt={alt} class={imgClasses} />
+    lazyLoad ? (
+      <img src={src} alt={alt} class={imgClasses} loading="lazy" decoding="async" />
+    ) : (
+      <img src={src} alt={alt} class={imgClasses} />
+    )
   )
 }
