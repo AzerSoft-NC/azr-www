@@ -63,11 +63,9 @@ const alt = img?.alt ?? siteConfig.branding.logo.alt;
     >
       {letter}
     </span>
+  ) : lazyLoad ? (
+    <img src={src} alt={alt} class={imgClasses} loading="lazy" decoding="async" />
   ) : (
-    lazyLoad ? (
-      <img src={src} alt={alt} class={imgClasses} loading="lazy" decoding="async" />
-    ) : (
-      <img src={src} alt={alt} class={imgClasses} />
-    )
+    <img src={src} alt={alt} class={imgClasses} />
   )
 }
