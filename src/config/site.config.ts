@@ -66,7 +66,7 @@ const siteConfig: SiteConfig = {
   description:
     'Société de services informatiques en Nouvelle-Calédonie : développement logiciel, conseil, audit, SIG et accompagnement projet.',
   url: process.env.SITE_URL || 'https://azersoft.nc',
-  ogImage: '/og-default.png',
+  ogImage: '/azersoft.nc.png',
   author: 'Azer Soft SARL',
   email: 'contact@azersoft.nc',
   phone: '+687873499',
