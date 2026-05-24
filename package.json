@@ -28,6 +28,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "build:check": "astro check",
     "build:local": "astro build --mode development",
     "build:prod": "astro build --mode production",
     "preview": "astro preview",
