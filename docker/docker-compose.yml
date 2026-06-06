@@ -2,7 +2,7 @@ name: ${DOCKER_NAME:?DOCKER_NAME not set}
 
 services:
   web:
-    image: ${DOCKER_NAME}:${DOCKER_IMAGE_TAG:-latest}
+    image: ${DOCKER_NAME}-www:${DOCKER_IMAGE_TAG:-latest}
     container_name: ${DOCKER_NAME}-web
     build:
       context: .
