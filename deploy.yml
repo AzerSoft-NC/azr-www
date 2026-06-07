@@ -1,12 +1,11 @@
-stack: default
+stack: astro
 docker:
-  files: ['docker/Dockerfile']
+  files: ['docker/Dockerfile.web']
   compose: './docker-compose.yml'
 commands:
   format: ['yarn prettier --write .']
   check: ['yarn lint', 'yarn astro:check']
   test: ['yarn test']
-  build: ['yarn build']
 local:
   env_file: .env
 prod:
