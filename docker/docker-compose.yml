@@ -2,11 +2,11 @@ name: ${DOCKER_NAME:?DOCKER_NAME not set}
 
 services:
   web:
-    image: ${DOCKER_NAME}-www:${DOCKER_IMAGE_TAG:-latest}
+    image: ${DOCKER_NAME}-web
     container_name: ${DOCKER_NAME}-web
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ..
+      dockerfile: 'docker/Dockerfile.web'
       args:
         SITE_URL: ${SITE_URL:?SITE_URL not set}
         PUBLIC_CONSENT_ENABLED: ${PUBLIC_CONSENT_ENABLED:-true}
@@ -15,3 +15,5 @@ services:
       PORT: ${PORT:?PORT not set}
     ports:
       - '${DOCKER_WEB_PORT:?DOCKER_WEB_PORT not set}:${PORT:?PORT not set}'
+    volumes:
+      - ${DOCKER_VOLUMES_DIR}/web:/app/dist

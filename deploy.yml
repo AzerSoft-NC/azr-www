@@ -1,13 +1,12 @@
 stack: astro
 docker:
-  files: ['docker/Dockerfile.web']
-  compose: './docker-compose.yml'
+  compose: 'docker/docker-compose.yml'
 commands:
   format: ['yarn prettier --write .']
   check: ['yarn lint', 'yarn astro:check']
   test: ['yarn test']
 local:
-  env_file: .env
+  env: '.env.local'
 prod:
   droplet: ubuntu-azr-1
-  env_file: .env.prod
+  env: '.env.prod'
