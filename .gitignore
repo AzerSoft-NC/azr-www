@@ -60,9 +60,9 @@ public/pagefind/
 # Claude Code
 .claude/
 
-# Prefer Yarn; npm lockfile optional if someone uses npm by mistake
+# Prefer pnpm; other lockfiles optional if someone uses npm/yarn by mistake
 package-lock.json
-.yarn/
+yarn.lock
 
 # Cursor
 .cursor/

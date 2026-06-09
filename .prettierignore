@@ -2,4 +2,4 @@ dist/
 node_modules/
 .astro/
 public/pagefind/
-yarn.lock
+pnpm-lock.yaml

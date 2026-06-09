@@ -23,18 +23,18 @@ Astro-based company website (v3), rebuilt from scratch from Astro-Rocket base.
 
 ## Local Development
 
-Yarn 4 is pinned via `packageManager` in `package.json`. Enable Corepack once (Node ≥16.10) so the correct Yarn version is used:
+pnpm is pinned via `packageManager` in `package.json`. Enable Corepack once (Node ≥16.10) so the correct pnpm version is used:
 
 ```bash
 corepack enable
-yarn install
-yarn dev
+pnpm install
+pnpm dev
 ```
 
 ## Build
 
 ```bash
-yarn build
+pnpm build
 ```
 
 Output goes to `dist/`.

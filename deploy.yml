@@ -1,10 +1,10 @@
 stack: astro
 docker:
-  compose: 'docker/docker-compose.yml'
+  compose: 'docker-compose.yml'
 commands:
-  format: ['yarn prettier --write .']
-  check: ['yarn lint', 'yarn astro:check']
-  test: ['yarn test']
+  format: ['pnpm format']
+  check: ['pnpm lint', 'pnpm astro:check']
+  test: ['pnpm test']
 local:
   env: '.env.local'
 prod:
