@@ -1,3 +1,3 @@
 export { default } from './Card.astro';
-export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from './Card';
+export { default as Card } from './Card.astro';
 export { cardVariants, type CardVariants } from './card.variants';

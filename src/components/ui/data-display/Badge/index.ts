@@ -1,3 +1,3 @@
 export { default } from './Badge.astro';
-export { Badge } from './Badge';
+export { default as Badge } from './Badge.astro';
 export { badgeVariants, type BadgeVariants } from './badge.variants';
