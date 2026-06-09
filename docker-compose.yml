@@ -5,7 +5,7 @@ services:
     image: ${DOCKER_NAME}-web
     container_name: ${DOCKER_NAME}-web
     build:
-      context: 
+      context: .
       dockerfile: 'docker/Dockerfile.web'
       args:
         SITE_URL: ${SITE_URL:?SITE_URL not set}
@@ -16,4 +16,4 @@ services:
     ports:
       - '${DOCKER_WEB_PORT:?DOCKER_WEB_PORT not set}:${PORT:?PORT not set}'
     volumes:
-      - ${DOCKER_VOLUMES_DIR}/web:/app
+      - ${DOCKER_VOLUMES_DIR}/web:/web
